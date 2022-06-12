@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\acercaMailable;
+use App\Http\Controllers\Cart\CartController;
+use App\Http\Controllers\Cart\LaterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +26,19 @@ Route::get('/post', function () {
     return view('post');
 });
 
+Route::get('/form', function () {
+    return view('form');
+});
+
+Route::get('/opinion', function () {
+    $correo = new acercaMailable;
+
+    Mail::to('herrera.alvaradoartu@gmail.com')->send($correo);
+
+    return "Correo enviado";
+    return view('opinion');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -28,3 +46,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/contactar', 'App\Http\Controllers\EmailController@contact')->name('contact');
