@@ -1,13 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<?php $__env->startSection('content'); ?>
 
-</body>
-</html>
-<?php /**PATH C:\MAMP\htdocs\marktech\resources\views/post.blade.php ENDPATH**/ ?>
+<?php $__env->startSection('title', 'Post'); ?>
+
+
+<!--Carrusel-->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="<?php echo asset('img/red.jpg'); ?>" class="d-block w-100">
+          </div>
+          <div class="carousel-item">
+            <img src="<?php echo asset('img/blue.jpg'); ?>" class="d-block w-100">
+          </div>
+          <div class="carousel-item">
+            <img src="<?php echo asset('img/green.jpeg'); ?>" class="d-block w-100">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <!--Cards-->
+      <div class="container-fluid my-4 p-3" style="position: relative">
+        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+          <div class="col hp">
+            <div class="card h-100 shadow-sm">
+              <a href="#">
+                <img src="<?php echo asset('img/green.jpeg'); ?>" class="card-img-top"/>
+              </a>
+
+              <div class="card-body">
+                <div class="clearfix mb-3">
+                  <span class="float-start">$</span>
+                </div>
+                <h5 class="card-title">
+                  <a href="#">Product1</a>
+                </h5>
+                <div class="clearfix mb-1">
+                    <i class="far fa-heart" style="cursor: pointer"></i>
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col hp">
+            <div class="card h-100 shadow-sm">
+              <a href="#">
+                <img src="<?php echo asset('img/green.jpeg'); ?>" class="card-img-top" alt="product.title" />
+              </a>
+
+              <div class="card-body">
+                <div class="clearfix mb-3">
+                  <span class="float-start">$</span>
+                </div>
+                <h5 class="card-title">
+                    <a href="#">Product2</a>
+                </h5>
+                <div class="clearfix mb-1">
+                    <i class="far fa-heart" style="cursor: pointer"></i>
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col hp">
+            <div class="card h-100 shadow-sm">
+              <a href="#">
+                <img src="<?php echo asset('img/green.jpeg'); ?>" class="card-img-top" alt="product.title" />
+              </a>
+
+              <div class="card-body">
+                <div class="clearfix mb-3">
+                  <span class="float-start">$</span>
+                </div>
+                <h5 class="card-title">
+                    <a href="#">Product3</a>
+                </h5>
+                <div class="clearfix mb-1">
+                    <i class="far fa-heart" style="cursor: pointer"></i>
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col hp">
+            <div class="card h-100 shadow-sm">
+              <a href="#">
+                <img src="<?php echo asset('img/green.jpeg'); ?>" class="card-img-top" alt="product.title" />
+              </a>
+              <div class="card-body">
+                <div class="clearfix mb-3">
+                  <span class="float-start">$</span>
+                </div>
+                <h5 class="card-title">
+                    <a href="#">Product4</a>
+                </h5>
+                <div class="clearfix mb-1">
+      <i class="far fa-heart" style="cursor: pointer"></i>
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\MAMP\htdocs\marktech\resources\views/post.blade.php ENDPATH**/ ?>
