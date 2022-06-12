@@ -48,12 +48,6 @@
                 <h5 class="card-title">
                   <a href="#">Product1</a>
                 </h5>
-
-                <div class="d-grid gap-2 my-4">
-
-                  <a href="#" class="btn btn-info">Comprar</a>
-
-                </div>
                 <div class="clearfix mb-1">
                     <i class="far fa-heart" style="cursor: pointer"></i>
 
@@ -75,12 +69,6 @@
                 <h5 class="card-title">
                     <a href="#">Product2</a>
                 </h5>
-
-                <div class="d-grid gap-2 my-4">
-
-                  <a href="#" class="btn btn-info">Comprar</a>
-
-                </div>
                 <div class="clearfix mb-1">
                     <i class="far fa-heart" style="cursor: pointer"></i>
 
@@ -102,12 +90,6 @@
                 <h5 class="card-title">
                     <a href="#">Product3</a>
                 </h5>
-
-                <div class="d-grid gap-2 my-4">
-
-                  <a href="#" class="btn btn-info">Comprar</a>
-
-                </div>
                 <div class="clearfix mb-1">
                     <i class="far fa-heart" style="cursor: pointer"></i>
 
@@ -128,12 +110,6 @@
                 <h5 class="card-title">
                     <a href="#">Product4</a>
                 </h5>
-
-                <div class="d-grid gap-2 my-4">
-
-                  <a href="#" class="btn btn-info">Comprar</a>
-
-                </div>
                 <div class="clearfix mb-1">
       <i class="far fa-heart" style="cursor: pointer"></i>
 

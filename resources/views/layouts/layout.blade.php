@@ -12,7 +12,7 @@
 <!--Navbar-->
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <a class="navbar-brand" href="#">MarkTech</a>
+        <a class="navbar-brand" href="/post">MarkTech</a>
             <form class="d-flex mx-auto">
               <input class="form-control me-2" style="width: 300px; height: 50px" type="search" placeholder="Escribe aqui..." aria-label="Search">
               <button type="button" class="btn btn-dark" type="submit">
@@ -43,7 +43,7 @@
                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Hardware
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#">Procesadores</a></li>
                       <li><a class="dropdown-item" href="#">Memorias RAM</a></li>
                       <li><a class="dropdown-item" href="#">Discos Duros</a></li>
@@ -56,7 +56,7 @@
                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Accesorios
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#">Teclados</a></li>
                       <li><a class="dropdown-item" href="#">Mouse</a></li>
                       <li><a class="dropdown-item" href="#">Audifonos</a></li>
@@ -66,7 +66,7 @@
                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Computadoras
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#">Laptop</a></li>
                       <li><a class="dropdown-item" href="#">Escritorio</a></li>
                     </ul>
@@ -75,7 +75,7 @@
                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Almacenamiento
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#">SSD</a></li>
                       <li><a class="dropdown-item" href="#">USB</a></li>
                     </ul>
@@ -84,7 +84,7 @@
                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Software
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#">SO</a></li>
                       <li><a class="dropdown-item" href="#">Office</a></li>
                     </ul>
@@ -93,7 +93,7 @@
                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Impresoras
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#">Impresoras</a></li>
                       <li><a class="dropdown-item" href="#">Subcat2</a></li>
                     </ul>
@@ -102,7 +102,7 @@
                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Categoria 7
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                       <li><a class="dropdown-item" href="#">Subcat1</a></li>
                       <li><a class="dropdown-item" href="#">Subcat2</a></li>
                     </ul>
@@ -111,7 +111,7 @@
                 <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Categoria 8
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#">Subcat1</a></li>
                     <li><a class="dropdown-item" href="#">Subcat2</a></li>
                 </ul>
@@ -141,7 +141,7 @@
 
                     <ul class="list-unstyled mb-0">
                       <li>
-                        <a href="#" class="text-white">Envia tu opinión</a>
+                        <a href="/form" class="text-white">Envia tu opinión</a>
                       </li>
                       <li>
                         <a href="#" class="text-white">Acerca de nosotros</a>
@@ -225,7 +225,7 @@
             </div>
             <!-- Grid container -->
 
-                          <!-- Section: Form -->
+                          {{-- <!-- Section: Form -->
                           <section class="">
                             <form action="">
                               <!--Grid row-->
@@ -259,7 +259,7 @@
                               <!--Grid row-->
                             </form>
                           </section>
-                          <!-- Section: Form -->
+                          <!-- Section: Form --> --}}
 
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
