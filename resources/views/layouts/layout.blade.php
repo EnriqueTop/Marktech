@@ -48,8 +48,7 @@
                       <li><a class="dropdown-item" href="#">Memorias RAM</a></li>
                       <li><a class="dropdown-item" href="#">Discos Duros</a></li>
                       <li><a class="dropdown-item" href="#">Gabinetes</a></li>
-                      <!--<li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">TEST</a></li>-->
+
                     </ul>
                   </li>
                 <li class="nav-item dropdown">
@@ -128,14 +127,7 @@
         <!--footer-->
         <footer class="mt-auto">
           <footer class="bg-dark text-center text-white ">
-            <!-- Grid container -->
-            <div class="container p-4">
 
-              <!-- Section: Links -->
-              <section class="">
-                <!--Grid row-->
-                <div class="row">
-                  <!--Grid column-->
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Acerca</h5>
 
@@ -154,9 +146,7 @@
                       </li>
                     </ul>
                   </div>
-                  <!--Grid column-->
 
-                  <!--Grid column-->
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Links</h5>
 
@@ -175,9 +165,7 @@
                       </li>
                     </ul>
                   </div>
-                  <!--Grid column-->
 
-                  <!--Grid column-->
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Links</h5>
 
@@ -196,9 +184,7 @@
                       </li>
                     </ul>
                   </div>
-                  <!--Grid column-->
 
-                  <!--Grid column-->
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Links</h5>
 
@@ -217,58 +203,12 @@
                       </li>
                     </ul>
                   </div>
-                  <!--Grid column-->
-                </div>
-                <!--Grid row-->
-              </section>
-              <!-- Section: Links -->
-            </div>
-            <!-- Grid container -->
 
-                          {{-- <!-- Section: Form -->
-                          <section class="">
-                            <form action="">
-                              <!--Grid row-->
-                              <div class="row d-flex justify-content-center">
-                                <!--Grid column-->
-                                <div class="col-auto">
-                                  <p class="pt-2">
-                                    <strong>Suscribete para recibir promociones:</strong>
-                                  </p>
-                                </div>
-                                <!--Grid column-->
-
-                                <!--Grid column-->
-                                <div class="col-md-5 col-12">
-                                  <!-- Email input -->
-                                  <div class="form-outline form-white mb-4">
-                                    <input type="email" id="form5Example21" class="form-control" />
-                                  </div>
-                                </div>
-                                <!--Grid column-->
-
-                                <!--Grid column-->
-                                <div class="col-auto">
-                                  <!-- Submit button -->
-                                  <button type="submit" class="btn btn-outline-light mb-4">
-                                    Suscribirse
-                                  </button>
-                                </div>
-                                <!--Grid column-->
-                              </div>
-                              <!--Grid row-->
-                            </form>
-                          </section>
-                          <!-- Section: Form --> --}}
-
-            <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
               Todos los derechos reservados 2022 ©:
               <a class="text-white" href="https://Marktech.com/">https://Marktech.com/</a>
             </div>
-            <!-- Copyright -->
-          </footer>
-          <!-- Footer -->
+
           </footer>
         </section>
 </body>
