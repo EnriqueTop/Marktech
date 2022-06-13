@@ -48,7 +48,6 @@
                       <li><a class="dropdown-item" href="#">Memorias RAM</a></li>
                       <li><a class="dropdown-item" href="#">Discos Duros</a></li>
                       <li><a class="dropdown-item" href="#">Gabinetes</a></li>
-
                     </ul>
                   </li>
                 <li class="nav-item dropdown">
@@ -128,6 +127,13 @@
         <footer class="mt-auto">
           <footer class="bg-dark text-center text-white ">
 
+            <div class="container p-4">
+
+              <!--Links-->
+              <section class="">
+
+                <div class="row">
+
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Acerca</h5>
 
@@ -204,11 +210,16 @@
                     </ul>
                   </div>
 
+                </div>
+              </section>
+            </div>
+
+            <!--Derechos-->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
               Todos los derechos reservados 2022 ©:
               <a class="text-white" href="https://Marktech.com/">https://Marktech.com/</a>
             </div>
-
+          </footer>
           </footer>
         </section>
 </body>

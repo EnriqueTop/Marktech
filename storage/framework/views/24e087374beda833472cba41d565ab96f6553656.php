@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Marktech - @yield('title')</title>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <title>Marktech - <?php echo $__env->yieldContent('title'); ?></title>
+    <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
+    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
 </head>
 <!--Navbar-->
 <body class="d-flex flex-column min-vh-100">
@@ -48,7 +48,8 @@
                       <li><a class="dropdown-item" href="#">Memorias RAM</a></li>
                       <li><a class="dropdown-item" href="#">Discos Duros</a></li>
                       <li><a class="dropdown-item" href="#">Gabinetes</a></li>
-
+                      <!--<li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">TEST</a></li>-->
                     </ul>
                   </li>
                 <li class="nav-item dropdown">
@@ -121,13 +122,20 @@
       </nav>
 
         <!--content-->
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
 
         <section>
         <!--footer-->
         <footer class="mt-auto">
           <footer class="bg-dark text-center text-white ">
+            <!-- Grid container -->
+            <div class="container p-4">
 
+              <!-- Section: Links -->
+              <section class="">
+                <!--Grid row-->
+                <div class="row">
+                  <!--Grid column-->
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Acerca</h5>
 
@@ -146,7 +154,9 @@
                       </li>
                     </ul>
                   </div>
+                  <!--Grid column-->
 
+                  <!--Grid column-->
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Links</h5>
 
@@ -165,7 +175,9 @@
                       </li>
                     </ul>
                   </div>
+                  <!--Grid column-->
 
+                  <!--Grid column-->
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Links</h5>
 
@@ -184,7 +196,9 @@
                       </li>
                     </ul>
                   </div>
+                  <!--Grid column-->
 
+                  <!--Grid column-->
                   <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Links</h5>
 
@@ -203,14 +217,27 @@
                       </li>
                     </ul>
                   </div>
+                  <!--Grid column-->
+                </div>
+                <!--Grid row-->
+              </section>
+              <!-- Section: Links -->
+            </div>
+            <!-- Grid container -->
 
+                          
+
+            <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
               Todos los derechos reservados 2022 ©:
               <a class="text-white" href="https://Marktech.com/">https://Marktech.com/</a>
             </div>
-
+            <!-- Copyright -->
+          </footer>
+          <!-- Footer -->
           </footer>
         </section>
 </body>
 
 </html>
+<?php /**PATH C:\MAMP\htdocs\marktech\resources\views/layouts/layout.blade.php ENDPATH**/ ?>
