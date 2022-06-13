@@ -2,16 +2,16 @@
 Proyecto Pagina Web de Tienda de electronica
 Equipo 6 IDGS09C
 
-Versión de Laravel Framework:
+Versión de Laravel Framework:<br>
 9.17.0
 
-Versión de Composer:
+Versión de Composer:<br>
 2.3.7
 
-Versión de PHP:
+Versión de PHP:<br>
 8.0.1
 
-Versión de MAMP:
+Versión de MAMP:<br>
 5.0.5
 
 Caracteristicas:
