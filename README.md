@@ -5,6 +5,9 @@ Equipo 6 IDGS09C
 Versión de Laravel Framework:
 9.17.0
 
+Versión de Composer:
+2.3.7
+
 Versión de PHP:
 8.0.1
 
