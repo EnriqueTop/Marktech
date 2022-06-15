@@ -84,14 +84,14 @@
                         Accesorios
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
-                                <li class="dropdown dropend">
-                                <li><a class="dropdown-item" href="#">Audifonos</a></li>
-                                <li><a class="dropdown-item" href="#">Alfombrilla</a></li>
-                                <li><a class="dropdown-item" href="#">Mouse</a></li>
-                                <li><a class="dropdown-item" href="#">Teclados</a></li>
-                            </ul>
+                        <li class="dropdown dropend">
+                        <li><a class="dropdown-item" href="#">Audifonos</a></li>
+                        <li><a class="dropdown-item" href="#">Alfombrilla</a></li>
+                        <li><a class="dropdown-item" href="#">Mouse</a></li>
+                        <li><a class="dropdown-item" href="#">Teclados</a></li>
                     </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
             <!--Dropdown-->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -101,12 +101,12 @@
                         Computadoras
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
-                                <li class="dropdown dropend">
-                                <li><a class="dropdown-item" href="#">Laptop</a></li>
-                                <li><a class="dropdown-item" href="#">Escritorio</a></li>
-                            </ul>
+                        <li class="dropdown dropend">
+                        <li><a class="dropdown-item" href="#">Laptop</a></li>
+                        <li><a class="dropdown-item" href="#">Escritorio</a></li>
                     </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
             </ul>
             </ul>
@@ -121,16 +121,16 @@
                         Electrónica
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
-                                <li class="dropdown dropend">
-                                <li><a class="dropdown-item" href="#">Consolas</a></li>
-                                <li><a class="dropdown-item" href="#">Televisores</a></li>
-                                <li><a class="dropdown-item" href="#">Monitores</a></li>
-                                <li><a class="dropdown-item" href="#">Bocinas</a></li>
-                                <li><a class="dropdown-item" href="#">Cámaras</a></li>
-                                <li><a class="dropdown-item" href="#">Telefonos</a></li>
-                            </ul>
+                        <li class="dropdown dropend">
+                        <li><a class="dropdown-item" href="#">Consolas</a></li>
+                        <li><a class="dropdown-item" href="#">Televisores</a></li>
+                        <li><a class="dropdown-item" href="#">Monitores</a></li>
+                        <li><a class="dropdown-item" href="#">Bocinas</a></li>
+                        <li><a class="dropdown-item" href="#">Cámaras</a></li>
+                        <li><a class="dropdown-item" href="#">Telefonos</a></li>
                     </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
         </div>
     </nav>
@@ -158,23 +158,34 @@
                                         <a href="/form" class="text-white">Envia tu opinión</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-white">Acerca de nosotros</a>
+                                        <a href="#" class="text-white">Misión</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-white">Link 3</a>
+                                        <a href="#" class="text-white">Visión</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-white">Link 4</a>
+                                        <a href="#" class="text-white">Devoluciones</a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                <h5 class="text-uppercase">Links</h5>
+                                <h5 class="text-uppercase">Contactanos</h5>
 
-                                <!-- Facebook -->
-                                <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;"
-                                    href="#!" role="button"><i class="fa-brands fa-facebook-f"></i></a>
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="/form" class="text-white">Sugerencias</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Facebook</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Twitter</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Instagram</a>
+                                    </li>
+                                </ul>
                             </div>
 
                             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
@@ -230,4 +241,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\MAMP\htdocs\marktech\resources\views/layouts/layout.blade.php ENDPATH**/ ?>
+<?php /**PATH /Users/artur/Downloads/marktech/resources/views/layouts/layout.blade.php ENDPATH**/ ?>
