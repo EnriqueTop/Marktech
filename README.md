@@ -19,7 +19,8 @@ Caracteristicas:
 - [x] Vista principal.
 - [x] Envio de correos.
 - [ ] Otras vistas.
-- [ ] Implementar Base de Datos.
+- [x] Implementar Base de Datos.
+- [ ] Funcionamiento de Barra de Busqueda.
 - [ ] Implementar carrito de compras.
 - [ ] Implementar Metodo de pago.
 
