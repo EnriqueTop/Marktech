@@ -9,7 +9,7 @@ Versión de Composer:<br>
 2.3.7
 
 Versión de PHP:<br>
-8.0.1
+8.1.0
 
 Versión de MAMP:<br>
 5.0.5
@@ -19,6 +19,7 @@ Caracteristicas:
 - [x] Vista principal.
 - [x] Envio de correos.
 - [x] Implementar Base de Datos.
+- [ ] Funcionamiento de Barra de Busqueda.
 - [ ] Otras vistas.
 - [ ] Implementar carrito de compras.
 - [ ] Implementar Metodo de pago.
