@@ -9,7 +9,7 @@ Versión de Composer:<br>
 2.3.7
 
 Versión de PHP:<br>
-8.0.1
+8.1.0
 
 Versión de MAMP:<br>
 5.0.5
