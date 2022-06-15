@@ -21,7 +21,13 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@jkryszto/mdb-for-laravel": "^1.0.0",
+        "@mdi/font": "^6.7.96",
         "alpinejs": "^3.10.2",
-        "autoprefixer": "10.4.5"
+        "autoprefixer": "10.4.5",
+        "font-awesome": "^4.7.0",
+        "material-icons": "^1.11.2",
+        "mdb-ui-kit": "^4.2.0",
+        "mdbvue": "^6.7.3"
     }
 }

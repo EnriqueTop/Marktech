@@ -4,7 +4,7 @@
 
 <h1>Envia tu opinión:</h1>
 <form action=<?php echo e(route('contact')); ?> method="POST">
-     <?php echo e(csrf_field()); ?>
+    <?php echo e(csrf_field()); ?>
 
 
     <div class="form-group">
@@ -24,4 +24,4 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\MAMP\htdocs\marktech\resources\views/form.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/artur/Downloads/marktech/resources/views/form.blade.php ENDPATH**/ ?>

@@ -1,8 +1,6 @@
-@extends('layouts.layout')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
-
-@section('title', 'Post')
+<?php $__env->startSection('title', 'Post'); ?>
 
 
 <!--Carrusel-->
@@ -19,16 +17,16 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{!! asset('img/banner1.webp') !!}" class="d-block w-100">
+            <img src="<?php echo asset('img/banner1.webp'); ?>" class="d-block w-100">
         </div>
         <div class="carousel-item">
-            <img src="{!! asset('img/banner2.webp') !!}" class="d-block w-100">
+            <img src="<?php echo asset('img/banner2.webp'); ?>" class="d-block w-100">
         </div>
         <div class="carousel-item">
-            <img src="{!! asset('img/banner4.png') !!}" class="d-block w-100">
+            <img src="<?php echo asset('img/banner4.png'); ?>" class="d-block w-100">
         </div>
         <div class="carousel-item">
-            <img src="{!! asset('img/banner2.webp') !!}" class="d-block w-100">
+            <img src="<?php echo asset('img/banner2.webp'); ?>" class="d-block w-100">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -48,7 +46,7 @@
         <div class="col hp">
             <div class="card h-100 shadow-sm">
                 <a href="#">
-                    <img src="{!! asset('img/test1.png') !!}" class="card-img-top" />
+                    <img src="<?php echo asset('img/test1.png'); ?>" class="card-img-top" />
                 </a>
 
                 <div class="card-body">
@@ -71,7 +69,7 @@
         <div class="col hp">
             <div class="card h-100 shadow-sm">
                 <a href="#">
-                    <img src="{!! asset('img/test2.jpeg') !!}" class="card-img-top" alt="product.title" />
+                    <img src="<?php echo asset('img/test2.jpeg'); ?>" class="card-img-top" alt="product.title" />
                 </a>
 
                 <div class="card-body">
@@ -93,7 +91,7 @@
         <div class="col hp">
             <div class="card h-100 shadow-sm">
                 <a href="#">
-                    <img src="{!! asset('img/test3.jpg') !!}" class="card-img-top" alt="product.title" />
+                    <img src="<?php echo asset('img/test3.jpg'); ?>" class="card-img-top" alt="product.title" />
                 </a>
 
                 <div class="card-body">
@@ -114,7 +112,7 @@
         <div class="col hp">
             <div class="card h-100 shadow-sm">
                 <a href="#">
-                    <img src="{!! asset('img/test4.jpg') !!}" class="card-img-top" alt="product.title" />
+                    <img src="<?php echo asset('img/test4.jpg'); ?>" class="card-img-top" alt="product.title" />
                 </a>
                 <div class="card-body">
                     <div class="clearfix mb-3">
@@ -136,4 +134,6 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/artur/Downloads/marktech/resources/views/post.blade.php ENDPATH**/ ?>
