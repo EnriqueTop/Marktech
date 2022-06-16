@@ -1,5 +1,5 @@
 Proyecto Pagina Web de Tienda de Electronica<br>
-Equipo 6 IDGS09C
+E6
 
 Versión de Laravel Framework:<br>
 9.17.0
