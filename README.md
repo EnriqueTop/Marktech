@@ -1,4 +1,4 @@
-Proyecto Pagina Web de Tienda de electronica
+Proyecto Pagina Web de Tienda de Electronica<br>
 Equipo 6 IDGS09C
 
 Versión de Laravel Framework:<br>
