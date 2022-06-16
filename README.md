@@ -1,4 +1,3 @@
-# Marktech
 Proyecto Pagina Web de Tienda de electronica
 Equipo 6 IDGS09C
 
@@ -23,3 +22,4 @@ Caracteristicas:
 - [ ] Otras vistas.
 - [ ] Implementar carrito de compras.
 - [ ] Implementar Metodo de pago.
+
