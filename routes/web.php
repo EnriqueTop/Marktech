@@ -6,7 +6,6 @@ use App\Mail\acercaMailable;
 use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Cart\LaterController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +17,33 @@ use App\Http\Controllers\Cart\LaterController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/layout');
+
+// Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
+Route::get('/', 'App\Http\Controllers\ProductController@index')->name('home.index');
+Route::get('/about', 'App\Http\Controllers\HomeController@about')->name('home.about');
+Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('product.index');
+Route::get('/card', 'App\Http\Controllers\cardController@index')->name('product.card');
+Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name('product.show');
+
+Route::get('/cart', 'App\Http\Controllers\CartController@index')->name("cart.index");
+Route::get('/cart/delete', 'App\Http\Controllers\CartController@delete')->name("cart.delete");
+Route::post('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name("cart.add");
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cart/purchase', 'App\Http\Controllers\CartController@purchase')->name("cart.purchase");
+    Route::get('/my-account/orders', 'App\Http\Controllers\MyAccountController@orders')->name("myaccount.orders");
 });
+
+Route::middleware('admin')->group(function () {
+    Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
+    Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');
+    Route::post('/admin/products/store', 'App\Http\Controllers\Admin\AdminProductController@store')->name("admin.product.store");
+    Route::get('/admin/products/{id}/edit', 'App\Http\Controllers\Admin\AdminProductController@edit')->name("admin.product.edit");
+    Route::put('/admin/products/{id}/update', 'App\Http\Controllers\Admin\AdminProductController@update')->name("admin.product.update");
+    Route::delete('/admin/products/{id}/delete', 'App\Http\Controllers\Admin\AdminProductController@delete')->name("admin.product.delete");
+});
+
+Auth::routes();
 
 Route::get('/post', function () {
     return view('post');
@@ -48,3 +71,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/contactar', 'App\Http\Controllers\EmailController@contact')->name('contact');
+
