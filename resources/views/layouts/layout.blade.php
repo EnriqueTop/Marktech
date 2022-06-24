@@ -38,6 +38,19 @@
             </button>
         </form>
         </div>
+        </div>
+
+
+
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black ">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <!--Dropdown-->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <li class="nav-item dropdown s ">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Hardware
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                         <li class="dropdown dropend">
@@ -47,21 +60,21 @@
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="multilevelDropdownMenu1">
                                 <!--Dropdown-Sub1-->
                                 <li class="dropdown dropend">
-                                <li><a class="dropdown-item" href="#">Procesadores</a></li>
-                                <li><a class="dropdown-item" href="#">Gabinetes</a></li>
-                                <li><a class="dropdown-item" href="#">Targetas de video</a></li>
-                                <li><a class="dropdown-item" href="#">Memorias RAM</a></li>
-                                <li><a class="dropdown-item" href="#">Disipadores</a></li>
+                                <li><a class="dropdown-item" href="{{ route('product.card') }}">Procesadores</a></li>
+                                <li><a class="dropdown-item" href="/card">Gabinetes</a></li>
+                                <li><a class="dropdown-item" href="/card">Targetas de video</a></li>
+                                <li><a class="dropdown-item" href="/card">Memorias RAM</a></li>
+                                <li><a class="dropdown-item" href="/card">Disipadores</a></li>
                             </ul>
                             <a class="dropdown-item dropdown-toggle " href="#" id="multilevelDropdownMenu1"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Almacenamiento</a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="multilevelDropdownMenu1">
                                 <!--Dropdown-Sub1-->
                                 <li class="dropdown dropend">
-                                <li><a class="dropdown-item" href="#">Unidades de Estado Solido (SSD)</a></li>
-                                <li><a class="dropdown-item" href="#">Discos Duros</a></li>
-                                <li><a class="dropdown-item" href="#">Memorias RAM</a></li>
-                                <li><a class="dropdown-item" href="#">USB/SD</a></li>
+                                <li><a class="dropdown-item" href="/card">Unidades de Estado Solido (SSD)</a></li>
+                                <li><a class="dropdown-item" href="/card">Discos Duros</a></li>
+                                <li><a class="dropdown-item" href="/card">Memorias RAM</a></li>
+                                <li><a class="dropdown-item" href="/card">USB/SD</a></li>
                             </ul>
                     </ul>
                 </li>
@@ -75,10 +88,10 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                         <li class="dropdown dropend">
-                        <li><a class="dropdown-item" href="#">Audifonos</a></li>
-                        <li><a class="dropdown-item" href="#">Alfombrilla</a></li>
-                        <li><a class="dropdown-item" href="#">Mouse</a></li>
-                        <li><a class="dropdown-item" href="#">Teclados</a></li>
+                        <li><a class="dropdown-item" href="/card">Audifonos</a></li>
+                        <li><a class="dropdown-item" href="/card">Alfombrilla</a></li>
+                        <li><a class="dropdown-item" href="/card">Mouse</a></li>
+                        <li><a class="dropdown-item" href="/card">Teclados</a></li>
                     </ul>
             </ul>
             </li>
@@ -92,8 +105,8 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                         <li class="dropdown dropend">
-                        <li><a class="dropdown-item" href="#">Laptop</a></li>
-                        <li><a class="dropdown-item" href="#">Escritorio</a></li>
+                        <li><a class="dropdown-item" href="/card">Laptop</a></li>
+                        <li><a class="dropdown-item" href="/card">Escritorio</a></li>
                     </ul>
             </ul>
             </li>
@@ -112,12 +125,12 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                         <li class="dropdown dropend">
-                        <li><a class="dropdown-item" href="#">Consolas</a></li>
-                        <li><a class="dropdown-item" href="#">Televisores</a></li>
-                        <li><a class="dropdown-item" href="#">Monitores</a></li>
-                        <li><a class="dropdown-item" href="#">Bocinas</a></li>
-                        <li><a class="dropdown-item" href="#">Cámaras</a></li>
-                        <li><a class="dropdown-item" href="#">Telefonos</a></li>
+                        <li><a class="dropdown-item" href="/card">Consolas</a></li>
+                        <li><a class="dropdown-item" href="/card">Televisores</a></li>
+                        <li><a class="dropdown-item" href="/card">Monitores</a></li>
+                        <li><a class="dropdown-item" href="/card">Bocinas</a></li>
+                        <li><a class="dropdown-item" href="/card">Cámaras</a></li>
+                        <li><a class="dropdown-item" href="/card">Telefonos</a></li>
                     </ul>
             </ul>
             </li>
@@ -131,7 +144,103 @@
     <section>
         <!--footer-->
         <footer class="mt-auto">
+            <footer class="bg-dark text-center text-white ">
 
+                <div class="container p-4">
+
+                    <!--Links-->
+                    <section class="">
+
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Acerca</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="/form" class="text-white">Envia tu opinión</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Misión</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Visión</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Devoluciones</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Contactanos</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="/form" class="text-white">Sugerencias</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Facebook</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Twitter</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Instagram</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Links</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#" class="text-white">Link 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Link 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Link 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Link 4</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Links</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#" class="text-white">Link 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Link 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Link 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-white">Link 4</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+
+                <!--Derechos-->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    Todos los derechos reservados 2022 ©:
+                    <a class="text-white" href="https://Marktech.com/">https://Marktech.com/</a>
+                </div>
+            </footer>
+        </footer>
+    </section>
 </body>
 
 </html>
