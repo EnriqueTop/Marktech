@@ -10,6 +10,24 @@
       'Debugbar' => 'Barryvdh\\Debugbar\\Facades\\Debugbar',
     ),
   ),
+  'botman/botman' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BotMan\\BotMan\\BotManServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'BotMan' => 'BotMan\\BotMan\\Facades\\BotMan',
+    ),
+  ),
+  'botman/driver-web' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BotMan\\Drivers\\Web\\Providers\\WebServiceProvider',
+    ),
+  ),
   'laravel/sail' => 
   array (
     'providers' => 
@@ -50,6 +68,13 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'shvetsgroup/laravel-email-database-log' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'ShvetsGroup\\LaravelEmailDatabaseLog\\LaravelEmailDatabaseLogServiceProvider',
     ),
   ),
   'spatie/laravel-ignition' => 

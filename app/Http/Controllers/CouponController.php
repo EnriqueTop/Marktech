@@ -37,7 +37,7 @@ class CouponController extends Controller
     public function store(Request $request) {
         $couponCode = Coupon::findByCode($request->coupon_code);
         if (!$couponCode) {
-            return back()->withErrors(['message' => 'We could not find your coupon. Please try again!']);
+            return back()->withErrors(['message' => 'No se encontro la el cupon']);
         }
         $coupon = $couponCode->couponable;
         $subtotal = Cart::instance('default')->subtotal();

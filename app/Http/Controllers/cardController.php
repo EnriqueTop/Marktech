@@ -10,8 +10,8 @@ class cardController extends Controller
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Products - Online Store";
-        $viewData["subtitle"] = "List of Products";
+        $viewData["title"] = "Marktech";
+        $viewData["subtitle"] = "Productos";
 
         $viewData["products"] = Product::all();
 
@@ -24,9 +24,13 @@ class cardController extends Controller
 
         $product = Product::findOrFail($id);
 
-        $viewData["title"] = $product->getName() . "- Online Store";
-        $viewData["subtitle"] = $product->getName() . "- Product Information";
+        $viewData["title"] = $product->getName() . "- Marktech";
+        $viewData["subtitle"] = $product->getName() . "- Productos";
         $viewData["product"] = $product;
         return view('product.show')->with("viewData", $viewData);
     }
+
+
 }
+
+
