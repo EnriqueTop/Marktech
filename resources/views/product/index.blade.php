@@ -13,17 +13,25 @@
             aria-label="Slide 4"></button>
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="{!! asset('img/banner1.webp') !!}" class="d-block w-100">
+        <div class="carousel-item active" >
+            <a href="{{ route('product.show', 1) }}">
+            <img src="{!! asset('img/banner1.webp') !!}"  class="d-block w-100" >
+            </a>
         </div>
         <div class="carousel-item">
-            <img src="{!! asset('img/banner2.webp') !!}" class="d-block w-100">
+            <a href="{{ route('product.show', 2) }}">
+            <img src="{!! asset('img/banner2.webp') !!}" href="/card" class="d-block w-100">
+        </a>
         </div>
         <div class="carousel-item">
-            <img src="{!! asset('img/banner4.png') !!}" class="d-block w-100">
+            <a href="{{ route('product.show', 3) }}">
+            <img src="{!! asset('img/banner4.png') !!}" href="/card" class="d-block w-100">
+        </a>
         </div>
         <div class="carousel-item">
-            <img src="{!! asset('img/banner2.webp') !!}" class="d-block w-100">
+            <a href="{{ route('product.show', 4) }}">
+            <img src="{!! asset('img/banner2.webp') !!}" href="/card" class="d-block w-100">
+        </a>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -45,7 +53,12 @@
                     <img src="{{ asset('/storage/' . $product->getImage()) }}" class="card-img-top img-card">
                     <div class="card-body text-center">
                         <a href="{{ route('product.show', ['id' => $product->getId()]) }}"
-                            class="btn bg-black text-white">{{ $product->getName() }}</a>
+                            class="btn bg-black text-white font-weight-bold">${{ $product->getPrice() }}
+                        </a>
+<p></p>
+                        <a href="{{ route('product.show', ['id' => $product->getId()]) }}"
+                            class="btn bg-black text-white">{{ $product->getName() }}
+                        </a>
                     </div>
                 </div>
             </div>

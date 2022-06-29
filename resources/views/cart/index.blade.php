@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+@section('title', 'Marktech - Carrito')
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered table-striped text-center">
@@ -24,7 +26,7 @@
             </table>
             <div class="row">
                 <div class="text-end">
-                    <a class="btn btn-outline-secondary mb-2"><b>Total:</b> ${{ $viewData['total'] }}</a>
+                    <a class="btn btn-black mb-2"><b>Total:</b> ${{ $viewData['total'] }}</a>
                     @if (count($viewData['products']) > 0)
                         <!--<a href="{{ route('cart.purchase') }}" class="btn bg-primary text-white mb-2">Confirmar Compra</a>-->
                         <a class="btn bg-black text-white mb-2">Confirmar Compra</a>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -8,56 +8,62 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/dropdown.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
     <title>@yield('title', 'Marktech')</title>
 </head>
 
 <body>
     <!-- header -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white"><a href="/"> <img src="{!! asset('img/icon.png') !!}" >
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('home.index') }}"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <input class="form-control me-2" style="width: 300px; height: 50px" type="search"
-                placeholder="Escribe aqui..." aria-label="Search">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white"><a href="/"> <img src="{!! asset('img/icon.png') !!}">
+            <div class="container">
+                <a class="navbar-brand" href="{{ route('home.index') }}"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <input class="form-control me-2" style="width: 300px; height: 50px" type="search"
+                    placeholder="Escribe aqui..." aria-label="Search">
                 <form class="d-flex mx-auto">
-            <button type="button" class="btn btn-dark" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search"
-                viewBox="0 0 16 16">
-                <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-            </svg>
-            </button>
+                    <button type="button" class="btn btn-dark" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
                 </form>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ms-auto">
-                <!--    <a class="nav-link active" href="{{ route('home.index') }}">Home</a> -->
-                 <!--   <a class="nav-link active" href="{{ route('product.index') }}">Products</a> -->
-                    <a class="nav-link active" href="{{ route('cart.index') }}">Carrito</a>
-                    <div class="vr bg-white mx-2 d-none d-lg-block"></div>
-                    @guest
-                        <a class="nav-link active" href="{{ route('login') }}">Iniciar Sesión</a>
-                        <a class="nav-link active" href="{{ route('register') }}">Registrarse</a>
-                    @else
-                       <!-- <a class="nav-link active" href="{{ route('admin.home.index') }}">Admin</a> -->
-                        <!-- <a class="nav-link active" href="{{ route('myaccount.orders') }}">Pedidos</a> -->
-                        <a class="nav-link active" >Pedidos</a>
-                        <form id="logout" action="{{ route('logout') }}" method="POST">
-                            <a role="button" class="nav-link active"
-                                onclick="document.getElementById('logout').submit();">Salir</a>
-                            @csrf
-                        </form>
-                    @endguest
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ms-auto">
+                        <!--    <a class="nav-link active" href="{{ route('home.index') }}">Home</a> -->
+                        <!--   <a class="nav-link active" href="{{ route('product.index') }}">Products</a> -->
+                        <a class="nav-link active" href="{{ route('cart.index') }}"><span class="iconify"
+                                data-icon="eva:shopping-cart-outline" data-width="24"></span> Carrito</a>
+                        <div class="vr bg-white mx-2 d-none d-lg-block"></div>
+                        @guest
+                            <a class="nav-link active" href="/IniciarSesion">Iniciar Sesión</a>
+                            <a class="nav-link active" href="/Registro">Registrarse</a>
+                        @else
+                            <!-- <a class="nav-link active" href="{{ route('admin.home.index') }}">Admin</a> -->
+                            <!-- <a class="nav-link active" href="{{ route('myaccount.orders') }}">Pedidos</a> -->
+                            <a class="nav-link active">Pedidos</a>
+                            <form id="logout" action="{{ route('logout') }}" method="POST">
+                                <a role="button" class="nav-link active"
+                                    onclick="document.getElementById('logout').submit();">Salir</a>
+                                @csrf
+                            </form>
+                        @endguest
+                    </div>
                 </div>
             </div>
-        </div>
+
     </nav>
     <!--Navbar-->
     </nav>
@@ -85,7 +91,8 @@
                                 <li><a class="dropdown-item" href="/card">Disipadores</a></li>
                             </ul>
                             <a class="dropdown-item dropdown-toggle " href="#" id="multilevelDropdownMenu1"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Almacenamiento</a>
+                                data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">Almacenamiento</a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="multilevelDropdownMenu1">
                                 <!--Dropdown-Sub1-->
                                 <li class="dropdown dropend">
@@ -159,7 +166,24 @@
     <!--content-->
     <div class="container my-4">
         @yield('content')
+
     </div>
+
+    <!--chatbot-->
+
+    <script>
+        var botmanWidget = {
+            frameEndpoint: '/chatbot',
+            title: '',
+            introMessage: 'Bienvenido al chatbot de Marktech',
+            placeholderText: 'Escribe aquí tu mensaje',
+            mainColor: 'black',
+            aboutText: '',
+            aboutLink: '',
+            bubbleAvatarUrl: src = '{!! asset('img/chat.jpg') !!}'
+        };
+    </script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 
     <section>
         <!--footer-->
@@ -174,36 +198,36 @@
                         <div class="row">
 
                             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                <h5 class="text-uppercase">Acerca</h5>
+                                <h5 class="text-uppercase">Contacto</h5>
 
                                 <ul class="list-unstyled mb-0">
                                     <li>
-                                        <a href="mailto:herrera.alvaradoartu@gmail.com" class="text-white">Envia tu opinión</a>
+                                        <a href="mailto:herrera.alvaradoartu@gmail.com"
+                                            class="text-white">Contactanos</a>
                                     </li>
                                     <li>
-                                        <a href="/form" class="text-white">Sugerencias</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-white">Misión y Visión</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-white">Devoluciones</a>
+                                        <a href="/Sugerencias" class="text-white">Sugerencias</a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                <h5 class="text-uppercase">Contactanos</h5>
+                                <h5 class="text-uppercase">Nuestras Redes</h5>
 
                                 <ul class="list-unstyled mb-0">
                                     <li>
-                                        <a href="#" class="text-white">Facebook</a>
+                                        <a href="https://www.facebook.com/Mark-Tech-100458546063140"><i
+                                                class="icon iconify text-white"
+                                                data-icon="ion-social-facebook" data-width="24"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-white">Twitter</a>
+                                        <a href="#"><i class="icon iconify text-white"
+                                                data-icon="ion-social-twitter" data-width="24"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-white">Instagram</a>
+                                        <a href="https://instagram.com/marktech2022"><i
+                                                class="icon iconify text-white"
+                                                data-icon="ion-social-instagram" data-width="24"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -213,13 +237,13 @@
 
                                 <ul class="list-unstyled mb-0">
                                     <li>
-                                        <a href="/form" class="text-white">Quiénes Somos</a>
+                                        <a href="/quienessomos" class="text-white">¿Quiénes Somos?</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-white">Aviso de Privacidad</a>
+                                        <a href="/avisodeprivacidad" class="text-white">Aviso de Privacidad</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="text-white">Terminos y Condiciones</a>
+                                        <a href="/terminosycondiciones" class="text-white">Terminos y Condiciones</a>
                                     </li>
                                 </ul>
                             </div>
@@ -231,6 +255,7 @@
 
 
                         </div>
+
                     </section>
                 </div>
 
