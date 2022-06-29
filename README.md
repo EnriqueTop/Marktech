@@ -21,6 +21,8 @@ Caracteristicas:
 - [x] Implementar Base de Datos.
 - [x] Implementar Articulos en base de datos.
 - [x] Implementar Carrito de compras.
+- [x] Implementar ChatBot.
+- [ ] Añadir mas PyR al ChatBot.
 - [ ] Funcionamiento de Barra de Busqueda.
 - [ ] Otras vistas.
 - [ ] Implementar Metodo de pago.
