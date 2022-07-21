@@ -37,6 +37,26 @@ class Order extends Model
         $this->attributes['id'] = $id;
     }
 
+    public function getState()
+    {
+        return $this->attributes['paid'];
+    }
+
+    public function setState($paid)
+    {
+        $this->attributes['paid'] = $paid;
+    }
+
+    public function getAddress()
+    {
+        return $this->attributes['address'];
+    }
+
+    public function setAddress($address)
+    {
+        $this->attributes['address'] = $address;
+    }
+
     public function getTotal()
     {
         return $this->attributes['total'];
@@ -76,6 +96,17 @@ class Order extends Model
     {
         $this->attributes['updated_at'] = $updatedAt;
     }
+
+    public function getEstado()
+    {
+        return $this->attributes['status'];
+    }
+
+    public function setEstado($status)
+    {
+        $this->attributes['status'] = $status;
+    }
+
 
     public function user()
     {

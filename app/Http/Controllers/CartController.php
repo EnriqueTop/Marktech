@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\Item;
+use App\Http\Controllers\AddressController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,8 +23,8 @@ class CartController extends Controller
         }
 
         $viewData = [];
-        $viewData["title"] = "Cart - Online Store";
-        $viewData["subtitle"] =  "Shopping Cart";
+        $viewData["title"] = "Marktech";
+        $viewData["subtitle"] =  "Carrito";
         $viewData["total"] = $total;
         $viewData["products"] = $productsInCart;
         return view('cart.index')->with("viewData", $viewData);
@@ -44,7 +45,7 @@ class CartController extends Controller
         return back();
     }
 
-    public function purchase(Request $request)
+    public function purchase(Post $post, Request $request)
     {
         $productsInSession = $request->session()->get("products");
         if ($productsInSession) {
@@ -64,7 +65,7 @@ class CartController extends Controller
                 $item->setProductId($product->getId());
                 $item->setOrderId($order->getId());
                 $item->save();
-                $total = $total + ($product->getPrice() * $quantity);
+                $total = $total + ($product->getPrice() * $quantity - $product->getDiscountedprice() * $quantity);
             }
             $order->setTotal($total);
             $order->save();
@@ -76,12 +77,12 @@ class CartController extends Controller
             $request->session()->forget('products');
 
             $viewData = [];
-            $viewData["title"] = "Purchase - Online Store";
-            $viewData["subtitle"] =  "Purchase Status";
-            $viewData["order"] =  $order;
+            $viewData["title"] = "Marktech - Comprar";
+            $viewData["subtitle"] = "Estado del Pedido";
+            $viewData["order"] = $order;
             return view('cart.purchase')->with("viewData", $viewData);
         } else {
-            return redirect()->route('cart.index');
+            return redirect()->route('cart.purchase');
         }
     }
 }

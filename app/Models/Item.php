@@ -41,6 +41,16 @@ class Item extends Model
         $this->attributes['id'] = $id;
     }
 
+    // public function getState()
+    // {
+    //     return $this->attributes['paid'];
+    // }
+
+    // public function setState($paid)
+    // {
+    //     $this->attributes['paid'] = $paid;
+    // }
+
     public function getQuantity()
     {
         return $this->attributes['quantity'];
@@ -130,4 +140,15 @@ class Item extends Model
     {
         $this->product = $product;
     }
+
+    public function getImage()
+    {
+        return $this->product->getImage();
+    }
+
+    public function setImage($image)
+    {
+        $this->product->setImage($image);
+    }
+
 }

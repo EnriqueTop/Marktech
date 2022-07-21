@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Product extends Model
 {
+
+
+
     /**
      * PRODUCT ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)
@@ -22,9 +27,7 @@ class Product extends Model
     {
         $request->validate([
             "name" => "required|max:255",
-            "description" => "required",
-            "price" => "required|numeric|gt:0",
-            'image' => 'image',
+            "price" => "required|numeric|gt:0"
         ]);
     }
 
@@ -32,9 +35,9 @@ class Product extends Model
     {
         $total = 0;
         foreach ($products as $product) {
-            $total = $total + ($product->getPrice() * $productsInSession[$product->getId()]);
+            $total = $total + ($product->getPrice() * $productsInSession[$product->getId()] - $product->getDiscountedprice() * $productsInSession[$product->getId()]);
         }
-
+        //
         return $total;
     }
 
@@ -47,6 +50,17 @@ class Product extends Model
     {
         $this->attributes['id'] = $id;
     }
+
+    // public function getState()
+    // {
+    //     return $this->attributes['paid'];
+    // }
+
+    // public function setState($paid)
+    // {
+    //     $this->attributes['paid'] = $paid;
+    // }
+
     public function getName()
     {
         return strtoupper($this->attributes['name']);
@@ -79,6 +93,14 @@ class Product extends Model
     {
         $this->attributes['price'] = $price;
     }
+    public function getDiscountedprice()
+    {
+        return $this->attributes['discounted_price'];
+    }
+    public function setDiscountedprice($discountedprice)
+    {
+        $this->attributes['discounted_price'] = $discountedprice;
+    }
     public function getCreatedAt()
     {
         return $this->attributes['created_at'];
@@ -94,6 +116,39 @@ class Product extends Model
     public function setUpdatedAt($updatedAt)
     {
         $this->attributes['updated_at'] = $updatedAt;
+    }
+    public function getCategory()
+    {
+        return $this->attributes['category'];
+    }
+    public function setCategory($category)
+    {
+        $this->attributes['category'] = $category;
+    }
+    public function getSubcategory()
+    {
+        return $this->attributes['subcategory'];
+    }
+    public function setSubcategory($subcategory)
+    {
+        $this->attributes['subcategory'] = $subcategory;
+    }
+    public function getFeatured()
+    {
+        return $this->attributes['featured'];
+    }
+    public function setFeatured($featured)
+    {
+        $this->attributes['featured'] = $featured;
+    }
+
+    public function getTrademark()
+    {
+        return $this->attributes['trademark'];
+    }
+    public function setTrademark($trademark)
+    {
+        $this->attributes['trademark'] = $trademark;
     }
 
     public function items()

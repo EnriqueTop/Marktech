@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Add;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,9 +17,12 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
+
         return Inertia::render('Orders/Index', [
             'orders' => auth()->user()->orders()->with('products')->latest()->paginate(2)
         ]);
+
+
     }
 
     /**
@@ -85,4 +91,5 @@ class OrderController extends Controller
     {
         //
     }
+
 }

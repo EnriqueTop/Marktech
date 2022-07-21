@@ -13,7 +13,7 @@ class AdminProductController extends Controller
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Admin Page - Online Store";
+        $viewData["title"] = "Marktech - Administrador";
 
         $viewData["products"] = Product::all();
 
@@ -28,7 +28,12 @@ class AdminProductController extends Controller
         $newProduct->setName($request->input('name'));
         $newProduct->setDescription($request->input('description'));
         $newProduct->setPrice($request->input('price'));
-        $newProduct->setImage("game.png");
+        $newProduct->setDiscountedprice($request->input('discounted_price'));
+        $newProduct->setCategory($request->input('category'));
+        $newProduct->setSubcategory($request->input('subcategory'));
+        $newProduct->setFeatured($request->input('featured'));
+        $newProduct->setImage($request->file('image'));
+        $newProduct->setTrademark($request->input('trademark'));
         $newProduct->save();
 
         if ($request->hasFile('image')) {
@@ -47,7 +52,7 @@ class AdminProductController extends Controller
     public function edit($id)
     {
         $viewData = [];
-        $viewData["title"] = "Admin Page - Edit Product - Online Store";
+        $viewData["title"] = "Marktech - Administrador";
         $viewData["product"] = Product::findOrFail($id);
         return view('admin.product.edit')->with("viewData", $viewData);
     }
@@ -60,6 +65,11 @@ class AdminProductController extends Controller
         $product->setName($request->input('name'));
         $product->setDescription($request->input('description'));
         $product->setPrice($request->input('price'));
+        $product->setDiscountedprice($request->input('discounted_price'));
+        $product->setCategory($request->input('category'));
+        $product->setSubcategory($request->input('subcategory'));
+        $product->setFeatured($request->input('featured'));
+        $product->setTrademark($request->input('trademark'));
 
         if ($request->hasFile('image')) {
             $imageName = $product->getId() . "." . $request->file('image')->extension();
