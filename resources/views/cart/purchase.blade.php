@@ -6,6 +6,13 @@
         <div class="card-header">
             Compra Completa
         </div>
+
+        <script>
+             window.location.href = '{{route("payment")}}';
+            </script>
+
+
+
         <div class="card-body">
             <div class="alert alert-success" role="alert">
                 Tu número de orden es: <b>#{{ $viewData['order']->getId() }}</b>

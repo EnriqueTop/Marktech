@@ -1,0 +1,32 @@
+@extends('layouts.app')
+@section('content')
+    <div class="row">
+        @foreach ($viewData['trademark_nvidia'] as $product)
+            <div class="col-md-4 col-lg-3 mb-2">
+                <div class="card">
+                    <a href="{{ route('product.show', ['id' => $product->getId()]) }}">
+                        <img src="{{ asset('/img/products/' . $product->getImage()) }}" class="card-img-top img-card">
+                    </a>
+                    <div class="card-body text-center">
+                        <a>{{ $product->getName() }}
+                        </a>
+                        <p></p>
+                        <a>
+                            @if ($product->getPrice() == 0)
+                                <span><strong class="text-danger">Gratis</strong></span>
+                            @elseif ( $product->getDiscountedprice() > 0)
+                            <strong class="text-danger text-decoration-line-through">${{ $product->getPrice() }}</strong>
+                            <strong class="text-danger">${{ $product->getPrice() - $product->getDiscountedprice() }}</strong>
+                            @else
+                            <strong class="text-danger">${{ $product->getPrice() }}</strong>
+                            @endif
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+
+
+@endsection
