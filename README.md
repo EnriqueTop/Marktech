@@ -23,6 +23,5 @@ Caracteristicas:
 - [x] Implementar Carrito de compras.
 - [x] Implementar ChatBot.
 - [ ] Añadir mas PyR al ChatBot.
-- [ ] Funcionamiento de Barra de Busqueda.
-- [ ] Otras vistas.
-- [ ] Implementar Metodo de pago.
+- [x] Funcionamiento de Barra de Busqueda.
+- [x] Implementar Metodo de pago.
