@@ -1,10 +1,122 @@
-  .carousel-inner{
-    width:100%;
-    max-height: 800px !important;
-  }
+ .carousel-inner {
+     width: 1280px;
+     position: relative;
+ }
 
+ .dropdown-menu-dark {
+     text-align: center;
+ }
 
-.dropdown-menu-dark {
-    text-align: center;
-}
+ .btn-black {
+     color: #eee !important;
+     background-color: #000 !important;
+ }
 
+ .dropdown-menu-dark {
+     background-color: #000 !important;
+ }
+
+ a {
+     color: #000;
+     text-decoration: none;
+ }
+
+ .btn:focus,
+ .btn:active {
+     outline: none !important;
+     box-shadow: none;
+
+ }
+
+ a:hover {
+     color: #000;
+     text-decoration: none;
+ }
+
+ a:focus {
+     color: #000;
+     text-decoration: none;
+ }
+
+ .btn-link {
+     color: #eee !important;
+     background-color: #000 !important;
+     text-decoration: none;
+ }
+
+ /* mega menu */
+
+ .dropdown-menu ul {
+     list-style: none;
+     padding: 0;
+ }
+
+ .dropdown-menu.show {
+     display: flex;
+ }
+
+ .dropdown-menu li:first-child a {
+     font-weight: bold;
+     font-size: 1.2em;
+     text-transform: uppercase;
+     color: #000000;
+ }
+
+ .dropdown-menu li .dropdown-item {
+     color: rgb(0, 0, 0);
+     font-size: 1em;
+     padding: 0.5em 1em;
+ }
+
+ .dropdown-menu {
+     border: none;
+     border-radius: 0;
+     padding: 0.7em;
+     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+ }
+
+ @media only screen and (min-width: 992px) {
+     .dropdown:hover .dropdown-menu {
+         display: flex;
+     }
+
+     .dropdown-menu.show {
+         display: flex;
+     }
+ }
+
+ .navbar-dark .navbar-nav a.nav-link {
+     color: #ffffff;
+     font-size: 1.1em;
+ }
+
+ @media only screen and (max-width: 992px) {
+     .dropdown:hover .dropdown-menu {
+         max-height: 350px;
+         overflow-y: scroll;
+     }
+ }
+
+ .dropdown-item:hover {
+     background-color: black !important;
+     color: #eee !important;
+ }
+
+ .carousel-indicators [data-bs-target] {
+     position: relative;
+     width: 60px;
+     height: 6px;
+     border: none;
+     border-radius: 24px;
+ }
+
+ .carousel-indicators [data-bs-target] span {
+     content: ’’;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 0;
+     height: 100%;
+     background: #7952b3;
+     border-radius: inherit;
+ }
