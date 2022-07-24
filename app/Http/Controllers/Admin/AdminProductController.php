@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Trademarks;
+use App\Models\Categories;
+use App\Models\Subcategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 
 class AdminProductController extends Controller
 {
@@ -16,6 +18,9 @@ class AdminProductController extends Controller
         $viewData["title"] = "Marktech - Administrador";
 
         $viewData["products"] = Product::all();
+        $viewData["trademarks"] = Trademarks::all();
+        $viewData["categories"] = Categories::all();
+        $viewData["subcategories"] = Subcategories::all();
 
         return view('admin.product.index')->with("viewData", $viewData);
     }
@@ -34,6 +39,7 @@ class AdminProductController extends Controller
         $newProduct->setFeatured($request->input('featured'));
         $newProduct->setImage($request->file('image'));
         $newProduct->setTrademark($request->input('trademark'));
+        $newProduct->setStock($request->input('stock'));
         $newProduct->save();
 
         if ($request->hasFile('image')) {
@@ -54,6 +60,9 @@ class AdminProductController extends Controller
         $viewData = [];
         $viewData["title"] = "Marktech - Administrador";
         $viewData["product"] = Product::findOrFail($id);
+        $viewData["trademarks"] = Trademarks::all();
+        $viewData["categories"] = Categories::all();
+        $viewData["subcategories"] = Subcategories::all();
         return view('admin.product.edit')->with("viewData", $viewData);
     }
 
@@ -70,6 +79,7 @@ class AdminProductController extends Controller
         $product->setSubcategory($request->input('subcategory'));
         $product->setFeatured($request->input('featured'));
         $product->setTrademark($request->input('trademark'));
+        $product->setStock($request->input('stock'));
 
         if ($request->hasFile('image')) {
             $imageName = $product->getId() . "." . $request->file('image')->extension();

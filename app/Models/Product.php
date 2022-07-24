@@ -150,6 +150,22 @@ class Product extends Model
     {
         $this->attributes['trademark'] = $trademark;
     }
+    public function getStock()
+    {
+        return $this->attributes['stock'];
+    }
+    public function setStock($stock)
+    {
+        $this->attributes['stock'] = $stock;
+    }
+    public function getSales()
+    {
+        return $this->attributes['sales'];
+    }
+    public function setSales($sales)
+    {
+        $this->attributes['sales'] = $sales;
+    }
 
     public function items()
     {

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Order;
 use App\Models\Item;
-use App\Http\Controllers\AddressController;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,10 +23,16 @@ class CartController extends Controller
 
         $viewData = [];
         $viewData["title"] = "Marktech";
-        $viewData["subtitle"] =  "Carrito";
+        $viewData["subtitle"] = "Carrito";
         $viewData["total"] = $total;
         $viewData["products"] = $productsInCart;
-        return view('cart.index')->with("viewData", $viewData);
+
+        // if product is in cart then show it in cart
+        if (count($productsInCart) > 0) {
+            return view('cart.index')->with("viewData", $viewData);
+        } else {
+            return view('cart.noproducts');
+        }
     }
 
     public function add(Request $request, $id)

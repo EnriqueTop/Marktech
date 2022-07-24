@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
 use App\Models\Order;
 use App\Models\Payment;
-use App\Models\Product;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Omnipay\Omnipay;
-use DB;
 
 class PaymentController extends Controller
 {
@@ -55,9 +53,6 @@ class PaymentController extends Controller
                 'transactionReference' => $request->input('paymentId'),
             ));
 
-
-
-
             $response = $transaction->send();
 
             if ($response->isSuccessful()) {
@@ -78,32 +73,28 @@ class PaymentController extends Controller
 
                 // $productsInSession = $request->session()->get("products");
                 // if ($productsInSession) {
-                    $userId = Auth::user()->getId();
-                    $data = Order::all();
-                    // get the last order id
-                    $order = collect($data)->last();
-                    $order->setUserId($userId);
+                $userId = Auth::user()->getId();
+                $data = Order::all();
+                // get the last order id
+                $order = collect($data)->last();
+                $order->setUserId($userId);
 
-                    $order->save();
+                $order->save();
 
-                    // set the state of the order 1=paid 0/null=not paid
-                    $order->paid = 'Pagado';
-                    $order->save();
+                // set the state of the order 1=paid 0/null=not paid
+                $order->paid = 'Pagado';
+                $order->save();
 
+                Auth::user()->save();
 
+                $request->session()->forget('products');
 
-                    Auth::user()->save();
+                $viewData = [];
+                $viewData["title"] = "Marktech - Comprar";
+                $viewData["subtitle"] = "Estado del Pedido";
+                $viewData["order"] = $order;
 
-                    $request->session()->forget('products');
-
-                    $viewData = [];
-                    $viewData["title"] = "Marktech - Comprar";
-                    $viewData["subtitle"] = "Estado del Pedido";
-                    $viewData["order"] = $order;
-
-
-
-                    return view('cart.postpurchase')->with("viewData", $viewData);
+                return view('cart.postpurchase')->with("viewData", $viewData);
 
                 // } else {
                 //     return redirect()->route('cart.purchase');
@@ -117,7 +108,7 @@ class PaymentController extends Controller
                 return $response->getMessage();
             }
         } else {
-            return '¡Pago denegado!';
+            return '¡Pago declinado!';
         }
     }
 

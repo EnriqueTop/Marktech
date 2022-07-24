@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Add;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Add;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
@@ -37,8 +36,7 @@ class AddressController extends Controller
         $userId = Auth::user()->getId();
         $address = new Order();
 
-        $address = DB::table('addresses')->where('user_id','=', $userId)->get(); // get the address id of the user
-
+        $address = DB::table('addresses')->where('user_id', '=', $userId)->get(); // get the address id of the user
 
         return view('cart.address')->with("viewData", $viewData)->with("addresses", $address);
     }
@@ -80,7 +78,7 @@ class AddressController extends Controller
                 $item->save();
                 $total = $total + ($product->getPrice() * $quantity - $product->getDiscountedprice() * $quantity);
             }
-            $order->address=$request->address;
+            $order->address = $request->address;
             $order->setTotal($total);
             $order->save();
 
@@ -92,14 +90,15 @@ class AddressController extends Controller
 
             $viewData = [];
             $viewData["title"] = "Marktech";
-            $viewData["subtitle"] =  "Estado de compra";
-            $viewData["order"] =  $order;
+            $viewData["subtitle"] = "Estado de compra";
+            $viewData["order"] = $order;
             return view('cart.purchase')->with("viewData", $viewData);
         } else {
             return redirect()->route('cart.purchase');
         }
     }
 
+    //real puchase function
     public function address(Request $request)
     {
         $productsInSession = $request->session()->get("products");
@@ -123,9 +122,23 @@ class AddressController extends Controller
                 //discount price in paypal
                 $total = $total + ($product->getPrice() * $quantity - $product->getDiscountedprice() * $quantity);
             }
-            $order->address=$request->address;
+            $order->address = $request->address;
             $order->setTotal($total);
             $order->save();
+
+            //rest a product in stock
+            $productsInCart = Product::findMany(array_keys($productsInSession));
+            foreach ($productsInCart as $product) {
+                $quantity = $productsInSession[$product->getId()];
+                $product->setStock($product->getStock() - $quantity);
+                $product->save();
+            }
+
+            foreach ($productsInCart as $product) {
+                $quantity = $productsInSession[$product->getId()];
+                $product->setSales($product->getSales() + $quantity);
+                $product->save();
+            }
 
             $newBalance = Auth::user()->getBalance() - $total;
             Auth::user()->setBalance($newBalance);
@@ -135,8 +148,8 @@ class AddressController extends Controller
 
             $viewData = [];
             $viewData["title"] = "Marktech";
-            $viewData["subtitle"] =  "Estado de compra";
-            $viewData["order"] =  $order;
+            $viewData["subtitle"] = "Estado de compra";
+            $viewData["order"] = $order;
             return view('cart.purchase')->with("viewData", $viewData);
         } else {
             return redirect()->route('cart.purchase');
