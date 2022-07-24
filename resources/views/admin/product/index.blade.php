@@ -48,11 +48,16 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Cant. de Descuento:</label>
-                    <input name="discounted_price" value="{{ old('discounted_price') }}" type="number" class="form-control">
+                    <input name="discounted_price" value="{{ old('discounted_price') }}" type="number"
+                        class="form-control">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Descripción:</label>
                     <textarea class="form-control" name="description" rows="3">{{ old('description') }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Existencias:</label>
+                    <input name="stock" value="{{ old('stock') }}" type="number" class="form-control">
                 </div>
                 <h5>Marca:</h5>
                 <select name="trademark" class="form-control">
@@ -79,7 +84,8 @@
                 </select>
                 <br>
                 <h5>¿Destacado?</h5>
-                <select class="form-select mb-4" name="featured" value="{{ old('featured') }}" aria-label="Default select example" required>
+                <select class="form-select mb-4" name="featured" value="{{ old('featured') }}"
+                    aria-label="Default select example" required>
                     <option value="0" selected>No</option>
                     <option value="1">Si</option>
                 </select>
