@@ -78,6 +78,7 @@ Route::middleware('auth', 'verified')->group(function () {
     // Route::get('/TuCarrito/purchase', 'App\Http\Controllers\CartController@purchase')->name("cart.purchase");
 
     Route::get('/pedidos', 'App\Http\Controllers\MyAccountController@orders')->name("myaccount.orders");
+
     Route::get('/misdatos', 'App\Http\Controllers\CrudController@index')->name("myaccount.myaddress");
 
     Route::get('/miusuario', 'App\Http\Controllers\MyAccountController@edit')->name("myaccount.edit");
