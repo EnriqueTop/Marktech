@@ -9,7 +9,8 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         {{ $viewData['product']->getName() }} <br><br>
-                        Precio: <strong>@if ($viewData['product']->getPrice() == 0)
+                        Precio: <strong>
+                            @if ($viewData['product']->getPrice() == 0)
                                 <span>Gratis</span>
                             @elseif ($viewData['product']->getDiscountedprice() > 0)
                                 <strong class="text-decoration-line-through">${{ $viewData['product']->getPrice() }}</strong>
@@ -21,9 +22,15 @@
                         {{-- <br><br><strong>${{ $viewData['product']->getDiscountedprice() }} --}}
                     </h5>
                     <br>
+                    <h5><strong>Descripción:</strong></h5>
                     <p class="card-text">{{ $viewData['product']->getDescription() }}</p>
                     <p class="card-text">Categoria: <strong>{{ $viewData['product']->getCategory() }}</strong></p>
-
+                    <br>
+                    @if ($viewData['product']->getStock() > 0)
+                        <h5><strong>En existencia:</strong> {{ $viewData['product']->getStock() }}</h5>
+                    @else
+                    @endif
+                    <br>
                     <p class="card-text">
                     <form method="POST" action="{{ route('cart.add', ['id' => $viewData['product']->getId()]) }}">
                         <div class="row">
@@ -31,39 +38,49 @@
                             <div class="col-auto">
                                 <div class="input-group col-auto">
                                     <div class="input-group-text">Cantidad:</div>
-                                    <input type="number" min="1" max="10" class="form-control quantity-input"
-                                        name="quantity" value="1">
+
+                                    @if ($viewData['product']->getStock() > 0)
+                                        <input type="number" class="form-control" name="quantity" value="1"
+                                            min="1" max="{{ $viewData['product']->getStock() }}">
+                                    @else
+                                        <input type="number" class="form-control" name="quantity" value="0"
+                                            min="0" max="{{ $viewData['product']->getStock() }}" disabled>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <button class="btn btn-black text-white" type="submit">Añadir al carrito</button>
+                            @if ($viewData['product']->getStock() > 0)
+                                <div class="col-auto">
+                                    <button class="btn btn-black text-white" type="submit">Añadir al carrito</button>
+                                </div>
+                            @else
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-black text-white" disabled>Agregar al
+                                        carrito</button>
+                            @endif
 
-                            </div>
                         </div>
-
-
-                        </p>
-
+                    </form>
+                    </p>
                 </div>
             </div>
-            <br>
+        </div>
             <table class="table table-bordered fs-6">
                 <thead>
-                  <tr>
-                    <th scope="col" colspan="2" class="text-center">Detalles</th>
-                  </tr>
+                    <tr>
+                        <th scope="col" colspan="2" class="text-center">Detalles</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><strong>Marca:</strong></td>
-                    <td>{{ $viewData['product']->getTrademark() }}</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Tipo:</strong></td>
-                    <td>{{ $viewData['product']->getSubcategory() }}</td>
-                  </tr>
+                    <tr>
+                        <td><strong>Marca:</strong></td>
+                        <td>{{ $viewData['product']->getTrademark() }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipo:</strong></td>
+                        <td>{{ $viewData['product']->getSubcategory() }}</td>
+                    </tr>
                 </tbody>
-              </table>
+            </table>
         </div>
     </div>
 @endsection

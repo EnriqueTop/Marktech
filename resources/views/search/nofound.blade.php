@@ -216,7 +216,7 @@
             <div class="position-absolute top-0 start-0">
                 {{-- sort select --}}
                 <form method="GET">
-                    <h5><strong>Ordenar por:</strong></h5>
+                    <h5>Ordenar por:</h5>
                     <select class="form-control form-control-sm" name="sort">
                         <option name="sort" value="name">Nombre</option>
                         <option name="sort" value="price_asc">Precio ascendente</option>
@@ -227,7 +227,7 @@
                 </form>
                 <br>
                 {{-- checkboxs --}}
-                <h5><strong>Fabricante</strong></h5>
+                <h5>Fabricante</h5>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="trademark" value="all"
                         id="flexCheckChecked" checked>
@@ -292,13 +292,6 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="lenovo"
-                        id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Lenovo
-                    </label>
-                </div>
-                <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="trademark" value="lg"
                         id="flexCheckDefault">
                     <label class="form-check-label" for="flexCheckDefault">
@@ -318,43 +311,13 @@
 
 
 
-    @if (isset($details))
-        @foreach ($details as $product)
-            <div class="container ">
-                <div class="card mb-3 mx-auto" style="max-width: 840px;">
-                    <div class="row no-gutters">
+    {{-- message no products found --}}
+    <div class="container">
+        <div class="alert alert-danger mx-auto" role="alert" style="width:40%;">
+            No se encontraron productos con los criterios de búsqueda.
+        </div>
 
-                        <div class="col-md-4">
-
-                            <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{ asset('/img/products/' . $product->image) }}" width="200px"
-                                    height="200px" alt="imagen">
-                            </a>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><b>{{ $product->name }}</b></h5>
-                                @if ($product->price == 0)
-                                    <span><strong class="text-danger">Gratis</strong></span>
-                                @elseif ($product->discounted_price > 0)
-                                    <strong
-                                        class="text-danger text-decoration-line-through">${{ $product->price }}</strong>
-                                    <strong
-                                        class="text-danger">${{ $product->price - $product->discounted_price }}</strong>
-                                @else
-                                    <strong class="text-danger">${{ $product->price }}</strong>
-                                @endif
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    @endif
-
-    {{-- <div class="container-sm">
+        {{-- <div class="container-sm">
         <section>
             <!--footer-->
             <footer class="mt-auto bg-black text-center text-white">

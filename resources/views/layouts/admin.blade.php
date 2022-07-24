@@ -40,6 +40,7 @@
                         class="nav-link text-white text-center">Direcciones</a>
                 <li><a href="{{ route('admin.order.index') }}" class="nav-link text-white text-center">Pedidos</a>
                 <li><a href="{{ route('admin.user.index') }}" class="nav-link text-white text-center">Usuarios</a>
+                    <li><a href="{{ route('admin.menus.index') }}" class="nav-link text-white text-center">Editar Menus</a>
                 </li>
                 <div class="text-center">
                     <a href="{{ route('home.index') }}" class="mt-2 btn btn-dark text-white">

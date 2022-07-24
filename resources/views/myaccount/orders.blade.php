@@ -15,11 +15,15 @@
                     <b>Estado:</b> <span class="text-warning">{{ $order->getState() }}</span><br />
                 @elseif ($order->getState() == 'Pagado')
                     <b>Estado:</b> <span class="text-success">{{ $order->getState() }}</span><br />
+                @elseif ($order->getState() == 'Cancelado')
+                    <b>Estado:</b> <span class="text-danger">{{ $order->getState() }}</span><br />
                 @endif
-                @if ($order->getEstado() == 'Preparando Pedido')
-                <b>Estado de envio:</b> <span class="text-warning">{{ $order->getEstado() }}</span><br />
+                @if ($order->getEstado() == 'Preparando Pedido' && $order->getState() == 'Pagado')
+                    <b>Estado de envio:</b> <span class="text-warning">{{ $order->getEstado() }}</span><br />
                 @elseif ($order->getEstado() == 'Enviado')
-                <b>Estado de envio:</b> <span class="text-success">{{ $order->getEstado() }}</span><br />
+                    <b>Estado de envio:</b> <span class="text-success">{{ $order->getEstado() }}</span><br />
+                @elseif ($order->getEstado() == 'Entregado')
+                    <b>Estado de envio:</b> <span class="text-success">{{ $order->getEstado() }}</span><br />
                 @endif
 
                 <table class="table table-borderless table-striped text-center mt-3">

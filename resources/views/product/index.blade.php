@@ -98,6 +98,40 @@
         @endforeach
     </div>
 
+    <!--Products Sales-->
+
+    <div class="container-sm">
+        <div class="p-3 border bg-light text-center fs-4"><strong>Los más vendidos</strong></div>
+    </div>
+    <br>
+    <div class="row">
+        @foreach ($viewData['products_sales'] as $product)
+            <div class="col-lg-3 mb-3 d-flex align-items-stretch">
+                <div class="card">
+                    <a href="{{ route('product.show', ['id' => $product->getId()]) }}">
+                        <img src="{{ asset('/img/products/' . $product->getImage()) }}" class="card-img-top img-card d-inline"
+                            style="height:20em;">
+                    </a>
+                    <div class="card-body text-center">
+                        <a>{{ $product->getName() }}
+                        </a>
+                        <p></p>
+                        <a>
+                            @if ($product->getPrice() == 0)
+                                <span><strong class="text-danger">Gratis</strong></span>
+                            @elseif ( $product->getDiscountedprice() > 0)
+                            <strong class="text-danger text-decoration-line-through">${{ $product->getPrice() }}</strong>
+                            <strong class="text-danger">${{ $product->getPrice() - $product->getDiscountedprice() }}</strong>
+                            @else
+                            <strong class="text-danger">${{ $product->getPrice() }}</strong>
+                            @endif
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
     <!--trademarks-->
 
     <div class="container-sm">

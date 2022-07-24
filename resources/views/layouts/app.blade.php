@@ -80,28 +80,32 @@
 
                                     @csrf
                                 </form>
+
                             @endguest
 
 
                         </div>
-                    </div>
-                    <div class="form-check
+                        <div class="form-check
                                 form-switch">
-                        <input type="checkbox" class="form-check-input" id="darkSwitch" />
-                        <label class="custom-control-label" for="darkSwitch">Modo Oscuro</label>
+                            <input type="checkbox" class="form-check-input" id="darkSwitch" />
+                            <label class="custom-control-label" for="darkSwitch">Modo Oscuro</label>
+                        </div>
                     </div>
+
 
                 </div>
 
         </nav>
+
         <!--Navbar-->
         </nav>
         <br>
         <nav class="navbar navbar-expand-lg navbar-dark bg-black rounded">
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <!--Dropdown-->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item dropdown s ">
+
+            <!--Dropdown-->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <li class="nav-item dropdown s">
                         <a class="btn btn-link btn-lg" href="/hardware" id="navbarDropdown" role="button"
                             aria-haspopup="true" aria-expanded="false">Hardware <span class="iconify"
                                 data-icon="bx:down-arrow"></span></a>
@@ -129,188 +133,185 @@
                             </ul>
                         </ul>
                     </li>
-                </ul>
-                <!--Dropdown-->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-link btn-lg" href="/accesorios" id="navbarDropdown" role="button"
-                            aria-haspopup="true" aria-expanded="false">Accesorios <span class="iconify"
-                                data-icon="bx:down-arrow"></span></a>
-                        {{-- <a class="btn btn-link btn-lg dropdown-toggle" href="/todo" id="navbarDropdown" role="button"
+            </ul>
+            <!--Dropdown-->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-link btn-lg" href="/accesorios" id="navbarDropdown" role="button"
+                        aria-haspopup="true" aria-expanded="false">Accesorios <span class="iconify"
+                            data-icon="bx:down-arrow"></span></a>
+                    {{-- <a class="btn btn-link btn-lg dropdown-toggle" href="/todo" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
 
                     </a> --}}
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <ul>
-                                <li><a class="dropdown-item" href="#">Accesorios</a></li>
-                                <li><a class="dropdown-item" href="/accesorios\audifonos">Audifonos</a></li>
-                                <li><a class="dropdown-item" href="/accesorios\alfombrillas">Alfombrillas</a></li>
-                                <li><a class="dropdown-item" href="/accesorios\mouse">Mouse</a></li>
-                                <li><a class="dropdown-item" href="/accesorios\teclados">Teclados</a></li>
-                            </ul>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul>
+                            <li><a class="dropdown-item" href="#">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="/accesorios\audifonos">Audifonos</a></li>
+                            <li><a class="dropdown-item" href="/accesorios\alfombrillas">Alfombrillas</a></li>
+                            <li><a class="dropdown-item" href="/accesorios\mouse">Mouse</a></li>
+                            <li><a class="dropdown-item" href="/accesorios\teclados">Teclados</a></li>
                         </ul>
-                </ul>
-                </li>
-                </ul>
-                <!--Dropdown-->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-link btn-lg" href="/computadoras" id="navbarDropdown" role="button"
-                            aria-haspopup="true" aria-expanded="false">Computadoras <span class="iconify"
-                                data-icon="bx:down-arrow"></span></a>
-                        {{-- <a class="btn btn-link btn-lg dropdown-toggle" href="/todo" id="navbarDropdown" role="button"
+                    </ul>
+            </ul>
+            </li>
+            </ul>
+            <!--Dropdown-->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-link btn-lg" href="/computadoras" id="navbarDropdown" role="button"
+                        aria-haspopup="true" aria-expanded="false">Computadoras <span class="iconify"
+                            data-icon="bx:down-arrow"></span></a>
+                    {{-- <a class="btn btn-link btn-lg dropdown-toggle" href="/todo" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
 
                     </a> --}}
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <ul>
-                                <li><a class="dropdown-item" href="#">Computadoras</a></li>
-                                <li><a class="dropdown-item" href="/computadoras\laptop">Laptop</a></li>
-                                <li><a class="dropdown-item" href="/computadoras\escritorio">Escritorio</a></li>
-                            </ul>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul>
+                            <li><a class="dropdown-item" href="#">Computadoras</a></li>
+                            <li><a class="dropdown-item" href="/computadoras\laptop">Laptop</a></li>
+                            <li><a class="dropdown-item" href="/computadoras\escritorio">Escritorio</a></li>
                         </ul>
-                </ul>
-                </li>
-                </ul>
-                </ul>
-                </ul>
-                </li>
-                </ul>
+                    </ul>
+            </ul>
+            </li>
+            </ul>
+            </ul>
+            </ul>
+            </li>
+            </ul>
 
-                <!--Dropdown-->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-link btn-lg" href="/electronica" id="navbarDropdown" role="button"
-                            aria-haspopup="true" aria-expanded="false">Electrónica <span class="iconify"
-                                data-icon="bx:down-arrow"></span></a>
-                        {{-- <a class="btn btn-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
+            <!--Dropdown-->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-link btn-lg" href="/electronica" id="navbarDropdown" role="button"
+                        aria-haspopup="true" aria-expanded="false">Electrónica <span class="iconify"
+                            data-icon="bx:down-arrow"></span></a>
+                    {{-- <a class="btn btn-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
 
                     </a> --}}
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <ul>
-                                <li><a class="dropdown-item" href="#">Electrónica</a></li>
-                                <li><a class="dropdown-item" href="/electronica\consolas">Consolas</a></li>
-                                <li><a class="dropdown-item" href="/electronica\tv">Televisores</a></li>
-                                <li><a class="dropdown-item" href="/electronica\monitores">Monitores</a></li>
-                                <li><a class="dropdown-item" href="/electronica\bocinas">Bocinas</a></li>
-                                <li><a class="dropdown-item" href="/electronica\camaras">Cámaras</a></li>
-                                <li><a class="dropdown-item" href="/electronica\telefonos">Telefonos</a></li>
-                            </ul>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul>
+                            <li><a class="dropdown-item" href="#">Electrónica</a></li>
+                            <li><a class="dropdown-item" href="/electronica\consolas">Consolas</a></li>
+                            <li><a class="dropdown-item" href="/electronica\tv">Televisores</a></li>
+                            <li><a class="dropdown-item" href="/electronica\monitores">Monitores</a></li>
+                            <li><a class="dropdown-item" href="/electronica\bocinas">Bocinas</a></li>
+                            <li><a class="dropdown-item" href="/electronica\camaras">Cámaras</a></li>
+                            <li><a class="dropdown-item" href="/electronica\telefonos">Telefonos</a></li>
                         </ul>
-                </ul>
-                </li>
-                </ul>
-            </div>
-        </nav>
-        <!--content-->
-        <div class="container my-4">
-            @yield('content')
+                    </ul>
+            </ul>
+            </li>
+            </ul>
+    </div>
+    </nav>
+    <!--content-->
+    <div class="container my-4">
+        @yield('content')
 
-        </div>
+    </div>
 
-        <!--chatbot-->
+    <!--chatbot-->
 
-        <script>
-            var botmanWidget = {
-                frameEndpoint: '/chatbot',
-                title: '',
-                introMessage: 'Bienvenido al chatbot de Marktech',
-                placeholderText: 'Escribe aquí tu mensaje',
-                mainColor: 'black',
-                aboutText: '',
-                aboutLink: '',
-                bubbleAvatarUrl: src = '{!! asset('img/chat.jpg') !!}'
-            };
-        </script>
-        <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        var botmanWidget = {
+            frameEndpoint: '/chatbot',
+            title: '',
+            introMessage: 'Bienvenido al chatbot de Marktech',
+            placeholderText: 'Escribe aquí tu mensaje',
+            mainColor: 'black',
+            aboutText: '',
+            aboutLink: '',
+            bubbleAvatarUrl: src = '{!! asset('img/chat.jpg') !!}'
+        };
+    </script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <div class="container-sm">
         <section>
             <!--footer-->
-            <footer class="mt-auto">
-                <footer class="bg-black text-center text-white ">
+            <footer class="mt-auto bg-black text-center text-white">
 
-                    <div class="container p-4">
+                <div class="container p-4">
 
-                        <!--Links-->
-                        <section class="">
+                    <!--Links-->
+                    <section class="">
 
-                            <div class="row">
+                        <div class="row">
 
-                                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                    <h5 class="text-uppercase">Contacto</h5>
+                            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Contacto</h5>
 
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="mailto:herrera.alvaradoartu@gmail.com"
-                                                class="text-white">Contactanos</a>
-                                        </li>
-                                        <li>
-                                            <a href="/Sugerencias" class="text-white">Sugerencias</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                    <h5 class="text-uppercase">Nuestras Redes</h5>
-
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="https://www.facebook.com/Mark-Tech-100458546063140"><i
-                                                    class="icon iconify text-white" data-icon="ion-social-facebook"
-                                                    data-width="24"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon iconify text-white"
-                                                    data-icon="ion-social-twitter" data-width="24"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="https://instagram.com/marktech2022"><i
-                                                    class="icon iconify text-white" data-icon="ion-social-instagram"
-                                                    data-width="24"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                    <h5 class="text-uppercase">Marktech</h5>
-
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="/avisodeprivacidad" class="text-white">Politica de Privacidad</a>
-                                        </li>
-                                        <li>
-                                            <a href="/terminosycondiciones" class="text-white">Terminos y
-                                                Condiciones</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                    <img src="{{ asset('img/paypalcheckout.png') }}" alt="logo"
-                                        class="img-fluid">
-                                </div>
-
-
-
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="mailto:herrera.alvaradoartu@gmail.com"
+                                            class="text-white">Contactanos</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Sugerencias" class="text-white">Sugerencias</a>
+                                    </li>
+                                </ul>
                             </div>
 
-                        </section>
-                    </div>
+                            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Nuestras Redes</h5>
 
-                    <!--Derechos-->
-                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                        Todos los derechos reservados 2022 ©:
-                        <a class="text-white" href="/">https://Marktech.com/</a>
-                    </div>
-                </footer>
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="https://www.facebook.com/Mark-Tech-100458546063140"><i
+                                                class="icon iconify text-white" data-icon="ion-social-facebook"
+                                                data-width="24"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com/MarktechOficial"><i class="icon iconify text-white"
+                                                data-icon="ion-social-twitter" data-width="24"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://instagram.com/marktech2022"><i
+                                                class="icon iconify text-white" data-icon="ion-social-instagram"
+                                                data-width="24"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                                <h5 class="text-uppercase">Marktech</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="/avisodeprivacidad" class="text-white">Politica de Privacidad</a>
+                                    </li>
+                                    <li>
+                                        <a href="/terminosycondiciones" class="text-white">Terminos y
+                                            Condiciones</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                                <img src="{{ asset('img/paypalcheckout.png') }}" alt="logo" class="img-fluid">
+                            </div>
+
+
+
+                        </div>
+
+                    </section>
+                </div>
+
+                <!--Derechos-->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    Todos los derechos reservados 2022 ©:
+                    <a class="text-white" href="/">https://Marktech.com/</a>
+                </div>
             </footer>
         </section>
         <!--footer-->
     </div>
-
 </body>
 
 </html>

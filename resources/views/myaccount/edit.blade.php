@@ -1,9 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('title', $viewData['title'])
 @section('content')
     <div class="card mb-4">
         <div class="card-header">
-            Modificar Usuario
+            Modificar mi cuenta
         </div>
         <div class="card-body">
             @if ($errors->any())
@@ -14,16 +14,16 @@
                 </ul>
             @endif
 
-            <form method="POST" action="{{ route('myaccount.edit.update', ['id' => $viewData['product']->getId()]) }}"
+            <form method="POST" action="{{ route('myaccount.edit.update', ['id' => $viewData['user']->getId()]) }}"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
                     <div class="col">
                         <div class="mb-3 row">
-                            <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Nombre:</label>
+                            <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Nombre completo:</label>
                             <div class="col-lg-10 col-md-6 col-sm-12">
-                                <input name="name" value="{{ $viewData['product']->getName() }}" type="text"
+                                <input name="name" value="{{ $viewData['user']->getName() }}" type="text"
                                     class="form-control">
                             </div>
                         </div>
@@ -32,23 +32,16 @@
                         <div class="mb-3 row">
                             <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Correo Electronico:</label>
                             <div class="col-lg-10 col-md-6 col-sm-12">
-                                <input name="email" value="{{ $viewData['product']->getEmail() }}" type="text"
-                                    class="form-control">
+                                <input name="email" value="{{ $viewData['user']->getEmail() }}" type="text"
+                                    class="form-control" disabled>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Contraseña</label>
-                    <input name="password" value="{{ $viewData['product']->getPassword() }}" type="text" class="form-control">
-                </div>
-                <select class="form-select mb-4" name="role" value="{{ $viewData['product']->getRole() }}" aria-label="Default select example" required>
-                    <option selected>Tipo de usuario...</option>
-                    <option value="client">Cliente</option>
-                    <option value="admin">Administrador</option>
-                </select>
                 <button type="submit" class="btn btn-black">Confirmar</button>
             </form>
+            <br>
+            <a href="/password/reset" class="btn btn-black">Cambiar contraseña</a>
         </div>
     </div>
 @endsection
