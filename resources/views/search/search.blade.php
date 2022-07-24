@@ -235,86 +235,61 @@
                         Todos
                     </label>
                 </div><br>
+                @foreach ($viewData['trademarks'] as $menus)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="trademark" value="toshiba"
+                            id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" name="trademark"
+                                value="{{ $menus->trademarks }}" id="flexCheckChecked">
+                            {{ $menus->trademarks }}
+                        </label>
+                    </div>
+                @endforeach
+                <br>
+                <h5><strong>Precio:</strong></h5>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="adata"
-                        id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Adata
+                    <input class="form-check-input" type="checkbox" name="price" value="all"
+                        id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Todos
                     </label>
-                </div>
+                </div><br>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="apple"
+                    <input class="form-check-input" type="checkbox" name="price" value="1000-2000"
                         id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Apple
+                    <label class="form-check-label" for="flexCheckChecked">
+                        1000 - 2000
                     </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="asus"
+                    <br>
+                    <input class="form-check-input" type="checkbox" name="price" value="2000-3000"
                         id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Asus
+                    <label class="form-check-label" for="flexCheckChecked">
+                        2000 - 3000
                     </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="dell"
+                    <br>
+                    <input class="form-check-input" type="checkbox" name="price" value="3000-4000"
                         id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        DELL
+                    <label class="form-check-label" for="flexCheckChecked">
+                        3000 - 4000
                     </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="gigabyte"
+                    <br>
+                    <input class="form-check-input" type="checkbox" name="price" value="4000-5000"
                         id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Gigabyte
+                    <label class="form-check-label" for="flexCheckChecked">
+                        4000 - 5000
                     </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="intel"
+                    <br>
+                    <input class="form-check-input" type="checkbox" name="price" value="5000-..."
                         id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Intel
+                    <label class="form-check-label" for="flexCheckChecked">
+                        5000 - ...
                     </label>
+
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="microsoft"
-                        id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Microsoft
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="nvidia"
-                        id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Nvidia
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="lenovo"
-                        id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Lenovo
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="lg"
-                        id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        LG
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="trademark" value="toshiba"
-                        id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Toshiba
-                    </label>
-                </div>
-            </div>
         </form>
     </div>
+
 
 
 

@@ -11,6 +11,7 @@
             <div class="card-body">
                 <b>Número de Orden:</b> {{ $order->getId() }}<br>
                 <b>Total:</b> ${{ $order->getTotal() }}<br />
+
                 @if ($order->getState() == 'No Pagado')
                     <b>Estado:</b> <span class="text-warning">{{ $order->getState() }}</span><br />
                 @elseif ($order->getState() == 'Pagado')
@@ -25,6 +26,16 @@
                 @elseif ($order->getEstado() == 'Entregado')
                     <b>Estado de envio:</b> <span class="text-success">{{ $order->getEstado() }}</span><br />
                 @endif
+
+                @if ($order->getState() == 'No Pagado')
+                    <br>
+                    <form action="{{ route('payment') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $order->getId() }}">
+                        <button class="btn btn-black">Completar Compra</button>
+                    </form>
+                @endif
+
 
                 <table class="table table-borderless table-striped text-center mt-3">
                     <thead>
