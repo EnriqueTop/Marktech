@@ -34,4 +34,21 @@ Route::middleware('admin')->group(function () {
     // Route::get('/admin/items/{id}/edit', 'App\Http\Controllers\Admin\AdminItemsController@edit')->name("admin.item.edit");
     Route::put('/admin/items/{id}/update', 'App\Http\Controllers\Admin\AdminItemsController@update')->name("admin.item.update");
     Route::delete('/admin/items/{id}/delete', 'App\Http\Controllers\Admin\AdminItemsController@delete')->name("admin.item.delete");
+    // Menus
+    Route::get('/admin/menu', 'App\Http\Controllers\Admin\AdminMenusController@index')->name('admin.menus.index');
+    // trademarks
+    Route::post('/admin/menut/store', 'App\Http\Controllers\Admin\AdminMenusController@storet')->name("admin.menus.storet");
+    Route::get('/admin/menut/{id}/edit', 'App\Http\Controllers\Admin\AdminMenusController@editt')->name("admin.menus.editt");
+    Route::put('/admin/menut/{id}/update', 'App\Http\Controllers\Admin\AdminMenusController@updatet')->name("admin.menus.updatet");
+    Route::delete('/admin/menut/{id}/delete', 'App\Http\Controllers\Admin\AdminMenusController@deletet')->name("admin.menus.deletet");
+    // categories
+    Route::post('/admin/menuc/store', 'App\Http\Controllers\Admin\AdminMenusController@storec')->name("admin.menus.storec");
+    Route::get('/admin/menuc/{id}/edit', 'App\Http\Controllers\Admin\AdminMenusController@editc')->name("admin.menus.editc");
+    Route::put('/admin/menuc/{id}/update', 'App\Http\Controllers\Admin\AdminMenusController@updatec')->name("admin.menus.updatec");
+    Route::delete('/admin/menuc/{id}/delete', 'App\Http\Controllers\Admin\AdminMenusController@deletec')->name("admin.menus.deletec");
+    // subcategories
+    Route::post('/admin/menus/store', 'App\Http\Controllers\Admin\AdminMenusController@stores')->name("admin.menus.stores");
+    Route::get('/admin/menus/{id}/edit', 'App\Http\Controllers\Admin\AdminMenusController@edits')->name("admin.menus.edits");
+    Route::put('/admin/menus/{id}/update', 'App\Http\Controllers\Admin\AdminMenusController@updates')->name("admin.menus.updates");
+    Route::delete('/admin/menus/{id}/delete', 'App\Http\Controllers\Admin\AdminMenusController@deletes')->name("admin.menus.deletes");
 });

@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\AddAddressController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\BotManController;
 use App\Mail\acercaMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\AddAddressController;
-use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,10 +78,10 @@ Route::middleware('auth', 'verified')->group(function () {
     // Route::get('/TuCarrito/purchase', 'App\Http\Controllers\CartController@purchase')->name("cart.purchase");
 
     Route::get('/pedidos', 'App\Http\Controllers\MyAccountController@orders')->name("myaccount.orders");
-    Route::get('/miusuario', 'App\Http\Controllers\MyAccountController@edit')->name("myaccount.edit");
-    Route::put('/miusuario/{id}/update', 'App\Http\Controllers\MyAccountController@update')->name("myaccount.edit.update");
     Route::get('/misdatos', 'App\Http\Controllers\CrudController@index')->name("myaccount.myaddress");
 
+    Route::get('/miusuario', 'App\Http\Controllers\MyAccountController@edit')->name("myaccount.edit");
+    Route::any('/miuser', 'App\Http\Controllers\MyAccountController@update')->name("myaccount.edit.update");
 });
 
 Auth::routes();
@@ -90,8 +89,6 @@ Auth::routes();
 Route::get('/Sugerencias', function () {
     return view('footer.form');
 });
-
-
 
 Route::get('/opinion', function () {
     $correo = new acercaMailable;
@@ -138,16 +135,12 @@ Route::get('/Registro', function () {
     return view('auth.register');
 });
 
-
-
-
 //enable verify route
 Auth::routes(['verify' => true]);
 
-
 //paypal
-Route::match(array('GET', 'POST'),'pay', [App\Http\Controllers\PaymentController::class, 'pay'])->name('payment');
-Route::match(array('GET', 'POST'),'success', [App\Http\Controllers\PaymentController::class, 'success']);
+Route::match(array('GET', 'POST'), 'pay', [App\Http\Controllers\PaymentController::class, 'pay'])->name('payment');
+Route::match(array('GET', 'POST'), 'success', [App\Http\Controllers\PaymentController::class, 'success']);
 Route::get('error', [App\Http\Controllers\PaymentController::class, 'error']);
 
 //
@@ -177,4 +170,4 @@ Route::any('/busqueda', 'App\Http\Controllers\SearchController@index')->name("se
 
 Route::get('/busqueda', 'App\Http\Controllers\SearchController@search');
 
-
+Route::any('/busquedaerror', 'App\Http\Controllers\SearchController@search')->name("search.nofound");
