@@ -53,49 +53,45 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Cant. de Descuento:</label>
-                    <input name="discounted_price" value="{{ $viewData['product']->getDiscountedprice() }}" type="number" class="form-control">
+                    <input name="discounted_price" value="{{ $viewData['product']->getDiscountedprice() }}" type="number"
+                        class="form-control">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Descripción:</label>
                     <textarea class="form-control" name="description" rows="3">{{ $viewData['product']->getDescription() }}</textarea>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Marca:</label>
-                    <input class="form-control" type="text" name="trademark" value="{{ $viewData['product']->getTrademark() }}" style="text-transform:lowercase">
+                    <label class="form-label">Existencias:</label>
+                    <input name="stock" value="{{ $viewData['product']->getStock() }}" type="number"
+                        class="form-control">
                 </div>
+                <h5>Marca:</h5>
+                <select name="trademark" class="form-control">
+                    <option value="">Seleccione una marca</option>
+                    @foreach ($viewData['trademarks'] as $menus)
+                        <option value="{{ $menus->trademarks }}">{{ $menus->trademarks }}</option>
+                    @endforeach
+                </select>
+                <br>
                 <h5>Categoria</h5>
-                <select class="form-select mb-4" name="category" value="{{ $viewData['product']->getCategory() }}" aria-label="Default select example" required>
-                    <option value="hardware" selected>Hardware</option>
-                    <option value="accesorios">Accesorios</option>
-                    <option value="computadoras">Computadoras</option>
-                    <option value="electronica">Electronica</option>
+                <select name="category" class="form-control">
+                    <option value="">Seleccione una categoria</option>
+                    @foreach ($viewData['categories'] as $menus)
+                        <option value="{{ $menus->categories }}">{{ $menus->categories }}</option>
+                    @endforeach
                 </select>
+                <br>
                 <h5>SubCategoria</h5>
-                <select class="form-select mb-4" name="subcategory" value="{{ $viewData['product']->getSubcategory() }}" aria-label="Default select example" required>
-                    <option value="procesadores" selected>Hardware - Procesadores</option>
-                    <option value="gabinetes">Hardware - Gabinetes</option>
-                    <option value="gpu">Hardware - Targetas de video</option>
-                    <option value="ram">Hardware - Memorias RAM</option>
-                    <option value="disipadores">Hardware - Disipadores</option>
-                    <option value="ssd">Hardware - SSD</option>
-                    <option value="hdd">Hardware - Discos Duros</option>
-                    <option value="usb">Hardware - USB/SD</option>
-                    <option value="motherboard">Hardware - Targetas Madre</option>
-                    <option value="audifonos">Accesorios - Audifonos</option>
-                    <option value="alfombrillas">Accesorios - Alfombrillas</option>
-                    <option value="mouse">Accesorios - Mouse</option>
-                    <option value="teclados">Accesorios - Teclados</option>
-                    <option value="laptop">Computadoras - Laptop</option>
-                    <option value="escritorio">Computadoras - Escritorio</option>
-                    <option value="consolas">Electronica - Consolas</option>
-                    <option value="tv">Electronica - Televisores</option>
-                    <option value="monitores">Electronica - Monitores</option>
-                    <option value="bocinas">Electronica - Bocinas</option>
-                    <option value="camaras">Electronica - Cámaras</option>
-                    <option value="telefonos">Electronica - Telefonos</option>
+                <select name="subcategory" class="form-control">
+                    <option value="">Seleccione una subcategoria</option>
+                    @foreach ($viewData['subcategories'] as $menus)
+                        <option value="{{ $menus->subcategories }}">{{ $menus->subcategories }}</option>
+                    @endforeach
                 </select>
+                <br>
                 <h5>¿Destacado?</h5>
-                <select class="form-select mb-4" name="featured" value="{{ $viewData['product']->getFeatured() }}" aria-label="Default select example" required>
+                <select class="form-select mb-4" name="featured" value="{{ $viewData['product']->getFeatured() }}"
+                    aria-label="Default select example" required>
                     <option value="0" selected>No</option>
                     <option value="1">Si</option>
                 </select>

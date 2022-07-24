@@ -40,7 +40,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
-                    <input name="password" value="{{ $viewData['product']->getPassword() }}" type="text" class="form-control">
+                    <input name="password" value="{{ $viewData['product']->getPassword() }}" type="text" class="form-control" disabled>
                 </div>
                 <select class="form-select mb-4" name="role" value="{{ $viewData['product']->getRole() }}" aria-label="Default select example" required>
                     <option selected>Tipo de usuario...</option>
