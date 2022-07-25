@@ -1,8 +1,9 @@
 # Marktech
-Proyecto Pagina Web tienda en línea.
+Proyecto Pagina Web de Tienda de electronica
+Equipo 6 IDGS09C
 
 Versión de Laravel Framework:<br>
-9.3.0
+9.17.0
 
 Versión de Composer:<br>
 2.3.7
@@ -15,13 +16,12 @@ Versión de MAMP:<br>
 
 Caracteristicas:
 - [x] Layout Principal.
-- [x] Modo administrador.
+- [x] Vista principal.
 - [x] Envio de correos.
 - [x] Implementar Base de Datos.
 - [x] Implementar Articulos en base de datos.
 - [x] Implementar Carrito de compras.
 - [x] Implementar ChatBot.
 - [ ] Añadir mas PyR al ChatBot.
-- [x] Funcionamiento de Barra de Búsqueda.
-- [x] Filtros de la Barra de búsqueda.
-- [x] Implementar Metodo de pago(Paypal).
+- [x] Funcionamiento de Barra de Busqueda.
+- [x] Implementar Metodo de pago.

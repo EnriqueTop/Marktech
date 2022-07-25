@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 24, 2022 at 07:53 AM
+-- Generation Time: Jul 25, 2022 at 05:17 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.1.0
 
@@ -183,7 +183,8 @@ INSERT INTO `items` (`id`, `quantity`, `price`, `order_id`, `product_id`, `creat
 (149, 10, 16999, 194, 1, '2022-07-24 10:35:42', '2022-07-24 10:35:42'),
 (150, 1, 819, 195, 16, '2022-07-24 10:40:03', '2022-07-24 10:40:03'),
 (151, 8, 819, 196, 16, '2022-07-24 10:51:50', '2022-07-24 10:51:50'),
-(152, 81, 819, 197, 16, '2022-07-24 10:56:41', '2022-07-24 10:56:41');
+(152, 81, 819, 197, 16, '2022-07-24 10:56:41', '2022-07-24 10:56:41'),
+(153, 1, 36059, 198, 13, '2022-07-25 02:22:29', '2022-07-25 02:22:29');
 
 -- --------------------------------------------------------
 
@@ -252,7 +253,8 @@ INSERT INTO `orders` (`id`, `total`, `user_id`, `created_at`, `updated_at`, `pai
 (194, 169990, 7, '2022-07-24 10:35:42', '2022-07-24 10:36:30', 'Cancelado', 'Escoge la dirección...', 'Preparando Pedido', 'Si'),
 (195, 819, 7, '2022-07-24 10:40:03', '2022-07-24 10:42:10', 'Cancelado', 'Escoge la dirección...', 'Preparando Pedido', 'Si'),
 (196, 6552, 7, '2022-07-24 10:51:50', '2022-07-24 10:51:50', 'No Pagado', 'Escoge la dirección...', 'Preparando Pedido', 'No'),
-(197, 66339, 7, '2022-07-24 10:56:41', '2022-07-24 10:57:42', 'Cancelado', 'Escoge la dirección...', 'Preparando Pedido', 'Si');
+(197, 66339, 7, '2022-07-24 10:56:41', '2022-07-25 02:11:21', 'Pagado', 'Escoge la dirección...', 'Preparando Pedido', 'Si'),
+(198, 36059, 7, '2022-07-25 02:22:29', '2022-07-25 02:22:49', 'Pagado', 'Escoge la dirección...', 'Preparando Pedido', 'No');
 
 -- --------------------------------------------------------
 
@@ -393,7 +395,10 @@ INSERT INTO `payments` (`id`, `payment_id`, `payer_id`, `payer_email`, `amount`,
 (94, 'PAYID-MLMMUJQ08055571XA969812C', 'DD4U8BR56UJKN', 'sb-ukywi19265167@business.example.com', 169990.00, 'MXN', 'approved', NULL, NULL),
 (95, 'PAYID-MLMMUJQ08055571XA969812C', 'DD4U8BR56UJKN', 'sb-ukywi19265167@business.example.com', 169990.00, 'MXN', 'approved', NULL, NULL),
 (96, 'PAYID-MLOKBTI5U041248MS140282U', 'DD4U8BR56UJKN', 'sb-ukywi19265167@business.example.com', 8190.00, 'MXN', 'approved', NULL, NULL),
-(97, 'PAYID-MLON6GQ79R174325L466990V', 'DD4U8BR56UJKN', 'sb-ukywi19265167@business.example.com', 66339.00, 'MXN', 'approved', NULL, NULL);
+(97, 'PAYID-MLON6GQ79R174325L466990V', 'DD4U8BR56UJKN', 'sb-ukywi19265167@business.example.com', 66339.00, 'MXN', 'approved', NULL, NULL),
+(98, 'PAYID-MLO3KRY2SW07719L4562284H', 'DD4U8BR56UJKN', 'sb-ukywi19265167@business.example.com', 66339.00, 'MXN', 'approved', NULL, NULL),
+(99, 'PAYID-MLO3KRY2SW07719L4562284H', 'DD4U8BR56UJKN', 'sb-ukywi19265167@business.example.com', 66339.00, 'MXN', 'approved', NULL, NULL),
+(100, 'PAYID-MLO3QHY1V2039170H931521Y', 'DD4U8BR56UJKN', 'sb-ukywi19265167@business.example.com', 36059.00, 'MXN', 'approved', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -445,7 +450,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `image`, `price`, `discount
 (2, 'PROCESADOR INTEL CORE I5-12600K', 'Doceava Generación, 3.70 GHz (hasta 4.90 GHz) con Intel UHD Graphics 770, Socket 1700, Caché 20 MB, Deca-Core.', 'test2.jpeg', 6299, 100, NULL, '2022-07-24 12:49:14', 'Hardware', 'Procesadores', 0, 'Intel', 100, 1),
 (3, 'CONSOLA XBOX SERIES S', '512GB, Color Blanco.', 'test3.jpg', 1, 0, NULL, '2022-07-24 12:50:49', 'Electronica', 'Consolas', 0, 'Microsoft', 0, 1),
 (4, 'T. MADRE ASUS PRIME H610M-K D4', 'Chipset Intel H610, Soporta: Intel 12va. Generación, Socket 1700, Memoria: DDR4 3200/2800/2133MHz, 64GB Max, Integrado: AudioHD, Red, USB 3.1 y SATA 3.0, M.2, Micro-ATX, Ptos: 1xPCIE4.0x16, 1xPCIE3.0x1', 'test4.jpg', 1999, 0, NULL, '2022-07-24 12:51:08', 'Hardware', 'Targetas Madre', 1, 'Asus', 100, 1),
-(13, 'APPLE IMAC RETINA 24\"', 'Apple M1, 8GB, 256GB SSD, Azul (Abril 2021)', '13.webp', 36059, 0, '2022-07-16 12:01:03', '2022-07-24 12:51:34', 'Computadoras', 'Escritorio', 1, 'Apple', 100, 1),
+(13, 'APPLE IMAC RETINA 24\"', 'Apple M1, 8GB, 256GB SSD, Azul (Abril 2021)', '13.webp', 36059, 0, '2022-07-16 12:01:03', '2022-07-25 02:22:29', 'Computadoras', 'Escritorio', 1, 'Apple', 99, 2),
 (14, 'TARJETA DE VIDEO EVGA NVIDIA GEFORCE RTX 3090 FTW3 ULTRA GAMING', '24GB 384 bit GDDR6X, PCI Express x16 4.0', '14.jpg', 42979, 0, '2022-07-16 12:03:08', '2022-07-24 12:51:59', 'Hardware', 'Targetas de video', 0, 'Nvidia', 100, 1),
 (15, 'MONITOR LG 27MK600M LED 27\"', 'Full HD, Widescreen, FreeSync, HDMI, Blanco', '15.webp', 4379, 0, '2022-07-16 12:06:10', '2022-07-24 12:52:18', 'Electronica', 'Monitores', 0, 'LG', 100, 1),
 (16, 'SSD ADATA ULTIMATE SU630', '480GB, SATA, 2.5\", 7mm', '16.webp', 819, 0, '2022-07-16 12:16:15', '2022-07-24 12:52:34', 'Hardware', 'SSD', 0, 'Adata', 100, 9),
@@ -548,7 +553,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `balance`) VALUES
 (6, 'Arturo Herrera Alvarado', 'arthur.alvarado.14@outlook.com', NULL, '$2y$10$GWaegZVhqeWGvKYv7J.65e.qkpYMqSNS0lQNl4HyUrYl.fXwsr7dy', NULL, '2022-07-21 08:42:01', '2022-07-21 08:42:01', 'client', 0),
-(7, 'Arturo Anduan Herrera Alvarado', 'herrera.alvaradoartu@gmail.com', '2022-07-24 06:02:58', '$2y$10$zWp9WBwbCUnmvmS2.Vd.Eu83dVzOC1bjKJ88MKd02BnlgOjmPjr/K', NULL, '2022-07-24 06:01:48', '2022-07-24 10:56:41', 'admin', -653860);
+(7, 'Arturo Anduan Herrera Alvarado', 'herrera.alvaradoartu@gmail.com', '2022-07-24 06:02:58', '$2y$10$zWp9WBwbCUnmvmS2.Vd.Eu83dVzOC1bjKJ88MKd02BnlgOjmPjr/K', NULL, '2022-07-24 06:01:48', '2022-07-25 02:22:29', 'admin', -689919);
 
 --
 -- Indexes for dumped tables
@@ -677,7 +682,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -689,13 +694,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
