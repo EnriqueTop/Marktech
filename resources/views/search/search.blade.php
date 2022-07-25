@@ -312,12 +312,20 @@
                                 @if ($product->price == 0)
                                     <span><strong class="text-danger">Gratis</strong></span>
                                 @elseif ($product->discounted_price > 0)
-                                    <strong
-                                        class="text-danger text-decoration-line-through">${{ $product->price }}</strong>
-                                    <strong
-                                        class="text-danger">${{ $product->price - $product->discounted_price }}</strong>
+                                    <strong class="text-danger text-decoration-line-through">
+                                        <x-money class="text-decoration-line-through" amount="{{ $product->price }}"
+                                            currency="MXN" convert />
+                                    </strong>
+                                    <strong class="text-danger">
+                                        <x-money class="text-decoration-line-through"
+                                            amount="{{ $product->price - $product->discounted_price }}"
+                                            currency="MXN" convert />
+                                    </strong>
                                 @else
-                                    <strong class="text-danger">${{ $product->price }}</strong>
+                                    <strong class="text-danger">
+                                        <x-money class="text-decoration-line-through" amount="{{ $product->price }}"
+                                            currency="MXN" convert />
+                                    </strong>
                                 @endif
                             </div>
 

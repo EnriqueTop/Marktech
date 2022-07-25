@@ -13,10 +13,15 @@
                             @if ($viewData['product']->getPrice() == 0)
                                 <span>Gratis</span>
                             @elseif ($viewData['product']->getDiscountedprice() > 0)
-                                <strong class="text-decoration-line-through">${{ $viewData['product']->getPrice() }}</strong>
-                                <strong>${{ $viewData['product']->getPrice() - $viewData['product']->getDiscountedprice() }}</strong>
+                                <strong class="text-decoration-line-through">
+                                    <x-money class="text-decoration-line-through"
+                                        amount="{{ $viewData['product']->getPrice() }}" currency="MXN" convert />
+                                </strong>
+                                <x-money
+                                    amount="{{ $viewData['product']->getPrice() - $viewData['product']->getDiscountedprice() }}"
+                                    currency="MXN" convert />
                             @else
-                                <strong>${{ $viewData['product']->getPrice() }}</strong>
+                                <x-money amount="{{ $viewData['product']->getPrice() }}" currency="MXN" convert />
                             @endif
                         </strong>
                         {{-- <br><br><strong>${{ $viewData['product']->getDiscountedprice() }} --}}
@@ -64,23 +69,23 @@
                 </div>
             </div>
         </div>
-            <table class="table table-bordered fs-6">
-                <thead>
-                    <tr>
-                        <th scope="col" colspan="2" class="text-center">Detalles</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Marca:</strong></td>
-                        <td>{{ $viewData['product']->getTrademark() }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tipo:</strong></td>
-                        <td>{{ $viewData['product']->getSubcategory() }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table class="table table-bordered fs-6">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2" class="text-center">Detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Marca:</strong></td>
+                    <td>{{ $viewData['product']->getTrademark() }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Tipo:</strong></td>
+                    <td>{{ $viewData['product']->getSubcategory() }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     </div>
 @endsection

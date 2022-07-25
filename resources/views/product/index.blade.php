@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<br>
-{{-- <div class="container">
+    <br>
+    {{-- <div class="container">
     <img src="{!! asset('...') !!}" alt="Responsive image">
 </div> --}}
     <!--Carrusel-->
@@ -75,8 +75,8 @@
             <div class="col-lg-3 mb-3 d-flex align-items-stretch">
                 <div class="card">
                     <a href="{{ route('product.show', ['id' => $product->getId()]) }}">
-                        <img src="{{ asset('/img/products/' . $product->getImage()) }}" class="card-img-top img-card d-inline"
-                            style="height:20em;">
+                        <img src="{{ asset('/img/products/' . $product->getImage()) }}"
+                            class="card-img-top img-card d-inline" style="height:20em;">
                     </a>
                     <div class="card-body text-center">
                         <a>{{ $product->getName() }}
@@ -85,11 +85,21 @@
                         <a>
                             @if ($product->getPrice() == 0)
                                 <span><strong class="text-danger">Gratis</strong></span>
-                            @elseif ( $product->getDiscountedprice() > 0)
-                            <strong class="text-danger text-decoration-line-through">${{ $product->getPrice() }}</strong>
-                            <strong class="text-danger">${{ $product->getPrice() - $product->getDiscountedprice() }}</strong>
+                            @elseif ($product->getDiscountedprice() > 0)
+                                <strong class="text-danger text-decoration-line-through">
+                                    <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
+                                        currency="MXN" convert />
+                                </strong>
+                                <strong class="text-danger">
+                                    <x-money class="text-decoration-line-through"
+                                        amount="{{ $product->getPrice() - $product->getDiscountedprice() }}" currency="MXN"
+                                        convert />
+                                </strong>
                             @else
-                            <strong class="text-danger">${{ $product->getPrice() }}</strong>
+                                <strong class="text-danger">
+                                    <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
+                                        currency="MXN" convert />
+                                </strong>
                             @endif
                         </a>
                     </div>
@@ -109,8 +119,8 @@
             <div class="col-lg-3 mb-3 d-flex align-items-stretch">
                 <div class="card">
                     <a href="{{ route('product.show', ['id' => $product->getId()]) }}">
-                        <img src="{{ asset('/img/products/' . $product->getImage()) }}" class="card-img-top img-card d-inline"
-                            style="height:20em;">
+                        <img src="{{ asset('/img/products/' . $product->getImage()) }}"
+                            class="card-img-top img-card d-inline" style="height:20em;">
                     </a>
                     <div class="card-body text-center">
                         <a>{{ $product->getName() }}
@@ -119,11 +129,21 @@
                         <a>
                             @if ($product->getPrice() == 0)
                                 <span><strong class="text-danger">Gratis</strong></span>
-                            @elseif ( $product->getDiscountedprice() > 0)
-                            <strong class="text-danger text-decoration-line-through">${{ $product->getPrice() }}</strong>
-                            <strong class="text-danger">${{ $product->getPrice() - $product->getDiscountedprice() }}</strong>
+                            @elseif ($product->getDiscountedprice() > 0)
+                                <strong class="text-danger text-decoration-line-through">
+                                    <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
+                                        currency="MXN" convert />
+                                </strong>
+                                <strong class="text-danger">
+                                    <x-money class="text-decoration-line-through"
+                                        amount="{{ $product->getPrice() - $product->getDiscountedprice() }}" currency="MXN"
+                                        convert />
+                                </strong>
                             @else
-                            <strong class="text-danger">${{ $product->getPrice() }}</strong>
+                                <strong class="text-danger">
+                                    <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
+                                        currency="MXN" convert />
+                                </strong>
                             @endif
                         </a>
                     </div>
@@ -160,7 +180,7 @@
             </a>
         </div>
     </div>
-<br>
+    <br>
     <!--New Products-->
 
     <div class="container-sm">
@@ -182,11 +202,21 @@
                         <a>
                             @if ($product->getPrice() == 0)
                                 <span><strong class="text-danger">Gratis</strong></span>
-                            @elseif ( $product->getDiscountedprice() > 0)
-                            <strong class="text-danger text-decoration-line-through">${{ $product->getPrice() }}</strong>
-                            <strong class="text-danger">${{ $product->getPrice() - $product->getDiscountedprice() }}</strong>
+                            @elseif ($product->getDiscountedprice() > 0)
+                                <strong class="text-danger text-decoration-line-through">
+                                    <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
+                                        currency="MXN" convert />
+                                </strong>
+                                <strong class="text-danger">
+                                    <x-money class="text-decoration-line-through"
+                                        amount="{{ $product->getPrice() - $product->getDiscountedprice() }}" currency="MXN"
+                                        convert />
+                                </strong>
                             @else
-                            <strong class="text-danger">${{ $product->getPrice() }}</strong>
+                                <strong class="text-danger">
+                                    <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
+                                        currency="MXN" convert />
+                                </strong>
                             @endif
                         </a>
                     </div>
