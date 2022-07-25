@@ -13,7 +13,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre*') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre completo*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -70,8 +70,21 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <div class="col-md-6 offset-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="terms" id="terms" value="1"
+                                            required>
+                                        <label class="form-check-label" for="terms">
+                                            {{ __('He leido y acepto los') }} <a href="/terminosycondiciones"><strong>{{ __('términos y condiciones') }}</strong></a>{{ __(' y la ') }}<a
+                                                href="/avisodeprivacidad"><strong>{{ __('política de privacidad') }}</strong></a>
+                                        </label>
+                                    </div>
+                                </div>
+
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
+                                    <br>
                                     <button type="submit" class="btn btn-black text-white">
                                         {{ __('Registrarse') }}
                                     </button>

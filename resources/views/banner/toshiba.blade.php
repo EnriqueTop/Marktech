@@ -14,11 +14,21 @@
                         <a>
                             @if ($product->getPrice() == 0)
                                 <span><strong class="text-danger">Gratis</strong></span>
-                            @elseif ( $product->getDiscountedprice() > 0)
-                            <strong class="text-danger text-decoration-line-through">${{ $product->getPrice() }}</strong>
-                            <strong class="text-danger">${{ $product->getPrice() - $product->getDiscountedprice() }}</strong>
+                            @elseif ($product->getDiscountedprice() > 0)
+                                <strong class="text-danger text-decoration-line-through">
+                                    <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
+                                        currency="MXN" convert />
+                                </strong>
+                                <strong class="text-danger">
+                                    <x-money class="text-decoration-line-through"
+                                        amount="{{ $product->getPrice() - $product->getDiscountedprice() }}" currency="MXN"
+                                        convert />
+                                </strong>
                             @else
-                            <strong class="text-danger">${{ $product->getPrice() }}</strong>
+                                <strong class="text-danger">
+                                    <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
+                                        currency="MXN" convert />
+                                </strong>
                             @endif
                         </a>
                     </div>
@@ -26,7 +36,4 @@
             </div>
         @endforeach
     </div>
-
-
-
 @endsection
