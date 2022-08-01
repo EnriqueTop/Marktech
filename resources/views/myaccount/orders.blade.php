@@ -2,15 +2,19 @@
 @section('title', $viewData['title'])
 @section('subtitle', $viewData['subtitle'])
 @section('content')
+
+    {!! $viewData['orders']->withQueryString()->links('layouts.pagination') !!}
+
     @forelse ($viewData["orders"] as $order)
         <div class="card mb-4">
             <div class="card-header">
-                <strong class="text-success">{{ $order->getCreatedAt() }}</strong>
-
+                <strong
+                    class="text-primary">{{ Carbon\Carbon::parse($order->getCreatedat())->subHours(3)->subMinutes(2)->translatedFormat('l j F Y') }}</strong>
             </div>
             <div class="card-body">
                 <b>Número de Orden:</b> {{ $order->getId() }}<br>
-                <b>Total:</b> ${{ $order->getTotal() }}<br />
+                <b>Total: </b>
+                <x-money amount="{{ $order->getTotal() }}" currency="MXN" convert /><br />
 
                 @if ($order->getState() == 'No Pagado')
                     <b>Estado:</b> <span class="text-warning">{{ $order->getState() }}</span><br />
@@ -27,22 +31,21 @@
                     <b>Estado de envio:</b> <span class="text-success">{{ $order->getEstado() }}</span><br />
                 @endif
 
+                {{-- @if ($order->getState() == 'No Pagado' && $order->getId() == $viewData['last_order']) --}}
+                <br>
                 @if ($order->getState() == 'No Pagado')
-                    <br>
-                    <form action="{{ route('payment') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $order->getId() }}">
-                        <button class="btn btn-black">Completar Compra</button>
-                    </form>
+                    <b>Ver detalles del pedido para completar tu compra.</b> <br>
                 @endif
-
+                <a href="{{ route('myaccount.orders.show', $order->getId()) }}" class="btn btn-black">Ver Detalles</a>
 
                 <table class="table table-borderless table-striped text-center mt-3">
                     <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Id único</th>
                             <th scope="col">Precio</th>
+                            <th scope="col">Descuento</th>
                             <th scope="col">Cantidad</th>
                         </tr>
                     </thead>
@@ -50,13 +53,26 @@
                         @foreach ($order->getItems() as $item)
                             <tr>
                                 <td>
+                                    <img src="{{ asset('/img/products/' . $item->getProduct()->getImage()) }}"
+                                        alt="{{ $item->getProduct()->getName() }}" class="img-fluid" width="100">
+                                </td>
+                                <td>
                                     <a class="link-success"
                                         href="{{ route('product.show', ['id' => $item->getProduct()->getId()]) }}">
                                         {{ $item->getProduct()->getName() }}
                                     </a>
                                 </td>
                                 <td>{{ $item->getId() }}</td>
-                                <td>${{ $item->getPrice() }}</td>
+                                <td>
+                                    <x-money amount="{{ $item->getPrice() }}" currency="MXN" convert />
+                                </td>
+                                @if ([$item->getDiscountedprice()] > 0)
+                                    <td class="text-decoration-line-through">-
+                                        <x-money amount="{{ $item->getDiscountedprice() }}" currency="MXN" convert />
+                                    </td>
+                                @else
+                                    <td></td>
+                                @endif
                                 <td>{{ $item->getQuantity() }}</td>
 
                             </tr>
@@ -70,4 +86,6 @@
             No has realizado ningun pedido.
         </div>
     @endforelse
+
+    {!! $viewData['orders']->withQueryString()->links('layouts.pagination') !!}
 @endsection

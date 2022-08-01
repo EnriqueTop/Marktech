@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AddAddressController;
-use App\Http\Controllers\AddressController;
 use App\Http\Controllers\BotManController;
+use App\Http\Controllers\CreateorderController;
 use App\Mail\acercaMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+//enable verify route
+Auth::routes(['verify' => true]);
 
 // Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 Route::get('/', 'App\Http\Controllers\ProductController@index')->name('home.index');
@@ -52,52 +54,64 @@ Route::get('/hardware/ram', 'App\Http\Controllers\ProductController@hardwareram'
 Route::get('/hardware/ssd', 'App\Http\Controllers\ProductController@hardwaressd')->name('product.categories.hardware.hardware_ssd');
 Route::get('/hardware/usb', 'App\Http\Controllers\ProductController@hardwareusb')->name('product.categories.hardware.hardware_usb');
 Route::get('/hardware/motherboards', 'App\Http\Controllers\ProductController@hardwaremotherboard')->name('product.categories.hardware.hardware_motherboard');
+Route::get('/hardware/fuentes', 'App\Http\Controllers\ProductController@hardwarefuentes')->name('product.categories.hardware.hardware_fuentes');
 //banners
-Route::get('/banner/mac', 'App\Http\Controllers\ProductController@bannermac')->name('banner.mac');
-Route::get('/banner/nvidia', 'App\Http\Controllers\ProductController@bannernvidia')->name('banner.nvidia');
-Route::get('/banner/adata', 'App\Http\Controllers\ProductController@banneradata')->name('banner.adata');
-Route::get('/banner/toshiba', 'App\Http\Controllers\ProductController@bannertoshiba')->name('banner.toshiba');
-Route::get('/banner/lg', 'App\Http\Controllers\ProductController@bannerlg')->name('banner.lg');
+Route::get('/banner/mac', 'App\Http\Controllers\ProductController@bannermac')->name('product.banner.mac');
+Route::get('/banner/nvidia', 'App\Http\Controllers\ProductController@bannernvidia')->name('product.banner.nvidia');
+Route::get('/banner/adata', 'App\Http\Controllers\ProductController@banneradata')->name('product.banner.adata');
+Route::get('/banner/toshiba', 'App\Http\Controllers\ProductController@bannertoshiba')->name('product.banner.toshiba');
+Route::get('/banner/lg', 'App\Http\Controllers\ProductController@bannerlg')->name('product.banner.lg');
 //treadkmarks
 Route::get('/product/trademarks/nvidia', 'App\Http\Controllers\ProductController@nvidia')->name('trademark.nvidia');
 Route::get('/product/trademarks/dell', 'App\Http\Controllers\ProductController@dell')->name('trademark.dell');
 Route::get('/product/trademarks/gigabyte', 'App\Http\Controllers\ProductController@gigabyte')->name('trademark.gigabyte');
 Route::get('/product/trademarks/hp', 'App\Http\Controllers\ProductController@hp')->name('trademark.hp');
+// submenus
+Route::get('/armatucomputadora', function () {
+    return view('product.submenus.arma');
+});
+
+Route::get('/almacenamiento', function () {
+    return view('product.submenus.almacenamiento');
+});
+
+Route::get('/computadras', function () {
+    return view('product.submenus.computadoras');
+});
+
+Route::get('/accesrios', function () {
+    return view('product.submenus.accesorios');
+});
+
+Route::get('/electrnica', function () {
+    return view('product.submenus.electronica');
+});
 
 //shopping cart
-Route::get('/TuCarrito', 'App\Http\Controllers\CartController@index')->name("cart.index");
-Route::get('/TuCarrito/delete', 'App\Http\Controllers\CartController@delete')->name("cart.delete");
-Route::post('/TuCarrito/add/{id}', 'App\Http\Controllers\CartController@add')->name("cart.add");
+Route::get('/TuCarrito', 'App\Http\Controllers\CartController@index')->name('cart.index');
+Route::get('/TuCarrito/delete', 'App\Http\Controllers\CartController@delete')->name('cart.delete');
+Route::post('/TuCarrito/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
 
 Route::middleware('auth', 'verified')->group(function () {
-    Route::post('/TuCarrito/purchase', [AddressController::class, 'Address'])->name("cart.purchase");
-    Route::get('/TuCarrito/purchase', [AddressController::class, 'Address'])->name("cart.purchase");
+    Route::post('/TuCarrito/purchase', [CreateorderController::class, 'puchase'])->name('cart.purchase');
+    Route::get('/TuCarrito/purchase', [CreateorderController::class, 'puchase'])->name('cart.purchase');
 
-    Route::post('/Carrito/purchase', [AddressController::class, 'Address'])->name("cart.postpurchase");
-    Route::get('/Carrito/purchase', [AddressController::class, 'Address'])->name("cart.postpurchase");
+    // Route::post('/Carrito/purchase', [CreateorderController::class, 'puchase'])->name('cart.postpurchase');
+    // Route::get('/Carrito/purchase', [CreateorderController::class, 'puchase'])->name('cart.postpurchase');
     // Route::get('/TuCarrito/purchase', 'App\Http\Controllers\CartController@purchase')->name("cart.purchase");
 
-    Route::get('/pedidos', 'App\Http\Controllers\MyAccountController@orders')->name("myaccount.orders");
+    // orders
+    Route::get('/pedidos', 'App\Http\Controllers\MyAccountController@orders')->name('myaccount.orders');
 
-    Route::get('/misdatos', 'App\Http\Controllers\CrudController@index')->name("myaccount.myaddress");
+    Route::get('/pedidos/{id}', 'App\Http\Controllers\MyAccountController@show')->name('myaccount.orders.show');
+    Route::get('/pedidos/{id}/cancel', 'App\Http\Controllers\MyAccountController@cancel')->name('myaccount.orders.show.cancel');
 
-    Route::get('/miusuario', 'App\Http\Controllers\MyAccountController@edit')->name("myaccount.edit");
-    Route::any('/miuser', 'App\Http\Controllers\MyAccountController@update')->name("myaccount.edit.update");
-});
+    // address
+    Route::get('/misdatos', 'App\Http\Controllers\AddressController@index')->name('myaccount.myaddress');
 
-Auth::routes();
-
-Route::get('/Sugerencias', function () {
-    return view('footer.form');
-});
-
-Route::get('/opinion', function () {
-    $correo = new acercaMailable;
-
-    Mail::to('herrera.alvaradoartu@gmail.com')->send($correo);
-
-    return "Correo enviado";
-    return view('opinion');
+    // account edit
+    Route::get('/miusuario', 'App\Http\Controllers\MyAccountController@edit')->name('myaccount.edit');
+    Route::any('/miuser', 'App\Http\Controllers\MyAccountController@update')->name('myaccount.edit.update');
 });
 
 Auth::routes();
@@ -128,6 +142,22 @@ Route::get('/avisodeprivacidad', function () {
     return view('footer.av');
 });
 
+Route::get('/Sugerencias', function () {
+    return view('footer.form');
+});
+
+Route::get('/opinion', function () {
+    $correo = new acercaMailable;
+
+    Mail::to('marktechof@gmail.com')->send($correo);
+
+    return 'Correo enviado';
+
+    return view('opinion');
+});
+
+// Login
+
 Route::get('/IniciarSesion', function () {
     return view('auth.login');
 });
@@ -136,39 +166,29 @@ Route::get('/Registro', function () {
     return view('auth.register');
 });
 
-//enable verify route
-Auth::routes(['verify' => true]);
+//Orders
+Route::post('/datoss/', [CreateorderController::class, 'completeOrder']);
 
-//paypal
-Route::match(array('GET', 'POST'), 'pay', [App\Http\Controllers\PaymentController::class, 'pay'])->name('payment');
-Route::match(array('GET', 'POST'), 'success', [App\Http\Controllers\PaymentController::class, 'success']);
-Route::get('error', [App\Http\Controllers\PaymentController::class, 'error']);
-
-//
-Route::view('/datos', 'cart.address');
-Route::get('/datos', 'App\Http\Controllers\AddressController@index')->name("cart.address");
-Route::post('/datos/', [AddressController::class, 'Address']);
+Route::view('/datos', 'cart.payment');
+Route::get('/datos', 'App\Http\Controllers\CreateorderController@index')->name('cart.payment');
+Route::post('/datos/', [CreateorderController::class, 'puchase']);
+Route::any('/datoss', 'App\Http\Controllers\CreateorderController@completeOrder')->name('complete.order');
 
 Route::view('/direcciones', 'form.addaddress');
-Route::get('/direcciones', 'App\Http\Controllers\AddAddressController@index')->name("form.addaddress");
+Route::get('/direcciones', 'App\Http\Controllers\AddAddressController@index')->name('form.addaddress');
 Route::post('/direcciones/', [AddAddressController::class, 'addaddress']);
 
-//route resource
-Route::resource('/posts', App\Http\Controllers\CrudController::class);
+//account route resources
+Route::resource('/dir', App\Http\Controllers\AddressController::class);
+Route::get('/micuenta', 'App\Http\Controllers\MyAccountController@getUser')->name('myaccount.my');
 
-Route::get('/micuenta', 'App\Http\Controllers\MyAccountController@getUser')->name("myaccount.my");
+// search
+Route::any('/busqueda', 'App\Http\Controllers\SearchController@search')->name('search.search');
+Route::any('/busquedaerror', 'App\Http\Controllers\SearchController@search')->name('search.nofound');
 
-//search
-// Route::any('/busqueda',function(){
-//     $barra = Request::get ( 'barra' );
-//     $product = Product::where('name','LIKE','%'.$barra.'%')->get();
-//     if(count($product) > 0)
-//         return view('search.search')->withDetails($product)->withQuery ( $barra );
-//     else return view ('search.search')->withMessage('No se encontraron resultados para la busqueda');
-// });
-
-Route::any('/busqueda', 'App\Http\Controllers\SearchController@index')->name("search.search");
-
-Route::get('/busqueda', 'App\Http\Controllers\SearchController@search');
-
-Route::any('/busquedaerror', 'App\Http\Controllers\SearchController@search')->name("search.nofound");
+// stripe
+Route::any('success/{id}', [App\Http\Controllers\StripeController::class, 'payment']);
+//paypal
+Route::match(['GET', 'POST'], 'payment', [App\Http\Controllers\PayPalController::class, 'payment'])->name('completepayment');
+Route::match(['GET', 'POST'], 'completesuccess/{id}', [App\Http\Controllers\PayPalController::class, 'completesuccess']);
+Route::get('error', [App\Http\Controllers\PayPalController::class, 'error']);

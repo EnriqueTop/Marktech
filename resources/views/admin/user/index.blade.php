@@ -42,6 +42,10 @@
                     <option value="client">Cliente</option>
                     <option value="admin">Administrador</option>
                 </select>
+                <div class="mb-3">
+                    <label class="form-label">Gastado:</label>
+                    <input name="balance" value="{{ old('balance') }}" type="text" class="form-control">
+                </div>
                 <button type="submit" class="btn btn-black">Confirmar</button>
         </div>
         </form>

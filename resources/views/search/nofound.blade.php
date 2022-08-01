@@ -211,7 +211,7 @@
 
     <div class="container position-relative">
         <form method="GET">
-            <input type="text" class="form-control mx-auto" name="barra" placeholder="Buscar productos..."
+            <<input type="text" class="form-control mx-auto" name="barra" placeholder="Buscar con filtros..."
                 style="width: 300px; height: 50px"><br>
             <div class="position-absolute top-0 start-0">
                 {{-- sort select --}}
@@ -297,6 +297,8 @@
         <div class="alert alert-danger mx-auto" role="alert" style="width:40%;">
             No se encontraron productos con los criterios de búsqueda.
         </div>
+
+
 
         {{-- <div class="container-sm">
         <section>

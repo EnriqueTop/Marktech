@@ -7,16 +7,16 @@
             Compra Completa
         </div>
 
-        <script>
-             window.location.href = '{{route("payment")}}';
-            </script>
-
-
-
         <div class="card-body">
             <div class="alert alert-success" role="alert">
-                Tu número de orden es: <b>#{{ $viewData['order']->getId() }}</b>
+                Tu número de pedido es: <b>#{{ $viewData['order']->getId() }}</b>
+            </div>
+            <br>
+            <div class="alert alert-info" role="alert">
+                <b>Realiza tu pago para completar tu compra.</b>
             </div>
         </div>
+
+        <a href="{{ route('myaccount.orders.show', $viewData['order']->getId()) }}" class="btn btn-black">Pagar</a>
     </div>
 @endsection

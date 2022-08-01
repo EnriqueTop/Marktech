@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', $viewData['title'])
 @section('content')
-    <div class="card mb-4">
+    {{-- <div class="card mb-4">
         <div class="card-header">
             Agregar Pedido
         </div>
@@ -34,7 +34,7 @@
                     <input name="address" value="{{ old('address') }}" type="text" class="form-control">
                 </div>
                 <select class="form-select mb-4" name="status" value="{{ old('status') }}" aria-label="Default select example" required>
-                    <option selected>Estado de envio...</option>
+                    <option value="" selected disabled>Estado de envio...</option>
                     <option value="Preparando Pedido">Preparando Pedido</option>
                     <option value="Enviado">Enviado</option>
                 </select>
@@ -42,7 +42,7 @@
                 <button type="submit" class="btn btn-black">Confirmar</button>
         </div>
         </form>
-    </div>
+    </div> --}}
 
     <div class="card">
         <div class="card-header">
@@ -59,7 +59,7 @@
                         <th scope="col">Dirección</th>
                         <th scope="col">Envio</th>
                         <th scope="col">Modificar</th>
-                        <th scope="col">Eliminar</th>
+                        {{-- <th scope="col">Eliminar</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -78,13 +78,13 @@
                                 </a>
                             </td>
                             <td>
-                                <form action="{{ route('admin.order.delete', $product->getId()) }}" method="POST">
+                                {{-- <form action="{{ route('admin.order.delete', $product->getId()) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">
                                         <i class="bi-trash"></i>
                                     </button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach
@@ -92,10 +92,10 @@
             </table>
         </div>
     </div>
-
+<br>
     <div class="card">
         <div class="card-header">
-            Administrar productos
+            Pedidos Cancelados
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped">
@@ -108,7 +108,105 @@
                         <th scope="col">Dirección</th>
                         <th scope="col">Envio</th>
                         <th scope="col">Modificar</th>
-                        <th scope="col">Eliminar</th>
+                        {{-- <th scope="col">Eliminar</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($viewData['cancelado'] as $product)
+                        <tr>
+                            <td>{{ $product->getId() }}</td>
+                            <td>{{ $product->getTotal() }}</td>
+                            <td>{{ $product->getUserId() }}</td>
+                            <td>{{ $product->getState() }}</td>
+                            <td>{{ $product->getAddress() }}</td>
+                            <td>{{ $product->getEstado() }}</td>
+                            <td>
+                                <a class="btn btn-black"
+                                    href="{{ route('admin.order.edit', ['id' => $product->getId()]) }}">
+                                    <i class="bi-pencil"></i>
+                                </a>
+                            </td>
+                            <td>
+                                {{-- <form action="{{ route('admin.order.delete', $product->getId()) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">
+                                        <i class="bi-trash"></i>
+                                    </button>
+                                </form> --}}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="card">
+        <div class="card-header">
+            Pedidos Pendientes
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Envio</th>
+                        <th scope="col">Modificar</th>
+                        {{-- <th scope="col">Eliminar</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($viewData['pendiente'] as $product)
+                        <tr>
+                            <td>{{ $product->getId() }}</td>
+                            <td>{{ $product->getTotal() }}</td>
+                            <td>{{ $product->getUserId() }}</td>
+                            <td>{{ $product->getState() }}</td>
+                            <td>{{ $product->getAddress() }}</td>
+                            <td>{{ $product->getEstado() }}</td>
+                            <td>
+                                <a class="btn btn-black"
+                                    href="{{ route('admin.order.edit', ['id' => $product->getId()]) }}">
+                                    <i class="bi-pencil"></i>
+                                </a>
+                            </td>
+                            <td>
+                                {{-- <form action="{{ route('admin.order.delete', $product->getId()) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">
+                                        <i class="bi-trash"></i>
+                                    </button>
+                                </form> --}}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+    <div class="card">
+        <div class="card-header">
+            Todos los Pedidos
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Envio</th>
+                        <th scope="col">Modificar</th>
+                        {{-- <th scope="col">Eliminar</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -127,13 +225,13 @@
                                 </a>
                             </td>
                             <td>
-                                <form action="{{ route('admin.order.delete', $product->getId()) }}" method="POST">
+                                {{-- <form action="{{ route('admin.order.delete', $product->getId()) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">
                                         <i class="bi-trash"></i>
                                     </button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach

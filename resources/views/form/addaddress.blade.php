@@ -39,7 +39,7 @@
 
                         <h5>Estado</h5>
                         <select class="form-select mb-4" name="estado" aria-label="Default select example" required>
-                            <option selected>Escoge tu estado...</option>
+                            <option value="" selected disabled>Escoge tu estado...</option>
                             <option value="Aguascalientes">Aguascalientes</option>
                             <option value="Baja California">Baja California</option>
                             <option value="Baja California Sur">Baja California Sur</option>
@@ -121,7 +121,6 @@
                                 class="form-control">
                         </div>
 
-                        <!-- Number input -->
                         <div class="form-outline mb-4">
 
                             <label class="form-label" for="phone" name="phone" id="phone">Calle 2</label>
@@ -129,7 +128,6 @@
                                 class="form-control">
                         </div>
 
-                        <!-- Message input -->
                         <h5>Tipo</h5>
                         <div class="form-check">
 

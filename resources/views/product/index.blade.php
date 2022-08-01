@@ -21,27 +21,27 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="{{ route('banner.nvidia') }}">
+                    <a href="{{ route('product.banner.nvidia') }}">
                         <img src="{!! asset('img/banner-nvidia.jpg') !!}" class="d-block w-100">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="{{ route('banner.adata') }}">
+                    <a href="{{ route('product.banner.adata') }}">
                         <img src="{!! asset('img/banner-adata.jpg') !!}" href="/card" class="d-block w-100">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="{{ route('banner.mac') }}">
+                    <a href="{{ route('product.banner.mac') }}">
                         <img src="{!! asset('img/banner-mac.jpg') !!}" href="/card" class="d-block w-100">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="{{ route('banner.toshiba') }}">
+                    <a href="{{ route('product.banner.toshiba') }}">
                         <img src="{!! asset('img/banner-toshiba.jpg') !!}" href="/card" class="d-block w-100">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="{{ route('banner.lg') }}">
+                    <a href="{{ route('product.banner.lg') }}">
                         <img src="{!! asset('img/banner-lg.jpg') !!}" href="/card" class="d-block w-100">
                     </a>
                 </div>
@@ -74,32 +74,56 @@
         @foreach ($viewData['products_featured'] as $product)
             <div class="col-lg-3 mb-3 d-flex align-items-stretch">
                 <div class="card">
+                    <a class="hove btn stretched-link"></a>
                     <a href="{{ route('product.show', ['id' => $product->getId()]) }}">
                         <img src="{{ asset('/img/products/' . $product->getImage()) }}"
                             class="card-img-top img-card d-inline" style="height:20em;">
                     </a>
-                    <div class="card-body text-center">
-                        <a>{{ $product->getName() }}
+                    {{-- <div class="card-body text-center"> --}}
+                    <div class="card-body">
+                        <a href="{{ route('product.show', ['id' => $product->getId()]) }}"><strong>{{ $product->getName() }}</strong>
                         </a>
                         <p></p>
                         <a>
                             @if ($product->getPrice() == 0)
-                                <span><strong class="text-danger">Gratis</strong></span>
+                                <span><strong class="text-primary fs-5">Gratis</strong></span>
                             @elseif ($product->getDiscountedprice() > 0)
-                                <strong class="text-danger text-decoration-line-through">
+                                <strong class="text-secondary text-decoration-line-through fs-5">
                                     <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
                                         currency="MXN" convert />
                                 </strong>
-                                <strong class="text-danger">
+                                <strong class="text-primary fs-5">
                                     <x-money class="text-decoration-line-through"
                                         amount="{{ $product->getPrice() - $product->getDiscountedprice() }}" currency="MXN"
                                         convert />
                                 </strong>
                             @else
-                                <strong class="text-danger">
+                                <strong class="text-primary fs-5">
                                     <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
                                         currency="MXN" convert />
                                 </strong>
+                            @endif
+                            <br>
+                            <br>
+                            @if ($product->getStock() > 0)
+                                <span class="badge bg-primary text-white fs-6"><span class="iconify"
+                                        data-icon="akar-icons:check"></span>
+                                    CON EXISTENCIA</span>
+                                {{-- // add to cart --}}
+                                <form action="{{ route('cart.add', ['id' => $product->getId()]) }}" method="POST">
+                                    @csrf
+                                    <br>
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="hov btn btn-primary btn-sm fs-6">
+                                        <span class="iconify" data-icon="mi:shopping-cart-add"></span>
+                                        <strong>Agregar al carrito</strong>
+                                    </button>
+                                </form>
+                            @else
+                                <span class="badge bg-secondary text-white fs-6"><span class="iconify"
+                                        data-icon="bi:x-lg"></span>
+
+                                    SIN EXISTENCIA</span>
                             @endif
                         </a>
                     </div>
@@ -122,28 +146,50 @@
                         <img src="{{ asset('/img/products/' . $product->getImage()) }}"
                             class="card-img-top img-card d-inline" style="height:20em;">
                     </a>
-                    <div class="card-body text-center">
-                        <a>{{ $product->getName() }}
+                    <div class="card-body">
+                        <a href="{{ route('product.show', ['id' => $product->getId()]) }}"><strong>{{ $product->getName() }}</strong>
                         </a>
                         <p></p>
                         <a>
                             @if ($product->getPrice() == 0)
-                                <span><strong class="text-danger">Gratis</strong></span>
+                                <span><strong class="text-primary fs-5">Gratis</strong></span>
                             @elseif ($product->getDiscountedprice() > 0)
-                                <strong class="text-danger text-decoration-line-through">
+                                <strong class="text-secondary text-decoration-line-through fs-5">
                                     <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
                                         currency="MXN" convert />
                                 </strong>
-                                <strong class="text-danger">
+                                <strong class="text-primary fs-5">
                                     <x-money class="text-decoration-line-through"
-                                        amount="{{ $product->getPrice() - $product->getDiscountedprice() }}" currency="MXN"
-                                        convert />
+                                        amount="{{ $product->getPrice() - $product->getDiscountedprice() }}"
+                                        currency="MXN" convert />
                                 </strong>
                             @else
-                                <strong class="text-danger">
+                                <strong class="text-primary fs-5">
                                     <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
                                         currency="MXN" convert />
                                 </strong>
+                            @endif
+                            <br>
+                            <br>
+                            @if ($product->getStock() > 0)
+                                <span class="badge bg-primary text-white fs-6"><span class="iconify"
+                                        data-icon="akar-icons:check"></span>
+                                    CON EXISTENCIA</span>
+                                {{-- // add to cart --}}
+                                <form action="{{ route('cart.add', ['id' => $product->getId()]) }}" method="POST">
+                                    @csrf
+                                    <br>
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="hov btn btn-primary btn-sm fs-6">
+                                        <span class="iconify" data-icon="mi:shopping-cart-add"></span>
+                                        <strong>Agregar al carrito</strong>
+                                    </button>
+                                </form>
+                            @else
+                                <span class="badge bg-secondary text-white fs-6"><span class="iconify"
+                                        data-icon="bi:x-lg"></span>
+
+                                    SIN EXISTENCIA</span>
                             @endif
                         </a>
                     </div>
@@ -195,28 +241,50 @@
                         <img src="{{ asset('/img/products/' . $product->getImage()) }}" class="card-img-top img-card"
                             style="height:20em; width:20em;">
                     </a>
-                    <div class="card-body text-center">
-                        <a>{{ $product->getName() }}
+                    <div class="card-body">
+                        <a href="{{ route('product.show', ['id' => $product->getId()]) }}"><strong>{{ $product->getName() }}</strong>
                         </a>
                         <p></p>
                         <a>
                             @if ($product->getPrice() == 0)
-                                <span><strong class="text-danger">Gratis</strong></span>
+                                <span><strong class="text-primary fs-5">Gratis</strong></span>
                             @elseif ($product->getDiscountedprice() > 0)
-                                <strong class="text-danger text-decoration-line-through">
+                                <strong class="text-secondary text-decoration-line-through fs-5">
                                     <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
                                         currency="MXN" convert />
                                 </strong>
-                                <strong class="text-danger">
+                                <strong class="text-primary fs-5">
                                     <x-money class="text-decoration-line-through"
-                                        amount="{{ $product->getPrice() - $product->getDiscountedprice() }}" currency="MXN"
-                                        convert />
+                                        amount="{{ $product->getPrice() - $product->getDiscountedprice() }}"
+                                        currency="MXN" convert />
                                 </strong>
                             @else
-                                <strong class="text-danger">
+                                <strong class="text-primary fs-5">
                                     <x-money class="text-decoration-line-through" amount="{{ $product->getPrice() }}"
                                         currency="MXN" convert />
                                 </strong>
+                            @endif
+                            <br>
+                            <br>
+                            @if ($product->getStock() > 0)
+                                <span class="badge bg-primary text-white fs-6"><span class="iconify"
+                                        data-icon="akar-icons:check"></span>
+                                    CON EXISTENCIA</span>
+                                {{-- // add to cart --}}
+                                <form action="{{ route('cart.add', ['id' => $product->getId()]) }}" method="POST">
+                                    @csrf
+                                    <br>
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="hov btn btn-primary btn-sm fs-6">
+                                        <span class="iconify" data-icon="mi:shopping-cart-add"></span>
+                                        <strong>Agregar al carrito</strong>
+                                    </button>
+                                </form>
+                            @else
+                                <span class="badge bg-secondary text-white fs-6"><span class="iconify"
+                                        data-icon="bi:x-lg"></span>
+
+                                    SIN EXISTENCIA</span>
                             @endif
                         </a>
                     </div>

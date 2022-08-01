@@ -7,9 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/dropdown.js') }}" defer></script>
     <script src="{{ asset('js/dark-mode-switch.min.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -40,7 +38,6 @@
                                         placeholder="Buscar productos..." style="width: 300px; height: 50px">
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn-default">
-                                            <span class="glyphicon glyphicon-search"></span>
                                         </button>
                                     </span>
 
@@ -114,7 +111,7 @@
                     </a> --}}
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <ul>
-                                <li><a class="dropdown-item" href="#">Arma tu
+                                <li><a class="dropdown-item" href="/armatucomputadora">Arma tu
                                         computadora</a></li>
                                 <li><a class="dropdown-item" href="/hardware/procesadores">Procesadores</a></li>
                                 <li><a class="dropdown-item" href="/hardware\motherboards">Targetas Madre</a></li>
@@ -122,10 +119,11 @@
                                 <li><a class="dropdown-item" href="/hardware\graficas">Targetas de video</a></li>
                                 <li><a class="dropdown-item" href="/hardware\ram">Memorias RAM</a></li>
                                 <li><a class="dropdown-item" href="/hardware\disipadores">Disipadores</a></li>
+                                <li><a class="dropdown-item" href="/hardware\fuentes">Fuentes de Poder</a></li>
                             </ul>
                             <ul>
-                                <li><a class="dropdown-item" href="#">Almacenamiento</a></li>
-                                <li><a class="dropdown-item" href="/hardware\ssd">Unidades de Estado Solido (SSD)</a>
+                                <li><a class="dropdown-item" href="/almacenamiento">Almacenamiento</a></li>
+                                <li><a class="dropdown-item" href="/hardware\ssd">Unidades de Estado Sólido (SSD)</a>
                                 </li>
                                 <li><a class="dropdown-item" href="/hardware\hdd">Discos Duros</a></li>
                                 <li><a class="dropdown-item" href="/hardware\ram">Memorias RAM</a></li>
@@ -146,7 +144,7 @@
                     </a> --}}
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <ul>
-                            <li><a class="dropdown-item" href="#">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="/accesrios">Accesorios</a></li>
                             <li><a class="dropdown-item" href="/accesorios\audifonos">Audifonos</a></li>
                             <li><a class="dropdown-item" href="/accesorios\alfombrillas">Alfombrillas</a></li>
                             <li><a class="dropdown-item" href="/accesorios\mouse">Mouse</a></li>
@@ -168,7 +166,7 @@
                     </a> --}}
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <ul>
-                            <li><a class="dropdown-item" href="#">Computadoras</a></li>
+                            <li><a class="dropdown-item" href="/computadras">Computadoras</a></li>
                             <li><a class="dropdown-item" href="/computadoras\laptop">Laptop</a></li>
                             <li><a class="dropdown-item" href="/computadoras\escritorio">Escritorio</a></li>
                         </ul>
@@ -193,13 +191,13 @@
                     </a> --}}
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <ul>
-                            <li><a class="dropdown-item" href="#">Electrónica</a></li>
+                            <li><a class="dropdown-item" href="/electrnica">Electrónica</a></li>
                             <li><a class="dropdown-item" href="/electronica\consolas">Consolas</a></li>
                             <li><a class="dropdown-item" href="/electronica\tv">Televisores</a></li>
                             <li><a class="dropdown-item" href="/electronica\monitores">Monitores</a></li>
                             <li><a class="dropdown-item" href="/electronica\bocinas">Bocinas</a></li>
                             <li><a class="dropdown-item" href="/electronica\camaras">Cámaras</a></li>
-                            <li><a class="dropdown-item" href="/electronica\telefonos">Telefonos</a></li>
+                            <li><a class="dropdown-item" href="/electronica\telefonos">Teléfonos</a></li>
                         </ul>
                     </ul>
             </ul>
@@ -207,6 +205,7 @@
             </ul>
     </div>
     </nav>
+
     <!--content-->
     <div class="container my-4">
         @yield('content')
@@ -244,8 +243,8 @@
                         <div class="row">
 
                             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                <h5 class="text-uppercase">Contacto</h5>
-
+                                <h5 class="text-uppercase fs-4"><strong>Contacto</strong></h5>
+                                <br>
                                 <ul class="list-unstyled mb-0">
                                     <li>
                                         <a href="mailto:herrera.alvaradoartu@gmail.com"
@@ -258,8 +257,8 @@
                             </div>
 
                             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                <h5 class="text-uppercase">Nuestras Redes</h5>
-
+                                <h5 class="text-uppercase fs-4"><strong>Nuestras Redes</strong></h5>
+                                <br>
                                 <ul class="list-unstyled mb-0">
                                     <li>
                                         <a href="https://www.facebook.com/Mark-Tech-100458546063140"><i
@@ -267,8 +266,9 @@
                                                 data-width="24"></i></a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/MarktechOficial"><i class="icon iconify text-white"
-                                                data-icon="ion-social-twitter" data-width="24"></i></a>
+                                        <a href="https://twitter.com/MarktechOficial"><i
+                                                class="icon iconify text-white" data-icon="ion-social-twitter"
+                                                data-width="24"></i></a>
                                     </li>
                                     <li>
                                         <a href="https://instagram.com/marktech2022"><i
@@ -279,8 +279,8 @@
                             </div>
 
                             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                <h5 class="text-uppercase">Marktech</h5>
-
+                                <h5 class="text-uppercase fs-4"><strong>Marktech</strong></h5>
+                                <br>
                                 <ul class="list-unstyled mb-0">
                                     <li>
                                         <a href="/avisodeprivacidad" class="text-white">Politica de Privacidad</a>
@@ -291,9 +291,9 @@
                                     </li>
                                 </ul>
                             </div>
-
                             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                                 <img src="{{ asset('img/paypalcheckout.png') }}" alt="logo" class="img-fluid">
+                                <img src="{{ asset('img/stripe1.png') }}" alt="logo" class="img-fluid">
                             </div>
 
 

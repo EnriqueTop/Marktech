@@ -47,6 +47,10 @@
                     <option value="client">Cliente</option>
                     <option value="admin">Administrador</option>
                 </select>
+                <div class="mb-3">
+                    <label class="form-label">Gastado:</label>
+                    <input name="balance" value="{{ $viewData['product']->getBalance() }}" type="text" class="form-control">
+                </div>
                 <button type="submit" class="btn btn-black">Confirmar</button>
             </form>
         </div>

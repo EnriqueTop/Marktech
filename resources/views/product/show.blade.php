@@ -7,21 +7,21 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">
-                        {{ $viewData['product']->getName() }} <br><br>
-                        Precio: <strong>
+                    <h3 class="card-title">
+                        <strong>{{ $viewData['product']->getName() }}</strong> <br><br>
+                        <strong>
                             @if ($viewData['product']->getPrice() == 0)
-                                <span>Gratis</span>
+                            <span class="fs-1 text-primary">Gratis</span>
                             @elseif ($viewData['product']->getDiscountedprice() > 0)
-                                <strong class="text-decoration-line-through">
+                            <span class="fs-1 text-primary"><strong class="text-decoration-line-through">
                                     <x-money class="text-decoration-line-through"
-                                        amount="{{ $viewData['product']->getPrice() }}" currency="MXN" convert />
+                                        amount="{{ $viewData['product']->getPrice() }}" currency="MXN" convert /></span>
                                 </strong>
-                                <x-money
+                                <span class="fs-1 text-primary"><x-money
                                     amount="{{ $viewData['product']->getPrice() - $viewData['product']->getDiscountedprice() }}"
-                                    currency="MXN" convert />
+                                    currency="MXN" convert /></span>
                             @else
-                                <x-money amount="{{ $viewData['product']->getPrice() }}" currency="MXN" convert />
+                            <span class="fs-1 text-primary"><x-money amount="{{ $viewData['product']->getPrice() }}" currency="MXN" convert /></span>
                             @endif
                         </strong>
                         {{-- <br><br><strong>${{ $viewData['product']->getDiscountedprice() }} --}}
@@ -34,6 +34,7 @@
                     @if ($viewData['product']->getStock() > 0)
                         <h5><strong>En existencia:</strong> {{ $viewData['product']->getStock() }}</h5>
                     @else
+                        <h5><strong class="text-danger">Lo sentimos, por el momento este producto está agotado.</strong></h5>
                     @endif
                     <br>
                     <p class="card-text">
@@ -69,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <table class="table table-bordered fs-6">
+        <table class="table table-borderless table-striped text-center mt-3">
             <thead>
                 <tr>
                     <th scope="col" colspan="2" class="text-center">Detalles</th>

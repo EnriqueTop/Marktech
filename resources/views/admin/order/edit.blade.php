@@ -47,9 +47,10 @@
                     <input name="address" value="{{ $viewData['product']->getAddress() }}" type="text" class="form-control" required>
                 </div>
                 <select class="form-select mb-4" name="status" value="{{ $viewData['product']->getEstado() }}" aria-label="Default select example" required>
-                    <option selected>Estado de envio...</option>
+                    <option value="" selected disabled>Estado de envio...</option>
                     <option value="Preparando Pedido">Preparando Pedido</option>
                     <option value="Enviado">Enviado</option>
+                    <option value="Entregado">Entregado</option>
                 </select>
 
                 <button type="submit" class="btn btn-black">Confirmar</button>

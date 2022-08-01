@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', $viewData['title'])
 @section('content')
-    <div class="card mb-4">
+    {{-- <div class="card mb-4">
         <div class="card-header">
             Agregar Dirección
         </div>
@@ -113,7 +113,7 @@
                 <button type="submit" class="btn btn-black">Confirmar</button>
         </div>
         </form>
-    </div>
+    </div> --}}
 
     <div class="card">
         <div class="card-header">
