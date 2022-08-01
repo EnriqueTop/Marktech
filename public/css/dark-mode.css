@@ -66,3 +66,19 @@
     background-color: #000;
   }
 
+ /* accordion */
+
+ [data-theme="dark"] .accordion {
+    color: #000;
+  }
+
+ /* toast */
+ [data-theme="dark"] .toast-info {
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+[data-theme="dark"] .toast-progress {
+    background-color: rgb(0, 0, 0) !important;
+}
+

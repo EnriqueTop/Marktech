@@ -117,6 +117,108 @@
      left: 0;
      width: 0;
      height: 100%;
-     background: #7952b3;
+     background: #fff;
      border-radius: inherit;
+ }
+
+ /* pagination */
+
+ .pagination>li>a {
+     background-color: white;
+     color: #000;
+ }
+
+ .pagination>li>a:focus,
+ .pagination>li>a:hover,
+ .pagination>li>span:focus,
+ .pagination>li>span:hover {
+     color: #5a5a5a;
+     background-color: #eee;
+     border-color: #ddd;
+ }
+
+ .pagination>.active>a {
+     color: white;
+     background-color: #000 !Important;
+     border: solid 1px #000 !Important;
+ }
+
+ .pagination>.active>a:hover {
+     background-color: #000 !Important;
+     border: solid 1px #000 !Important;
+ }
+
+ /* accordion */
+
+ .accordion-button.collapsed {
+     background: #eee;
+ }
+
+
+
+ .accordion-button:enabled {
+     background: #eee;
+     color: #000;
+
+ }
+
+ .accordion-button:hover {
+     background: #eee;
+     color: #000;
+     border: #000;
+ }
+
+ /* filters mobile */
+
+ @media(min-width:1200px) {
+     #filters-mobile {
+         display: none;
+     }
+ }
+
+ @media(max-width:1200px) {
+     #filters {
+         display: none;
+     }
+ }
+
+ /* add to card hover */
+
+ .hov {
+     color: transparent;
+     background-color: transparent;
+     border: none;
+     display: none;
+ }
+
+ .card:hover .hov {
+     display: block;
+     background-color: #eee;
+     color: #000;
+ }
+
+ /* anule stretched-link in card */
+ .card .btn {
+     z-index: 2;
+     position: relative;
+ }
+
+ /* toast */
+ .toast-info {
+     background-color: #000 !important;
+     color: rgb(255, 255, 255) !important;
+     opacity: 1 !important;
+     -moz-box-shadow: none !important;
+     -webkit-box-shadow: none !important;
+     box-shadow: none !important;
+     font-weight: bold;
+     font-size: 1.0em;
+ }
+
+ .toast-progress {
+     background-color: rgb(255, 255, 255) !important;
+ }
+
+ #toast-container>div.toast {
+     background-image: none !important;
  }
