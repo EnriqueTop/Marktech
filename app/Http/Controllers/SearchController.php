@@ -8,103 +8,281 @@ use Request;
 
 class SearchController extends Controller
 {
-    public static function index()
-    {
-        $viewData = [];
-        $viewData["trademarks"] = Trademarks::all();
-
-        $barra = Request::get('barra');
-        $product = Product::where('name', 'LIKE', '%' . $barra . '%')->get();
-        if (count($product) > 0) {
-            return view('search.search')->withDetails($product)->withQuery($barra)->with("viewData", $viewData);
-        } else {
-            return view('search.nofound')->withMessage('No se encontraron resultados para la busqueda');
-        }
-
-    }
-
     public static function search()
     {
         $viewData = [];
-        $viewData["trademarks"] = Trademarks::all();
+        $viewData['trademarks'] = Trademarks::all();
 
         $barra = Request::get('barra');
-        // Sets the parameters from the get request to the variables.
+
         $trademark = Request::get('trademark');
-        $price = Request::get('price');
 
-        // Perform the query using Query Builder
-        // if ($trademark == 'all' && $price == '0-500') {
-        //     $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('price', '<', 500)->get();
-        // } elseif ($trademark == 'all') {
-        // } else {
-        //     $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('trademark', '=', $trademark)->get();
-        // }
-
-        switch ($trademark) {
-            case 'all' && $price == '1000-2000':
-                $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 1000)->where('price', '<', 2000)->where('trademark', '=', $trademark)->orWhere('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 1000)->where('price', '<', 2000)->get();
-                break;
-            case 'all' && $price == '2000-3000':
-                $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 2000)->where('price', '<', 3000)->where('trademark', '=', $trademark)->orWhere('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 2000)->where('price', '<', 3000)->get();
-                break;
-            case 'all' && $price == '3000-4000':
-                $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 3000)->where('price', '<', 4000)->where('trademark', '=', $trademark)->orWhere('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 3000)->where('price', '<', 4000)->get();
-                break;
-            case 'all' && $price == '4000-5000':
-                $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 4000)->where('price', '<', 5000)->where('trademark', '=', $trademark)->orWhere('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 4000)->where('price', '<', 5000)->get();
-                break;
-            case 'all' && $price == '5000-...':
-                $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 5000)->where('trademark', '=', $trademark)->orWhere('name', 'LIKE', '%' . $barra . '%')->where('price', '>', 5000)->get();
-                break;
-            case 'all':
-                $result = Product::where('name', 'LIKE', '%' . $barra . '%')->get();
-                break;
-            default:
-                $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('trademark', '=', $trademark)->get();
-                break;
+        if ($trademark == null) {
+            $trademark = 'all';
+        } else {
+            $trademark = Request::get('trademark');
         }
 
-        // if ($price < 0) {
-        //     $result = Product::where('name', 'LIKE', '%' . $barra . '%')->where('price', '<', $price)->get();
-        // } else {
-        // }
+        $price = Request::get('price');
+
+        if ($price == null) {
+            $price = 'all';
+        } else {
+            $price = Request::get('price');
+        }
 
         $sort = Request::get('sort');
-        // // sort the results by price
-        // if ($sort == 'price') {
-        //     $sort = $result->sortBy('price');
-        // } else {
-        //     $result = $result->sortBy('name');
-        // }
+
+        if ($sort == null) {
+            $sort = 'name';
+        } else {
+            $sort = Request::get('sort');
+        }
+
+        $product = Product::where('name', 'LIKE', '%'.$barra.'%')->paginate(15);
 
         switch ($sort) {
             case 'name':
-                $result = $result->sortBy('name');
+                switch ($trademark) {
+                    // trademark && price
+                    case $trademark != 'all' && $price != 'all' && $price == '1000-2000':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->where('price', '>', 1000)->where('price', '<', 2000)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '2000-3000':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->where('price', '>', 2000)->where('price', '<', 3000)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '3000-4000':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->where('price', '>', 3000)->where('price', '<', 4000)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '4000-5000':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->where('price', '>', 4000)->where('price', '<', 5000)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '5000-...':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->where('price', '>', 5000)->paginate(12);
+                        break;
+                    // base
+                    case $trademark != 'all' && $price = 'all':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case 'all' && $price == 'all':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+                    // case all && $price
+                    case 'all' && $price == '1000-2000':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->paginate(12);
+                        break;
+                    case 'all' && $price == '2000-3000':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->paginate(12);
+                        break;
+                    case 'all' && $price == '3000-4000':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->paginate(12);
+                        break;
+                    case 'all' && $price == '4000-5000':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->paginate(12);
+                        break;
+                    case 'all' && $price == '5000-...':
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->paginate(12);
+                        break;
+                    default:
+                        $product = Product::orderby('name')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+                }
                 break;
             case 'price_asc':
-                $result = $result->sortBy('price');
+                switch ($trademark) {
+                    // trademark && price
+                    case $trademark != 'all' && $price != 'all' && $price == '1000-2000':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '2000-3000':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '3000-4000':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '4000-5000':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '5000-...':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    // base
+                    case $trademark != 'all' && $price = 'all':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case 'all' && $price == 'all':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+
+                    // case all && $price
+                    case 'all' && $price == '1000-2000':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->paginate(12);
+                        break;
+                    case 'all' && $price == '2000-3000':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->paginate(12);
+                        break;
+                    case 'all' && $price == '3000-4000':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->paginate(12);
+                        break;
+                    case 'all' && $price == '4000-5000':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->paginate(12);
+                        break;
+                    case 'all' && $price == '5000-...':
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->paginate(12);
+                        break;
+                    default:
+                        $product = Product::orderby('price')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+                }
                 break;
             case 'price_desc':
-                $result = $result->sortByDesc('price');
+                switch ($trademark) {
+                    // trademark && price
+                    case $trademark != 'all' && $price != 'all' && $price == '1000-2000':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '2000-3000':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '3000-4000':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '4000-5000':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '5000-...':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    // base
+                    case $trademark != 'all' && $price = 'all':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case 'all' && $price == 'all':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+
+                    // case all && $price
+                    case 'all' && $price == '1000-2000':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->paginate(12);
+                        break;
+                    case 'all' && $price == '2000-3000':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->paginate(12);
+                        break;
+                    case 'all' && $price == '3000-4000':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->paginate(12);
+                        break;
+                    case 'all' && $price == '4000-5000':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->paginate(12);
+                        break;
+                    case 'all' && $price == '5000-...':
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->paginate(12);
+                        break;
+                    default:
+                        $product = Product::orderbyDesc('price')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+                }
                 break;
-            case 'trademark':
-                $result = $result->sortBy('trademark');
+            case 'trademark_desc':
+                switch ($trademark) {
+                    // trademark && price
+                    case $trademark != 'all' && $price != 'all' && $price == '1000-2000':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '2000-3000':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '3000-4000':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '4000-5000':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '5000-...':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    // base
+                    case $trademark != 'all' && $price = 'all':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case 'all' && $price == 'all':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+
+                    // case all && $price
+                    case 'all' && $price == '1000-2000':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->paginate(12);
+                        break;
+                    case 'all' && $price == '2000-3000':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->paginate(12);
+                        break;
+                    case 'all' && $price == '3000-4000':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->paginate(12);
+                        break;
+                    case 'all' && $price == '4000-5000':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->paginate(12);
+                        break;
+                    case 'all' && $price == '5000-...':
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->paginate(12);
+                        break;
+                    default:
+                        $product = Product::orderbyDesc('trademark')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+                }
                 break;
-            case 'stock':
-                $result = $result->sortBy('stock');
-                break;
-            default:
-                $result = $result->sortBy('name');
+            case 'trademark_asc':
+                switch ($trademark) {
+                    // trademark && price
+                    case $trademark != 'all' && $price != 'all' && $price == '1000-2000':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '2000-3000':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '3000-4000':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '4000-5000':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case $trademark != 'all' && $price != 'all' && $price == '5000-...':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    // base
+                    case $trademark != 'all' && $price = 'all':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('trademark', '=', $trademark)->paginate(12);
+                        break;
+                    case 'all' && $price == 'all':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+
+                    // case all && $price
+                    case 'all' && $price == '1000-2000':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 1000)->where('price', '<', 2000)->paginate(12);
+                        break;
+                    case 'all' && $price == '2000-3000':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 2000)->where('price', '<', 3000)->paginate(12);
+                        break;
+                    case 'all' && $price == '3000-4000':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 3000)->where('price', '<', 4000)->paginate(12);
+                        break;
+                    case 'all' && $price == '4000-5000':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 4000)->where('price', '<', 5000)->paginate(12);
+                        break;
+                    case 'all' && $price == '5000-...':
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->where('price', '>', 5000)->paginate(12);
+                        break;
+                    default:
+                        $product = Product::orderby('trademark')->where('name', 'LIKE', '%'.$barra.'%')->paginate(12);
+                        break;
+                }
                 break;
         }
+
         // If there are no results, return a message.
-        if (count($result) > 0) {
-            return view('search.search')->withDetails($result)->withQuery($barra)->withSort($sort)->with("viewData", $viewData);
+        if (count($product) > 0) {
+            return view('search.search')->withDetails($product)->withQuery($barra)->with('viewData', $viewData);
         } else {
-            return view('search.nofound')->withMessage('No se encontraron resultados para la busqueda')->with("viewData", $viewData);
+            return view('search.nofound')->withMessage('No se encontraron resultados para la busqueda')->with('viewData', $viewData);
         }
-
     }
-
 }

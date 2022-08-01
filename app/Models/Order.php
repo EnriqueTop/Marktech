@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Item;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -18,12 +16,14 @@ class Order extends Model
      * $this->user - User - contains the associated User
      * $this->items - Item[] - contains the associated items
      */
-
     public static function validate($request)
     {
         $request->validate([
-            "total" => "required|numeric",
-            "user_id" => "required|exists:users,id",
+            'total' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
+            'paid' => 'required|max:255',
+            'address' => 'required|max:255',
+            'status' => 'required|max:255',
         ]);
     }
 

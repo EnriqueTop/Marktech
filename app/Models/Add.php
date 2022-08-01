@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Add extends Model
 {
-use HasFactory;
-public $timestamps = false;
+    use HasFactory;
+
+    public $timestamps = false;
 }

@@ -7,17 +7,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class AdminUsersController extends Controller
 {
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
+        $viewData['title'] = 'Marktech - Administrador';
 
-        $viewData["products"] = User::all();
+        $viewData['products'] = User::all();
 
-        return view('admin.user.index')->with("viewData", $viewData);
+        return view('admin.user.index')->with('viewData', $viewData);
     }
 
     public function store(Request $request)
@@ -29,7 +28,7 @@ class AdminUsersController extends Controller
         $newProduct->setEmail($request->input('email'));
         $newProduct->setPassword($request->input('password'));
         $newProduct->setRole($request->input('role'));
-        $newProduct->setBalance($request=0);
+        $newProduct->setBalance($request->input('balance'));
         $newProduct->save();
 
         // if ($request->hasFile('image')) {
@@ -48,9 +47,10 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
-        $viewData["product"] = User::findOrFail($id);
-        return view('admin.user.edit')->with("viewData", $viewData);
+        $viewData['title'] = 'Marktech - Administrador';
+        $viewData['product'] = User::findOrFail($id);
+
+        return view('admin.user.edit')->with('viewData', $viewData);
     }
 
     public function update(Request $request, $id)
@@ -74,12 +74,14 @@ class AdminUsersController extends Controller
         // }
 
         $User->save();
+
         return redirect()->route('admin.user.index');
     }
 
     public function delete($id)
     {
         User::destroy($id);
+
         return back();
     }
 }

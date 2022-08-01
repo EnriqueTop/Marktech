@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Marktech";
-        $viewData["subtitle"] = "Productos";
+        $viewData['title'] = 'Marktech';
+        $viewData['subtitle'] = 'Productos';
 
-        $viewData["products"] = Product :: where('category', '=', 'Consolas')->get();
+        $viewData['products'] = Product::where('category', '=', 'Consolas')->get();
 
-        return view('categories.consoles')->with("viewData", $viewData);
+        return view('categories.consoles')->with('viewData', $viewData);
     }
 
     public function show($id)
@@ -24,10 +23,10 @@ class CategoryController extends Controller
 
         $product = Product::findOrFail($id);
 
-        $viewData["title"] = $product->getName() . "- Marktech";
-        $viewData["subtitle"] = $product->getName() . "- Productos";
-        $viewData["product"] = $product;
-        return view('product.show')->with("viewData", $viewData);
+        $viewData['title'] = $product->getName().'- Marktech';
+        $viewData['subtitle'] = $product->getName().'- Productos';
+        $viewData['product'] = $product;
+
+        return view('product.show')->with('viewData', $viewData);
     }
 }
-

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\Trademarks;
 use App\Models\Categories;
+use App\Models\Product;
 use App\Models\Subcategories;
+use App\Models\Trademarks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,14 +15,14 @@ class AdminProductController extends Controller
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
+        $viewData['title'] = 'Marktech - Administrador';
 
-        $viewData["products"] = Product::all();
-        $viewData["trademarks"] = Trademarks::all();
-        $viewData["categories"] = Categories::all();
-        $viewData["subcategories"] = Subcategories::all();
+        $viewData['products'] = Product::all();
+        $viewData['trademarks'] = Trademarks::all();
+        $viewData['categories'] = Categories::all();
+        $viewData['subcategories'] = Subcategories::all();
 
-        return view('admin.product.index')->with("viewData", $viewData);
+        return view('admin.product.index')->with('viewData', $viewData);
     }
 
     public function store(Request $request)
@@ -43,7 +43,7 @@ class AdminProductController extends Controller
         $newProduct->save();
 
         if ($request->hasFile('image')) {
-            $imageName = $newProduct->getId() . "." . $request->file('image')->extension();
+            $imageName = $newProduct->getId().'.'.$request->file('image')->extension();
             Storage::disk('public')->put(
                 $imageName,
                 file_get_contents($request->file('image')->getRealPath())
@@ -58,12 +58,13 @@ class AdminProductController extends Controller
     public function edit($id)
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
-        $viewData["product"] = Product::findOrFail($id);
-        $viewData["trademarks"] = Trademarks::all();
-        $viewData["categories"] = Categories::all();
-        $viewData["subcategories"] = Subcategories::all();
-        return view('admin.product.edit')->with("viewData", $viewData);
+        $viewData['title'] = 'Marktech - Administrador';
+        $viewData['product'] = Product::findOrFail($id);
+        $viewData['trademarks'] = Trademarks::all();
+        $viewData['categories'] = Categories::all();
+        $viewData['subcategories'] = Subcategories::all();
+
+        return view('admin.product.edit')->with('viewData', $viewData);
     }
 
     public function update(Request $request, $id)
@@ -82,7 +83,7 @@ class AdminProductController extends Controller
         $product->setStock($request->input('stock'));
 
         if ($request->hasFile('image')) {
-            $imageName = $product->getId() . "." . $request->file('image')->extension();
+            $imageName = $product->getId().'.'.$request->file('image')->extension();
             Storage::disk('public')->put(
                 $imageName,
                 file_get_contents($request->file('image')->getRealPath())
@@ -91,12 +92,14 @@ class AdminProductController extends Controller
         }
 
         $product->save();
+
         return redirect()->route('admin.product.index');
     }
 
     public function delete($id)
     {
         Product::destroy($id);
+
         return back();
     }
 }

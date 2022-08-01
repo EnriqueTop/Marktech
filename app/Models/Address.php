@@ -16,10 +16,10 @@ class address extends Model
     //  */
     protected $fillable = [
 
-      'user_id',
-      'nombre',
-      'postal',
-      'estado',
+        'user_id',
+        'nombre',
+        'postal',
+        'estado',
         'municipio',
         'colonia',
         'calle',
@@ -29,12 +29,26 @@ class address extends Model
         'calle2',
         'tipo',
         'telefono',
-        'extra'
+        'extra',
     ];
 
     public static function validate($request)
     {
         $request->validate([
+            'user_id' => 'required|numeric',
+            'nombre' => 'required|max:255',
+            'postal' => 'required|max:255',
+            'estado' => 'required|max:255',
+            'municipio' => 'required|max:255',
+            'colonia' => 'required|max:255',
+            'calle' => 'required|max:255',
+            'exterior' => 'required|max:255',
+            'interior' => 'required|max:255',
+            'calle1' => 'required|max:255',
+            'calle2' => 'required|max:255',
+            'tipo' => 'required|max:255',
+            'telefono' => 'required|max:255',
+            'extra' => 'required|max:255',
         ]);
     }
 

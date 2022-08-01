@@ -7,18 +7,19 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class AdminOrdersController extends Controller
 {
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
+        $viewData['title'] = 'Marktech - Administrador';
 
-        $viewData["products"] = Order::all();
-        $viewData["pagados"] = Order :: where('paid', '=', 'Pagado')->get();
+        $viewData['products'] = Order::all()->sortByDesc('id');
+        $viewData['pagados'] = Order::where('paid', '=', 'Pagado')->get()->sortByDesc('id');
+        $viewData['cancelado'] = Order::where('paid', '=', 'Cancelado')->get()->sortByDesc('id');
+        $viewData['pendiente'] = Order::where('paid', '=', 'No Pagado')->get()->sortByDesc('id');
 
-        return view('admin.order.index')->with("viewData", $viewData);
+        return view('admin.order.index')->with('viewData', $viewData);
     }
 
     public function store(Request $request)
@@ -49,9 +50,10 @@ class AdminOrdersController extends Controller
     public function edit($id)
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
-        $viewData["product"] = Order::findOrFail($id);
-        return view('admin.order.edit')->with("viewData", $viewData);
+        $viewData['title'] = 'Marktech - Administrador';
+        $viewData['product'] = Order::findOrFail($id);
+
+        return view('admin.order.edit')->with('viewData', $viewData);
     }
 
     public function update(Request $request, $id)
@@ -75,12 +77,14 @@ class AdminOrdersController extends Controller
         // }
 
         $Order->save();
+
         return redirect()->route('admin.order.index');
     }
 
     public function delete($id)
     {
         Order::destroy($id);
+
         return back();
     }
 }

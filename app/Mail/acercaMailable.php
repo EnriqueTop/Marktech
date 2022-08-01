@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -11,7 +10,7 @@ class acercaMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-public $subject = "Opinión Marktech";
+    public $subject = 'Opinión Marktech';
 
     /**
      * Create a new message instance.

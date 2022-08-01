@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
@@ -20,14 +18,13 @@ class Item extends Model
      * $this->order - Order - contains the associated Order
      * $this->product - Product - contains the associated Product
      */
-
     public static function validate($request)
     {
         $request->validate([
-            "price" => "required|numeric|gt:0",
-            "quantity" => "required|numeric|gt:0",
-            "product_id" => "required|exists:products,id",
-            "order_id" => "required|exists:orders,id",
+            'price' => 'required|numeric|gt:0',
+            'quantity' => 'required|numeric|gt:0',
+            'product_id' => 'required|exists:products,id',
+            'order_id' => 'required|exists:orders,id',
         ]);
     }
 
@@ -40,16 +37,6 @@ class Item extends Model
     {
         $this->attributes['id'] = $id;
     }
-
-    // public function getState()
-    // {
-    //     return $this->attributes['paid'];
-    // }
-
-    // public function setState($paid)
-    // {
-    //     $this->attributes['paid'] = $paid;
-    // }
 
     public function getQuantity()
     {
@@ -148,7 +135,16 @@ class Item extends Model
 
     public function setImage($image)
     {
-        $this->product->setImage($image);
+        $this->attributes['image'] = $image;
     }
 
+    public function getDiscountedPrice()
+    {
+        return $this->product->getDiscountedPrice();
+    }
+
+    public function setDiscountedPrice($discountedPrice)
+    {
+        $this->attributes['discounted_price'] = $discountedPrice;
+    }
 }

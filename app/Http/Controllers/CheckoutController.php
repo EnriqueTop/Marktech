@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Inertia\Inertia;
-use App\Models\Product;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Services\CartService;
-use App\Services\OrderService;
-use Stripe\Exception\CardException;
 use App\Contracts\PaymentGatewayContract;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Http\Requests\CheckoutFormRequest;
 use App\Mail\OrderReceived;
+use App\Models\Product;
+use App\Models\User;
+use App\Services\CartService;
 use App\Services\InvoiceService;
+use App\Services\OrderService;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
+use Stripe\Exception\CardException;
 
 class CheckoutController extends Controller
 {
@@ -24,7 +24,8 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CartService $cartService) {
+    public function index(CartService $cartService)
+    {
         if (Cart::instance('default')->count() == 0) {
             return redirect()->route('shop.index');
         }
@@ -33,14 +34,15 @@ class CheckoutController extends Controller
             'cartTaxRate' => $cartService->setCartValues()->get('cartTaxRate'),
             'cartSubtotal' => $cartService->setCartValues()->get('cartSubtotal'),
             'newTax' => $cartService->setCartValues()->get('newTax'),
-            'code' =>$cartService->setCartValues()->get('code'),
+            'code' => $cartService->setCartValues()->get('code'),
             'discount' => $cartService->setCartValues()->get('discount'),
             'newSubtotal' => $cartService->setCartValues()->get('newSubtotal'),
             'newTotal' => $cartService->setCartValues()->get('newTotal'),
         ];
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return Inertia::render('Checkout/Guest', $contents);
         }
+
         return Inertia::render('Checkout/Index', $contents);
     }
 
@@ -60,7 +62,8 @@ class CheckoutController extends Controller
      * @param  \App\Http\Requests\CheckoutFormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PaymentGatewayContract $paymentService, OrderService $orderService, CheckoutFormRequest $request, InvoiceService $invoiceService) {
+    public function store(PaymentGatewayContract $paymentService, OrderService $orderService, CheckoutFormRequest $request, InvoiceService $invoiceService)
+    {
         try {
             $confirmation_number = Str::uuid();
             $user = auth()->user() ?? new User;
@@ -69,7 +72,7 @@ class CheckoutController extends Controller
 
             $order = $user->orders()->create($orderService->all($request, $confirmation_number));
 
-            foreach(Cart::instance('default')->content() as $item) {
+            foreach (Cart::instance('default')->content() as $item) {
                 $product = Product::find($item->model->id);
                 $order->products()->attach($product, ['quantity' => $item->qty]);
             }
@@ -90,13 +93,13 @@ class CheckoutController extends Controller
                     'items' => $order->products,
                 ],
             ], 200);
-        }catch (CardException $e) {
+        } catch (CardException $e) {
             return response([
-                'errors' => $e->getMessage()
+                'errors' => $e->getMessage(),
             ], 500);
-        }catch (\Error $e) {
+        } catch (\Error $e) {
             return response([
-                'errors' => $e->getMessage()
+                'errors' => $e->getMessage(),
             ], 500);
         }
     }

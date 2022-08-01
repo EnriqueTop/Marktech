@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trademarks extends Model
 {
-
     /**
      * PRODUCT ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)
@@ -18,11 +17,10 @@ class Trademarks extends Model
      * $this->attributes['updated_at'] - timestamp - contains the product update date
      *  * $this->items - Item[] - contains the associated items
      */
-
     public static function validate($request)
     {
         $request->validate([
-            "trademarks" => "required|max:255",
+            'trademarks' => 'required|max:255',
         ]);
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ShopController extends Controller
 {
@@ -14,17 +14,18 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $categories = Category::all();
         if (request()->category) {
-            if (!request()->sort) {
-                $products = Product::whereHas('categories', function($query) {
+            if (! request()->sort) {
+                $products = Product::whereHas('categories', function ($query) {
                     $query->where('slug', request()->category);
                 })->inRandomOrder()->get(['name', 'slug', 'price', 'image']);
                 $categoryName = optional($categories->where('slug', request()->category)->first())->name;
                 $categorySlug = $categories->where('slug', request()->category)->first()->slug;
             } else {
-                $products = Product::whereHas('categories', function($query) {
+                $products = Product::whereHas('categories', function ($query) {
                     $query->where('slug', request()->category);
                 });
                 $categoryName = optional($categories->where('slug', request()->category)->first())->name;
@@ -38,8 +39,9 @@ class ShopController extends Controller
         } else {
             $products = Product::inRandomOrder()->get(['name', 'slug', 'price', 'image']);
             $categoryName = 'All';
-            $categorySlug = NULL;
+            $categorySlug = null;
         }
+
         return Inertia::render('Shop/Index', [
             'products' => $products,
             'categories' => $categories,
@@ -75,7 +77,8 @@ class ShopController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product) {
+    public function show(Product $product)
+    {
         return Inertia::render('Shop/Show', [
             'product' => $product,
         ]);

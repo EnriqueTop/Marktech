@@ -7,17 +7,16 @@ use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class AdminAddressController extends Controller
 {
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
+        $viewData['title'] = 'Marktech - Administrador';
 
-        $viewData["products"] = Address::all();
+        $viewData['products'] = Address::all();
 
-        return view('admin.address.index')->with("viewData", $viewData);
+        return view('admin.address.index')->with('viewData', $viewData);
     }
 
     public function store(Request $request)
@@ -57,9 +56,10 @@ class AdminAddressController extends Controller
     public function edit($id)
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
-        $viewData["product"] = Address::findOrFail($id);
-        return view('admin.address.edit')->with("viewData", $viewData);
+        $viewData['title'] = 'Marktech - Administrador';
+        $viewData['product'] = Address::findOrFail($id);
+
+        return view('admin.address.edit')->with('viewData', $viewData);
     }
 
     public function update(Request $request, $id)
@@ -92,12 +92,14 @@ class AdminAddressController extends Controller
         // }
 
         $Address->save();
+
         return redirect()->route('admin.address.index');
     }
 
     public function delete($id)
     {
         Address::destroy($id);
+
         return back();
     }
 }

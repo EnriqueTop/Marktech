@@ -13,9 +13,9 @@ class MyAccountController extends Controller
     public function orders()
     {
         $viewData = [];
-        $viewData["title"] = "Marktech";
-        $viewData["subtitle"] = "Mis pedidos";
-        $viewData["orders"] = Order::latest()->with(['items.product'])->where('user_id', Auth::user()->getId())->get();
+        $viewData['title'] = 'Marktech';
+        $viewData['subtitle'] = 'Mis pedidos';
+        $viewData['orders'] = Order::latest()->with(['items.product'])->where('user_id', Auth::user()->getId())->Paginate(5);
 
         //select the order if "created_at" is 4 days old and state is "no pagado", change state to "cancelado"
         $orderp = Order::whereDate('created_at', '<', Carbon::now()->subDays(4))->where('paid', '=', 'No Pagado')->get();
@@ -40,7 +40,29 @@ class MyAccountController extends Controller
             }
         }
 
-        return view('myaccount.orders')->with("viewData", $viewData);
+        return view('myaccount.orders')->with('viewData', $viewData);
+    }
+
+    public function show($id)
+    {
+        $viewData = [];
+
+        $order = Order::findOrFail($id);
+
+        $viewData['title'] = 'Marktech';
+        $viewData['subtitle'] = 'Mis pedidos';
+        $viewData['orders'] = $order;
+
+        return view('myaccount.orders.show')->with('viewData', $viewData);
+    }
+
+    public function cancel($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->paid = 'Cancelado';
+        $order->save();
+
+        return redirect()->route('myaccount.orders');
     }
 
     //get current user
@@ -50,10 +72,11 @@ class MyAccountController extends Controller
         $user = User::find(Auth::user()->getId());
 
         $viewData = [];
-        $viewData["title"] = "Marktech";
-        $viewData["subtitle"] = "Editar perfil";
-        $viewData["user"] = $user;
-        return view('myaccount.edit')->with("viewData", $viewData);
+        $viewData['title'] = 'Marktech';
+        $viewData['subtitle'] = 'Editar perfil';
+        $viewData['user'] = $user;
+
+        return view('myaccount.edit')->with('viewData', $viewData);
     }
 
     public function update(Request $request)
@@ -72,10 +95,10 @@ class MyAccountController extends Controller
         $user = Auth::User()->name;
 
         $viewData = [];
-        $viewData["title"] = "Marktech";
-        $viewData["subtitle"] = "Mi cuenta";
-        $viewData["user"] = $user;
-        return view('myaccount.my')->with("viewData", $viewData);
-    }
+        $viewData['title'] = 'Marktech';
+        $viewData['subtitle'] = 'Mi cuenta';
+        $viewData['user'] = $user;
 
+        return view('myaccount.my')->with('viewData', $viewData);
+    }
 }

@@ -2,157 +2,185 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Add;
-use App\Models\Item;
-use App\Models\Order;
-use App\Models\Product;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AddressController extends Controller
 {
-    public function index(Request $request)
+    /**
+     * index
+     *
+     * @return void
+     */
+    public function index()
     {
-
-        $total = 0;
-        $productsInCart = [];
-
-        $productsInSession = $request->session()->get("products");
-        if ($productsInSession) {
-            $productsInCart = Product::findMany(array_keys($productsInSession));
-            $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
-        }
-
-        $viewData = [];
-        $viewData["title"] = "Marktech";
-        $viewData["subtitle"] = "Carrito";
-        $viewData["total"] = $total;
-        $viewData["products"] = $productsInCart;
-
-        //get all addresses
-
-        $productsInSession = $request->session();
         $userId = Auth::user()->getId();
-        $address = new Order();
 
-        $address = DB::table('addresses')->where('user_id', '=', $userId)->get(); // get the address id of the user
-
-        return view('cart.address')->with("viewData", $viewData)->with("addresses", $address);
+        //get dir
+        $dir = Address::latest()->where('user_id', '=', $userId)->get();
+        //render view with dir
+        return view('myaccount.myaddress')->with('dir', $dir);
     }
 
-    public function add(Request $request, $id)
-    {
-        $products = $request->session()->get("products");
-        $products[$id] = $request->input('quantity');
-        $request->session()->put('products', $products);
+    // /**
+    //  * create
+    //  *
+    //  * @return void
+    //  */
+    // // public function create()
+    // // {
+    // //     return view('myaccount.myaddress.create');
+    // // }
 
-        return redirect()->route('cart.address');
+    /**
+     * store
+     *
+     * @param  Request  $request
+     * @return void
+     */
+    public function store(Request $request)
+    {
+        // // validate form
+        // $this->validate($request, [
+        //     'nombre'     => 'required | max:255',
+        //     'postal'   => 'required | numeric | max:20',
+        //     'estado' => 'required | max:255',
+        //     'municipio' => 'required | max:255',
+        //     'colonia' => 'required | max:255',
+        //     'calle' => 'required | max:255',
+        //     'exterior' => 'required | numeric | max:20',
+        //     'interior' => 'numeric',
+        //     'calle1' =>  'max:255',
+        //     'calle2' => 'max:255',
+        //     'tipo' => 'required | max:255',
+        //     'telefono' => 'required| numeric',
+        //     'extra' => 'max:255',
+        // ]);
+
+        // //upload image
+        // $image = $request->file('image');
+        // $image->storeAs('public/dir', $image->hashName());
+
+        //create post
+        Post::create([
+            'user_id' => Auth::user()->getId(),
+            'nombre' => $request->nombre,
+            'postal' => $request->postal,
+            'estado' => $request->estado,
+            'municipio' => $request->municipio,
+            'colonia' => $request->colonia,
+            'calle' => $request->calle,
+            'exterior' => $request->exterior,
+            'interior' => $request->interior,
+            'calle1' => $request->calle1,
+            'calle2' => $request->calle2,
+            'tipo' => $request->tipo,
+            'telefono' => $request->telefono,
+            'extra' => $request->extra,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        //redirect to index
+        return redirect()->route('myaccount.myaddress');
     }
 
-    public function delete(Request $request)
+    /**
+     * edit
+     *
+     * @param  mixed  $dir
+     * @return void
+     */
+    public function edit(Address $dir)
     {
-        $request->session()->forget('products');
-        return back();
+        return view('myaccount.myaddress.edit', compact('dir'));
     }
 
-    public function purchase(Request $request)
+    /**
+     * update
+     *
+     * @param  mixed  $request
+     * @param  mixed  $dir
+     * @return void
+     */
+    public function update(Request $request, Address $dir)
     {
-        $productsInSession = $request->session()->get("products");
-        if ($productsInSession) {
-            $userId = Auth::user()->getId();
-            $order = new Order();
-            $order->setUserId($userId);
-            $order->setTotal(0);
-            $order->save();
+        //  // validate form
+        //  $this->validate($request, [
+        //     'nombre'     => 'required | max:255',
+        //     'postal'   => 'required | numeric | max:20',
+        //     'estado' => 'required | max:255',
+        //     'municipio' => 'required | max:255',
+        //     'colonia' => 'required | max:255',
+        //     'calle' => 'required | max:255',
+        //     'exterior' => 'required | numeric | max:20',
+        //     'interior' => 'numeric',
+        //     'calle1' =>  'max:255',
+        //     'calle2' => 'max:255',
+        //     'tipo' => 'required | max:255',
+        //     'telefono' => 'required| numeric',
+        //     'extra' => 'max:255',
+        // ]);
+        //check if image is uploaded
+        // if ($request->hasFile('image')) {
 
-            $total = 0;
-            $productsInCart = Product::findMany(array_keys($productsInSession));
-            foreach ($productsInCart as $product) {
-                $quantity = $productsInSession[$product->getId()];
-                $item = new Item();
-                $item->setQuantity($quantity);
-                $item->setPrice($product->getPrice());
-                $item->setProductId($product->getId());
-                $item->setOrderId($order->getId());
-                $item->save();
-                $total = $total + ($product->getPrice() * $quantity - $product->getDiscountedprice() * $quantity);
-            }
-            $order->address = $request->address;
-            $order->setTotal($total);
-            $order->save();
+        //     //upload new image
+        //     $image = $request->file('image');
+        //     $image->storeAs('public/dir', $image->hashName());
 
-            $newBalance = Auth::user()->getBalance() - $total;
-            Auth::user()->setBalance($newBalance);
-            Auth::user()->save();
+        //     //delete old image
+        //     Storage::delete('public/dir/'.$dir->image);
 
-            $request->session()->forget('products');
+        //     //update post with new image
+        //     $dir->update([
+        //         'image'     => $image->hashName(),
+        //         'title'     => $request->title,
+        //         'content'   => $request->content
+        //     ]);
 
-            $viewData = [];
-            $viewData["title"] = "Marktech";
-            $viewData["subtitle"] = "Estado de compra";
-            $viewData["order"] = $order;
-            return view('cart.purchase')->with("viewData", $viewData);
-        } else {
-            return redirect()->route('cart.purchase');
-        }
+        // } else {
+
+        //update post without image
+        $dir->update([
+            'user_id' => Auth::user()->getId(),
+            'nombre' => $request->nombre,
+            'postal' => $request->postal,
+            'estado' => $request->estado,
+            'municipio' => $request->municipio,
+            'colonia' => $request->colonia,
+            'calle' => $request->calle,
+            'exterior' => $request->exterior,
+            'interior' => $request->interior,
+            'calle1' => $request->calle1,
+            'calle2' => $request->calle2,
+            'tipo' => $request->tipo,
+            'telefono' => $request->telefono,
+            'extra' => $request->extra,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        //redirect to index
+        return redirect()->route('myaccount.myaddress');
     }
 
-    //real puchase function
-    public function address(Request $request)
+    /**
+     * destroy
+     *
+     * @param  mixed  $dir
+     * @return void
+     */
+    public function destroy(Address $dir)
     {
-        $productsInSession = $request->session()->get("products");
-        if ($productsInSession) {
-            $userId = Auth::user()->getId();
-            $order = new Order();
-            $order->setUserId($userId);
-            $order->setTotal(0);
-            $order->save();
+        // //delete image
+        // Storage::delete('public/dir/'. $dir->image);
 
-            $total = 0;
-            $productsInCart = Product::findMany(array_keys($productsInSession));
-            foreach ($productsInCart as $product) {
-                $quantity = $productsInSession[$product->getId()];
-                $item = new Item();
-                $item->setQuantity($quantity);
-                $item->setPrice($product->getPrice());
-                $item->setProductId($product->getId());
-                $item->setOrderId($order->getId());
-                $item->save();
-                //discount price in paypal
-                $total = $total + ($product->getPrice() * $quantity - $product->getDiscountedprice() * $quantity);
-            }
-            $order->address = $request->address;
-            $order->setTotal($total);
-            $order->save();
+        //delete post
+        $dir->delete();
 
-            //rest a product in stock
-            $productsInCart = Product::findMany(array_keys($productsInSession));
-            foreach ($productsInCart as $product) {
-                $quantity = $productsInSession[$product->getId()];
-                $product->setStock($product->getStock() - $quantity);
-                $product->save();
-            }
-
-            foreach ($productsInCart as $product) {
-                $quantity = $productsInSession[$product->getId()];
-                $product->setSales($product->getSales() + $quantity);
-                $product->save();
-            }
-
-            $newBalance = Auth::user()->getBalance() - $total;
-            Auth::user()->setBalance($newBalance);
-            Auth::user()->save();
-
-            $request->session()->forget('products');
-
-            $viewData = [];
-            $viewData["title"] = "Marktech";
-            $viewData["subtitle"] = "Estado de compra";
-            $viewData["order"] = $order;
-            return view('cart.purchase')->with("viewData", $viewData);
-        } else {
-            return redirect()->route('cart.purchase');
-        }
+        //redirect to index
+        return redirect()->route('myaccount.myaddress');
     }
 }

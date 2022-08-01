@@ -7,17 +7,16 @@ use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class AdminItemsController extends Controller
 {
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
+        $viewData['title'] = 'Marktech - Administrador';
 
-        $viewData["products"] = Item::all();
+        $viewData['products'] = Item::all()->sortByDesc('id');
 
-        return view('admin.item.index')->with("viewData", $viewData);
+        return view('admin.item.index')->with('viewData', $viewData);
     }
 
     public function store(Request $request)
@@ -47,8 +46,8 @@ class AdminItemsController extends Controller
     public function edit($id)
     {
         $viewData = [];
-        $viewData["title"] = "Marktech - Administrador";
-        $viewData["product"] = Item::findOrFail($id);
+        $viewData['title'] = 'Marktech - Administrador';
+        $viewData['product'] = Item::findOrFail($id);
         // return view('admin.item.edit')->with("viewData", $viewData);
     }
 
@@ -72,12 +71,14 @@ class AdminItemsController extends Controller
         // }
 
         $Item->save();
+
         return redirect()->route('admin.item.index');
     }
 
     public function delete($id)
     {
         Item::destroy($id);
+
         return back();
     }
 }
