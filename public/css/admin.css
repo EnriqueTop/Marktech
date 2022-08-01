@@ -31,3 +31,11 @@ hr {
   background-color: #f8f9fc;
   border-bottom: 1px solid #e3e6f0;
 }
+
+.btn-black {
+  background-color: #1a252f;
+  color: #eee;
+  border-color: #1a252f;
+}
+
+

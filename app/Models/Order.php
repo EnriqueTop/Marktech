@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Item;
 
 class Order extends Model
 {
@@ -18,12 +16,14 @@ class Order extends Model
      * $this->user - User - contains the associated User
      * $this->items - Item[] - contains the associated items
      */
-
     public static function validate($request)
     {
         $request->validate([
-            "total" => "required|numeric",
-            "user_id" => "required|exists:users,id",
+            'total' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
+            'paid' => 'required|max:255',
+            'address' => 'required|max:255',
+            'status' => 'required|max:255',
         ]);
     }
 
@@ -35,6 +35,26 @@ class Order extends Model
     public function setId($id)
     {
         $this->attributes['id'] = $id;
+    }
+
+    public function getState()
+    {
+        return $this->attributes['paid'];
+    }
+
+    public function setState($paid)
+    {
+        $this->attributes['paid'] = $paid;
+    }
+
+    public function getAddress()
+    {
+        return $this->attributes['address'];
+    }
+
+    public function setAddress($address)
+    {
+        $this->attributes['address'] = $address;
     }
 
     public function getTotal()
@@ -75,6 +95,16 @@ class Order extends Model
     public function setUpdatedAt($updatedAt)
     {
         $this->attributes['updated_at'] = $updatedAt;
+    }
+
+    public function getEstado()
+    {
+        return $this->attributes['status'];
+    }
+
+    public function setEstado($status)
+    {
+        $this->attributes['status'] = $status;
     }
 
     public function user()

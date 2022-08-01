@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Order;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -35,49 +34,70 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'balance'
+        'balance',
     ];
+
+    public static function validate($request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'role' => 'required|max:255',
+            'balance' => 'required|numeric',
+        ]);
+    }
 
     public function getId()
     {
         return $this->attributes['id'];
     }
+
     public function setId($id)
     {
         $this->attributes['id'] = $id;
     }
+
     public function getName()
     {
         return $this->attributes['name'];
     }
+
     public function setName($name)
     {
         $this->attributes['name'] = $name;
     }
+
     public function getEmail()
     {
         return $this->attributes['email'];
     }
+
     public function setEmail($email)
     {
         $this->attributes['email'] = $email;
     }
+
     public function getPassword()
     {
         return $this->attributes['password'];
     }
+
     public function setPassword($password)
     {
         $this->attributes['password'] = $password;
     }
+
     public function getRole()
     {
         return $this->attributes['role'];
     }
+
     public function setRole($role)
     {
         $this->attributes['role'] = $role;
     }
+
     public function getBalance()
     {
         return $this->attributes['balance'];
@@ -87,18 +107,22 @@ class User extends Authenticatable
     {
         $this->attributes['balance'] = $balance;
     }
+
     public function getCreatedAt()
     {
         return $this->attributes['created_at'];
     }
+
     public function setCreatedAt($createdAt)
     {
         $this->attributes['created_at'] = $createdAt;
     }
+
     public function getUpdatedAt()
     {
         return $this->attributes['updated_at'];
     }
+
     public function setUpdatedAt($updatedAt)
     {
         $this->attributes['updated_at'] = $updatedAt;

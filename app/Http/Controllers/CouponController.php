@@ -34,9 +34,10 @@ class CouponController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $couponCode = Coupon::findByCode($request->coupon_code);
-        if (!$couponCode) {
+        if (! $couponCode) {
             return back()->withErrors(['message' => 'No se encontro la el cupon']);
         }
         $coupon = $couponCode->couponable;
@@ -44,8 +45,9 @@ class CouponController extends Controller
         $discount = $coupon->discount($subtotal);
         session()->put('coupon', [
             'name' => $couponCode->code,
-            'discount' => $discount
+            'discount' => $discount,
         ]);
+
         return back();
     }
 
@@ -89,8 +91,10 @@ class CouponController extends Controller
      * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Coupon $coupon) {
+    public function destroy(Coupon $coupon)
+    {
         session()->forget('coupon');
+
         return back();
     }
 }

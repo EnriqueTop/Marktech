@@ -60,14 +60,15 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn bg-black text-white">
+                                    <button type="submit" class="btn btn-black text-white">
                                         {{ __('Inciar Sesión') }}
                                     </button>
-
+<p>
+    <br>
                                     @if (Route::has('password.request'))
-                                       <!-- <a class="btn bg-primary text-white" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a> -->
+                                       <a class="btn btn-black text-white" href="{{ route('password.request') }}">
+                                            {{ __('¿Olvidaste tu contraseña?') }}
+                                        </a>
                                     @endif
                                 </div>
                             </div>

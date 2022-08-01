@@ -14,7 +14,8 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         //
     }
 
@@ -34,8 +35,10 @@ class InvoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $url = route('invoice.show', ['order' => $request->order]);
+
         return Inertia::location($url);
     }
 
@@ -45,7 +48,8 @@ class InvoiceController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order, InvoiceService $invoiceService) {
+    public function show(Order $order, InvoiceService $invoiceService)
+    {
         return $invoiceService->createInvoice($order)->stream();
     }
 
