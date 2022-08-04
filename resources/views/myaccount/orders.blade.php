@@ -12,7 +12,7 @@
                     class="text-primary">{{ Carbon\Carbon::parse($order->getCreatedat())->subHours(3)->subMinutes(2)->translatedFormat('l j F Y') }}</strong>
             </div>
             <div class="card-body">
-                <b>Número de Orden:</b> {{ $order->getId() }}<br>
+                <b>Código de Pedido:</b> {{ $order->hashid() }}<br>
                 <b>Total: </b>
                 <x-money amount="{{ $order->getTotal() }}" currency="MXN" convert /><br />
 
@@ -36,14 +36,14 @@
                 @if ($order->getState() == 'No Pagado')
                     <b>Ver detalles del pedido para completar tu compra.</b> <br>
                 @endif
-                <a href="{{ route('myaccount.orders.show', $order->getId()) }}" class="btn btn-black">Ver Detalles</a>
+                <a href="{{ route('myaccount.orders.show', $order->hashid()) }}" class="btn btn-black">Ver Detalles</a>
 
                 <table class="table table-borderless table-striped text-center mt-3">
                     <thead>
                         <tr>
                             <th scope="col"></th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Id único</th>
+                            <th scope="col">S/N</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Descuento</th>
                             <th scope="col">Cantidad</th>
