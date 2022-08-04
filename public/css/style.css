@@ -182,6 +182,30 @@
      }
  }
 
+ @media(min-width:992px) {
+     #navbar2-mobile {
+         display: none;
+     }
+ }
+
+ @media(max-width:992px) {
+     #navbar2 {
+         display: none;
+     }
+ }
+
+ @media(min-width:992px) {
+     #darkmode {
+         display: block;
+     }
+ }
+
+ @media(max-width:992px) {
+     #darkmode {
+         display: none;
+     }
+ }
+
  /* add to card hover */
 
  .hov {

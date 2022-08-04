@@ -40,24 +40,6 @@ class AddAddressController extends Controller
 
     public function addaddress(Request $request)
     {
-
-// // validate form
-//         $this->validate($request, [
-//             'nombre'     => 'required | max:255',
-//             'postal'   => 'required | numeric | max:20',
-//             'estado' => 'required | max:255',
-//             'municipio' => 'required | max:255',
-//             'colonia' => 'required | max:255',
-//             'calle' => 'required | max:255',
-//             'exterior' => 'required | numeric | max:20',
-//             'interior' => 'numeric',
-//             'calle1' =>  'max:255',
-//             'calle2' => 'max:255',
-//             'tipo' => 'required | max:255',
-//             'telefono' => 'required| numeric',
-//             'extra' => 'max:255',
-//         ]);
-
         $productsInSession = $request->session()->get('products');
         $userId = Auth::user()->getId();
         $address = new Order();

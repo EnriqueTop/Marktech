@@ -114,9 +114,9 @@
                                 <li><a class="dropdown-item" href="/armatucomputadora">Arma tu
                                         computadora</a></li>
                                 <li><a class="dropdown-item" href="/hardware/procesadores">Procesadores</a></li>
-                                <li><a class="dropdown-item" href="/hardware\motherboards">Targetas Madre</a></li>
+                                <li><a class="dropdown-item" href="/hardware\motherboards">Tarjetas Madre</a></li>
                                 <li><a class="dropdown-item" href="/hardware\gabinetes">Gabinetes</a></li>
-                                <li><a class="dropdown-item" href="/hardware\graficas">Targetas de video</a></li>
+                                <li><a class="dropdown-item" href="/hardware\graficas">Tarjetas de video</a></li>
                                 <li><a class="dropdown-item" href="/hardware\ram">Memorias RAM</a></li>
                                 <li><a class="dropdown-item" href="/hardware\disipadores">Disipadores</a></li>
                                 <li><a class="dropdown-item" href="/hardware\fuentes">Fuentes de Poder</a></li>
@@ -145,7 +145,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <ul>
                             <li><a class="dropdown-item" href="/accesrios">Accesorios</a></li>
-                            <li><a class="dropdown-item" href="/accesorios\audifonos">Audifonos</a></li>
+                            <li><a class="dropdown-item" href="/accesorios\audifonos">Audífonos</a></li>
                             <li><a class="dropdown-item" href="/accesorios\alfombrillas">Alfombrillas</a></li>
                             <li><a class="dropdown-item" href="/accesorios\mouse">Mouse</a></li>
                             <li><a class="dropdown-item" href="/accesorios\teclados">Teclados</a></li>
@@ -247,8 +247,8 @@
                                 <br>
                                 <ul class="list-unstyled mb-0">
                                     <li>
-                                        <a href="mailto:herrera.alvaradoartu@gmail.com"
-                                            class="text-white">Contactanos</a>
+                                        <a href="mailto:marktechof@gmail.com"
+                                            class="text-white">Contáctanos</a>
                                     </li>
                                     <li>
                                         <a href="/Sugerencias" class="text-white">Sugerencias</a>
@@ -283,11 +283,10 @@
                                 <br>
                                 <ul class="list-unstyled mb-0">
                                     <li>
-                                        <a href="/avisodeprivacidad" class="text-white">Politica de Privacidad</a>
+                                        <a href="/avisodeprivacidad" class="text-white">Política de Privacidad</a>
                                     </li>
                                     <li>
-                                        <a href="/terminosycondiciones" class="text-white">Terminos y
-                                            Condiciones</a>
+                                        <a href="/terminosycondiciones" class="text-white">Términos y Condiciones</a>
                                     </li>
                                 </ul>
                             </div>
@@ -306,7 +305,7 @@
                 <!--Derechos-->
                 <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                     Todos los derechos reservados 2022 ©:
-                    <a class="text-white" href="/">https://Marktech.com/</a>
+                    <a class="text-white" href="https://marktechstoremx.ga/">https://marktechstoremx.ga/</a>
                 </div>
             </footer>
         </section>

@@ -147,4 +147,14 @@ class Item extends Model
     {
         $this->attributes['discounted_price'] = $discountedPrice;
     }
+
+    public function getTotal()
+    {
+        return $this->product->getTotal();
+    }
+
+    public function setTotal($total)
+    {
+        $this->attributes['total'] = $total;
+    }
 }

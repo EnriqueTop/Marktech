@@ -7,21 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
 {
-    public function stripe()
-    {
-        return view('stripe');
-    }
 
     public function payment($id)
     {
-        $userId = Auth::user()->getId();
-        $data = Order::all();
-        // get the last order id
-        $order = collect($data)->where('id', '=', $id)->last();
-        $order->setUserId($userId);
-
-        $order->save();
-
+        $order = Order::find($id);
         // set the state of the order 1=paid 0/null=not paid
         $order->paid = 'Pagado';
         $order->save();
@@ -32,6 +21,12 @@ class StripeController extends Controller
 
         toastr()->info('Pago Completado', ' ');
 
+        return redirect()->route('myaccount.orders');
+    }
+
+    public function cancel()
+    {
+        toastr()->error('Pago Cancelado', ' ');
         return redirect()->route('myaccount.orders');
     }
 }

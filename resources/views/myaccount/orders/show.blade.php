@@ -9,7 +9,7 @@ $session = \Stripe\Checkout\Session::create([
             'price_data' => [
                 'currency' => 'mxn',
                 'product_data' => [
-                    'name' => $viewData['orders']->getId(),
+                    'name' => 'Marktech: Pedido ' . $viewData['orders']->hashid(),
                 ],
                 'unit_amount' => $viewData['orders']->getTotal() * 100,
             ],
@@ -18,8 +18,8 @@ $session = \Stripe\Checkout\Session::create([
     ],
     'mode' => 'payment',
     // send success url with order id
-    'success_url' => 'http://localhost:8000/success/' . $viewData['orders']->getId(),
-    'cancel_url' => 'https://example.com/cancel',
+    'success_url' => 'https://marktechstoremx.ga/stripe/success/' . $viewData['orders']->getId(),
+    'cancel_url' => 'https://marktechstoremx.ga/stripe/cancel',
 ]);
 ?>
 
@@ -34,7 +34,7 @@ $session = \Stripe\Checkout\Session::create([
                 <div class="card-body">
                     <b class="fs-5">Fecha de pedido:</b> <a
                         class="fs-5">{{ Carbon\Carbon::parse($viewData['orders']->getCreatedat())->subHours(3)->subMinutes(2)->translatedFormat('l j F Y') }}</a><br>
-                    <b class="fs-5">Número de Orden:</b> <a class="fs-5">{{ $viewData['orders']->getId() }}</a><br>
+                    <b class="fs-5">Código de Pedido:</b> <a class="fs-5">{{ $viewData['orders']->hashid() }}</a><br>
                     <b class="fs-5">Total: </b>
                     <a class="fs-5">
                         <x-money amount="{{ $viewData['orders']->getTotal() }}" currency="MXN" convert /><br />
