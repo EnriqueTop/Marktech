@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "league/omnipay": "^3.2",
+        "mtvs/eloquent-hashids": "^3.3",
         "omnipay/paypal": "^3.0",
         "shvetsgroup/laravel-email-database-log": "^10.0",
         "spatie/laravel-stripe-webhooks": "^3.2",
@@ -29,6 +30,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
         "fakerphp/faker": "^1.9.1",
+        "kitloong/laravel-migrations-generator": "^6.3",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",

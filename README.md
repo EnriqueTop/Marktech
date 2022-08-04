@@ -1,5 +1,5 @@
 # Marktech
-Proyecto Pagina Web tienda en línea.<br>
+Proyecto Pagina Web tienda en línea.
 
 Versión de Laravel Framework:<br>
 9.3.0
@@ -24,7 +24,4 @@ Caracteristicas:
 - [ ] Añadir mas PyR al ChatBot.
 - [x] Funcionamiento de Barra de Búsqueda.
 - [x] Filtros de la Barra de búsqueda.
-- [x] Implementar Metodo de pago (Paypal, Stripe).
-
-URL:<br>
-https://marktechstoremx.ga/
+- [x] Implementar Metodo de pago(Paypal).
