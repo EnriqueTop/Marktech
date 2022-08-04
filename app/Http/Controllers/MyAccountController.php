@@ -15,7 +15,7 @@ class MyAccountController extends Controller
         $viewData = [];
         $viewData['title'] = 'Marktech';
         $viewData['subtitle'] = 'Mis pedidos';
-        $viewData['orders'] = Order::latest()->with(['items.product'])->where('user_id', Auth::user()->getId())->Paginate(5);
+        $viewData['orders'] = Order::latest()->with(['items.product'])->where('user_id', Auth::user()->getId())->where('total', '>', 0)->Paginate(5);
 
         //select the order if "created_at" is 4 days old and state is "no pagado", change state to "cancelado"
         $orderp = Order::whereDate('created_at', '<', Carbon::now()->subDays(4))->where('paid', '=', 'No Pagado')->get();
@@ -47,7 +47,7 @@ class MyAccountController extends Controller
     {
         $viewData = [];
 
-        $order = Order::findOrFail($id);
+        $order = Order::findByHashidOrFail($id);
 
         $viewData['title'] = 'Marktech';
         $viewData['subtitle'] = 'Mis pedidos';

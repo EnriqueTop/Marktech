@@ -2,185 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class AddressController extends Controller
 {
-    /**
-     * index
-     *
-     * @return void
-     */
+
     public function index()
     {
         $userId = Auth::user()->getId();
 
-        //get dir
-        $dir = Address::latest()->where('user_id', '=', $userId)->get();
-        //render view with dir
-        return view('myaccount.myaddress')->with('dir', $dir);
+        $viewData = [];
+        $viewData['title'] = 'Marktech';
+        $viewData['products'] = Address::latest()->where('user_id', '=', $userId)->get();
+
+        return view('myaccount.myaddress')->with('viewData', $viewData);
     }
 
-    // /**
-    //  * create
-    //  *
-    //  * @return void
-    //  */
-    // // public function create()
-    // // {
-    // //     return view('myaccount.myaddress.create');
-    // // }
-
-    /**
-     * store
-     *
-     * @param  Request  $request
-     * @return void
-     */
-    public function store(Request $request)
+    public function edit($id)
     {
-        // // validate form
-        // $this->validate($request, [
-        //     'nombre'     => 'required | max:255',
-        //     'postal'   => 'required | numeric | max:20',
-        //     'estado' => 'required | max:255',
-        //     'municipio' => 'required | max:255',
-        //     'colonia' => 'required | max:255',
-        //     'calle' => 'required | max:255',
-        //     'exterior' => 'required | numeric | max:20',
-        //     'interior' => 'numeric',
-        //     'calle1' =>  'max:255',
-        //     'calle2' => 'max:255',
-        //     'tipo' => 'required | max:255',
-        //     'telefono' => 'required| numeric',
-        //     'extra' => 'max:255',
-        // ]);
+        $viewData = [];
+        $viewData['title'] = 'Marktech';
+        $viewData['product'] = Address::findByHashidOrFail($id);
 
-        // //upload image
-        // $image = $request->file('image');
-        // $image->storeAs('public/dir', $image->hashName());
+        return view('myaccount.myaddress.edit')->with('viewData', $viewData);
+    }
 
-        //create post
-        Post::create([
-            'user_id' => Auth::user()->getId(),
-            'nombre' => $request->nombre,
-            'postal' => $request->postal,
-            'estado' => $request->estado,
-            'municipio' => $request->municipio,
-            'colonia' => $request->colonia,
-            'calle' => $request->calle,
-            'exterior' => $request->exterior,
-            'interior' => $request->interior,
-            'calle1' => $request->calle1,
-            'calle2' => $request->calle2,
-            'tipo' => $request->tipo,
-            'telefono' => $request->telefono,
-            'extra' => $request->extra,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+    public function update(Request $request, $id)
+    {
+        // Address::validate($request);
 
-        //redirect to index
+        $Address = Address::findOrFail($id);
+        $Address->setNombre($request->input('nombre'));
+        $Address->setPostal($request->input('postal'));
+        $Address->setEstado($request->input('estado'));
+        $Address->setMunicipio($request->input('municipio'));
+        $Address->setColonia($request->input('colonia'));
+        $Address->setCalle($request->input('calle'));
+        $Address->setExterior($request->input('exterior'));
+        $Address->setInterior($request->input('interior'));
+        $Address->setCalle1($request->input('calle1'));
+        $Address->setCalle2($request->input('calle2'));
+        $Address->setTipo($request->input('tipo'));
+        $Address->setTelefono($request->input('telefono'));
+        $Address->setExtra($request->input('extra'));
+
+        $Address->save();
+
         return redirect()->route('myaccount.myaddress');
     }
 
-    /**
-     * edit
-     *
-     * @param  mixed  $dir
-     * @return void
-     */
-    public function edit(Address $dir)
+    public function delete($id)
     {
-        return view('myaccount.myaddress.edit', compact('dir'));
-    }
+        Address::destroy($id);
 
-    /**
-     * update
-     *
-     * @param  mixed  $request
-     * @param  mixed  $dir
-     * @return void
-     */
-    public function update(Request $request, Address $dir)
-    {
-        //  // validate form
-        //  $this->validate($request, [
-        //     'nombre'     => 'required | max:255',
-        //     'postal'   => 'required | numeric | max:20',
-        //     'estado' => 'required | max:255',
-        //     'municipio' => 'required | max:255',
-        //     'colonia' => 'required | max:255',
-        //     'calle' => 'required | max:255',
-        //     'exterior' => 'required | numeric | max:20',
-        //     'interior' => 'numeric',
-        //     'calle1' =>  'max:255',
-        //     'calle2' => 'max:255',
-        //     'tipo' => 'required | max:255',
-        //     'telefono' => 'required| numeric',
-        //     'extra' => 'max:255',
-        // ]);
-        //check if image is uploaded
-        // if ($request->hasFile('image')) {
-
-        //     //upload new image
-        //     $image = $request->file('image');
-        //     $image->storeAs('public/dir', $image->hashName());
-
-        //     //delete old image
-        //     Storage::delete('public/dir/'.$dir->image);
-
-        //     //update post with new image
-        //     $dir->update([
-        //         'image'     => $image->hashName(),
-        //         'title'     => $request->title,
-        //         'content'   => $request->content
-        //     ]);
-
-        // } else {
-
-        //update post without image
-        $dir->update([
-            'user_id' => Auth::user()->getId(),
-            'nombre' => $request->nombre,
-            'postal' => $request->postal,
-            'estado' => $request->estado,
-            'municipio' => $request->municipio,
-            'colonia' => $request->colonia,
-            'calle' => $request->calle,
-            'exterior' => $request->exterior,
-            'interior' => $request->interior,
-            'calle1' => $request->calle1,
-            'calle2' => $request->calle2,
-            'tipo' => $request->tipo,
-            'telefono' => $request->telefono,
-            'extra' => $request->extra,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        //redirect to index
-        return redirect()->route('myaccount.myaddress');
-    }
-
-    /**
-     * destroy
-     *
-     * @param  mixed  $dir
-     * @return void
-     */
-    public function destroy(Address $dir)
-    {
-        // //delete image
-        // Storage::delete('public/dir/'. $dir->image);
-
-        //delete post
-        $dir->delete();
-
-        //redirect to index
-        return redirect()->route('myaccount.myaddress');
+        return back();
     }
 }

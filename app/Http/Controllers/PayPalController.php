@@ -67,18 +67,7 @@ class PayPalController extends Controller
 
                 $payment->save();
 
-                //address/purchase controller
-
-                // $productsInSession = $request->session()->get("products");
-                // if ($productsInSession) {
-                $userId = Auth::user()->getId();
-                $data = Order::all();
-                // get the last order id
-                $order = collect($data)->where('id', '=', $id)->last();
-                $order->setUserId($userId);
-
-                $order->save();
-
+                $order = Order::find($id);
                 // set the state of the order 1=paid 0/null=not paid
                 $order->paid = 'Pagado';
                 $order->save();
@@ -93,10 +82,9 @@ class PayPalController extends Controller
                 $viewData['order'] = $order;
 
                 toastr()->info('Pago Completado', ' ');
-
                 return redirect()->route('myaccount.orders');
             } else {
-                return $response->getMessage();
+                return '¡Pago declinado!';
             }
         } else {
             return '¡Pago declinado!';
@@ -105,6 +93,7 @@ class PayPalController extends Controller
 
     public function error()
     {
-        return '¡El usuario denegó el pago!';
+        toastr()->error('Pago Cancelado', ' ');
+        return redirect()->route('myaccount.orders');
     }
 }

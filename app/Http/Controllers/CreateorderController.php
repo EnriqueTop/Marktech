@@ -85,7 +85,9 @@ class CreateorderController extends Controller
                 $item = new Item();
                 $item->setImage($product->getImage());
                 $item->setQuantity($quantity);
-                $item->setPrice($product->getPrice() - $product->getDiscountedPrice());
+                $item->setPrice($product->getPrice());
+                $item->setDiscountedPrice($product->getDiscountedPrice());
+                $item->setTotal($product->getPrice() - $product->getDiscountedPrice());
                 $item->setProductId($product->getId());
                 $item->setOrderId($order->getId());
                 $item->save();
@@ -136,19 +138,9 @@ class CreateorderController extends Controller
 
         $id = $request->input('id');
         $ammount = $request->input('total');
-        $token = $request->stripeToken;
-        // $token = $request->stripeToken;
-
-        // credit card inputs
-        // $cardNumber = $request->input('cardNumber');
-        // $cardMonth = $request->input('cardMonth');
-        // $cardYear = $request->input('cardYear');
-        // $cardCVC = $request->input('cardCVC');
 
         if ($request->input('payment_method') == 'paypal') {
             return $this->PayPalController->payment($id, $ammount);
-        } elseif ($request->input('payment_method') == 'stripe') {
-            return $this->StripeController->payment($id);
         } else {
             return redirect()->route('product.index');
         }

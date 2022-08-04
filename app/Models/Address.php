@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Mtvs\EloquentHashids\HasHashid;
+use Mtvs\EloquentHashids\HashidRouting;
 
 class address extends Model
 {
     use HasFactory;
+    use HasHashid, HashidRouting;
 
     // /**
     //  * fillable
     //  *
     // @var array
     //  */
+    protected $appends = ['hashid'];
     protected $fillable = [
 
         'user_id',

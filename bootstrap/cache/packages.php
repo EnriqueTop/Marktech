@@ -35,6 +35,13 @@
       0 => 'BotMan\\Drivers\\Web\\Providers\\WebServiceProvider',
     ),
   ),
+  'kitloong/laravel-migrations-generator' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'KitLoong\\MigrationsGenerator\\MigrationsGeneratorServiceProvider',
+    ),
+  ),
   'laravel/cashier' => 
   array (
     'providers' => 
@@ -136,6 +143,17 @@
     'providers' => 
     array (
       0 => 'Spatie\\WebhookClient\\WebhookClientServiceProvider',
+    ),
+  ),
+  'vinkla/hashids' => 
+  array (
+    'aliases' => 
+    array (
+      'Hashids' => 'Vinkla\\Hashids\\Facades\\Hashids',
+    ),
+    'providers' => 
+    array (
+      0 => 'Vinkla\\Hashids\\HashidsServiceProvider',
     ),
   ),
   'yoeunes/toastr' => 
