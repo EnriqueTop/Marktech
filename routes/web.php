@@ -6,6 +6,8 @@ use App\Http\Controllers\CreateorderController;
 use App\Mail\acercaMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Mtvs\EloquentHashids\HasHashid;
+use Mtvs\EloquentHashids\HashidRouting;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,19 +97,11 @@ Route::post('/TuCarrito/add/{id}', 'App\Http\Controllers\CartController@add')->n
 Route::middleware('auth', 'verified')->group(function () {
     Route::post('/TuCarrito/purchase', [CreateorderController::class, 'puchase'])->name('cart.purchase');
     Route::get('/TuCarrito/purchase', [CreateorderController::class, 'puchase'])->name('cart.purchase');
-
-    // Route::post('/Carrito/purchase', [CreateorderController::class, 'puchase'])->name('cart.postpurchase');
-    // Route::get('/Carrito/purchase', [CreateorderController::class, 'puchase'])->name('cart.postpurchase');
-    // Route::get('/TuCarrito/purchase', 'App\Http\Controllers\CartController@purchase')->name("cart.purchase");
-
     // orders
     Route::get('/pedidos', 'App\Http\Controllers\MyAccountController@orders')->name('myaccount.orders');
 
     Route::get('/pedidos/{id}', 'App\Http\Controllers\MyAccountController@show')->name('myaccount.orders.show');
     Route::get('/pedidos/{id}/cancel', 'App\Http\Controllers\MyAccountController@cancel')->name('myaccount.orders.show.cancel');
-
-    // address
-    Route::get('/misdatos', 'App\Http\Controllers\AddressController@index')->name('myaccount.myaddress');
 
     // account edit
     Route::get('/miusuario', 'App\Http\Controllers\MyAccountController@edit')->name('myaccount.edit');
@@ -174,20 +168,28 @@ Route::get('/datos', 'App\Http\Controllers\CreateorderController@index')->name('
 Route::post('/datos/', [CreateorderController::class, 'puchase']);
 Route::any('/datoss', 'App\Http\Controllers\CreateorderController@completeOrder')->name('complete.order');
 
+// address
 Route::view('/direcciones', 'form.addaddress');
 Route::get('/direcciones', 'App\Http\Controllers\AddAddressController@index')->name('form.addaddress');
 Route::post('/direcciones/', [AddAddressController::class, 'addaddress']);
 
 //account route resources
-Route::resource('/dir', App\Http\Controllers\AddressController::class);
+// Route::resource('/dir', App\Http\Controllers\AddressController::class);
 Route::get('/micuenta', 'App\Http\Controllers\MyAccountController@getUser')->name('myaccount.my');
 
+// Address
+Route::get('/misdatos', 'App\Http\Controllers\AddressController@index')->name('myaccount.myaddress');
+Route::post('/direccion/store', 'App\Http\Controllers\AddressController@store')->name('myaccount.myaddress.store');
+Route::get('/direccion/{id:hashid}', 'App\Http\Controllers\AddressController@edit')->name('myaccount.myaddress.edit');
+Route::put('/direccion/{id:hashid}', 'App\Http\Controllers\AddressController@update')->name('myaccount.myaddress.update');
+Route::delete('/direccion/{id}', 'App\Http\Controllers\AddressController@delete')->name('myaccount.myaddress.delete');
 // search
 Route::any('/busqueda', 'App\Http\Controllers\SearchController@search')->name('search.search');
 Route::any('/busquedaerror', 'App\Http\Controllers\SearchController@search')->name('search.nofound');
 
 // stripe
-Route::any('success/{id}', [App\Http\Controllers\StripeController::class, 'payment']);
+Route::any('stripe/success/{id}', [App\Http\Controllers\StripeController::class, 'payment']);
+Route::any('stripe/cancel/', [App\Http\Controllers\StripeController::class, 'cancel']);
 //paypal
 Route::match(['GET', 'POST'], 'payment', [App\Http\Controllers\PayPalController::class, 'payment'])->name('completepayment');
 Route::match(['GET', 'POST'], 'completesuccess/{id}', [App\Http\Controllers\PayPalController::class, 'completesuccess']);
